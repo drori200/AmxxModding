@@ -43,11 +43,14 @@ runtime packages above and `ldd .compiler/amxxpc`.
 | `npm run setup` | Download compiler and configured third-party dependencies |
 | `npm run build` | Clean and rebuild the complete distribution, then verify it |
 | `npm run watch` | Build and watch sources/includes, recompiling dependents |
-| `npm run compile -- admin.sma` | Compile one existing plugin |
+| `npm run compile -- plugins/stock_plugins/admin.sma` | Compile one existing plugin |
 | `npm run compile -- api_custom_weapons.sma` | Compile one kit plugin |
 | `npm run verify` | Check the previously built package and kit load order |
 
-Put your own `.sma` files in the project root and your custom `.inc` files in
+Put your own `.sma` files under `plugins/` and organize stock or custom plugins
+in subdirectories such as `plugins/stock_plugins/`. The build discovers `.sma`
+files recursively below `plugins/`; keep plugin filenames unique because the
+packaged output is flat. Put your custom `.inc` files in
 `include/`. Kit headers are available directly, for example
 `#include <api_custom_entities>`. Preserve their native and forward interfaces;
 the corresponding API plugin must run on the server before its consumers.
@@ -58,7 +61,7 @@ The npm workflow uses the isolated compiler's standard headers ahead of the old
 local headers. Packaged standard headers also come from the isolated compiler.
 Avoid giving custom headers the same names as standard AMXX headers.
 
-Production inputs are root-level plugins, the kit's `api/`, `entities/`,
+Production inputs are plugins under `plugins/`, the kit's `api/`, `entities/`,
 `weapons/`, and `player-effects/` sources, their includes, and project `assets/`.
 AMXX/ReAPI tests, `testsuite/`, downloaded compiler samples, and generated source
 copies are excluded. Kit sources remain downloaded dependencies; put maintained
@@ -113,7 +116,7 @@ explicitly enables its custom round manager.
 
 ## Verification
 
-The build verifier checks the root plugins plus all 24 kit plugins, nonempty
+The build verifier checks all plugins under `plugins/` plus all 24 kit plugins, nonempty
 binaries, exact source/include copies, third-party licenses, and provider order.
 Unexpected binaries (including stale or test plugins) fail verification.
 GitHub Actions runs setup, compilation, and package verification on Ubuntu with

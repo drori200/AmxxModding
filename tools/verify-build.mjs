@@ -18,8 +18,8 @@ async function files(dir, extension) {
 }
 
 try {
-  const localScripts = (await readdir('.')).filter(name => name.endsWith('.sma'));
-  assert(localScripts.length > 0, 'No root plugin sources found; include the existing sources in your checkout.');
+  const localScripts = await files('plugins', '.sma');
+  assert(localScripts.length > 0, 'No plugin sources found under plugins/; include the existing sources in your checkout.');
   const kitScripts = (await Promise.all(['api', 'entities', 'weapons', 'player-effects']
     .map(dir => files(`${kit}/${dir}`, '.sma')))).flat();
   assert.equal(kitScripts.length, 24, 'Expected the 24 plugins in the pinned modding kit. Review dependency updates.');
