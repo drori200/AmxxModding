@@ -1,0 +1,24 @@
+{
+  "name": "amxx-modding",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Counter-Strike 1.6 plugins with AMXXPack and AMXX Modding Kit",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "prebuild": "node -e \"require('node:fs').rmSync('dist', {recursive: true, force: true})\"",
+    "setup": "node tools/setup.mjs",
+    "build": "amxxpack build --no-cache && node tools/package.mjs && node tools/verify-build.mjs",
+    "watch": "node tools/package.mjs && amxxpack build --watch",
+    "compile": "amxxpack compile",
+    "verify": "node tools/verify-build.mjs"
+  },
+  "devDependencies": {
+    "amxxpack": "1.5.3",
+    "decompress": "4.2.1"
+  },
+  "overrides": {
+    "minimatch": "3.1.5"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "type": "amxmodx",
+  "compiler": {
+    "dir": "./.compiler",
+    "version": "1.10",
+    "addons": [
+      "cstrike"
+    ]
+  },
+  "thirdparty": {
+    "dir": "./.thirdparty",
+    "dependencies": [
+      {
+        "name": "amxx-modding-kit",
+        "url": "https://codeload.github.com/Hedgefog/amxx-modding-kit/tar.gz/1a29ced127e3e93c5f0cdcae22651a782c5c55c0",
+        "type": "archive",
+        "strip": 1
+      },
+      {
+        "name": "reapi",
+        "url": "https://github.com/rehlds/ReAPI/releases/download/5.29.0.358/reapi-bin-5.29.0.358.zip"
+      },
+      {
+        "name": "reapi-license",
+        "url": "https://codeload.github.com/rehlds/ReAPI/tar.gz/refs/tags/5.29.0.358",
+        "type": "archive",
+        "strip": 1,
+        "filter": [
+          "LICENSE"
+        ]
+      }
+    ]
+  },
+  "include": [
+    "./.compiler/include"
+  ],
+  "input": {
+    "scripts": [
+      {
+        "dir": "./.thirdparty/amxx-modding-kit",
+        "filter": [
+          "api/**/*.sma",
+          "entities/*.sma",
+          "weapons/*.sma",
+          "player-effects/*.sma"
+        ]
+      },
+      {
+        "dir": ".",
+        "filter": [
+          "*.sma",
+          "!*/**"
+        ]
+      }
+    ],
+    "include": [
+      "./include",
+      "./.compiler/include",
+      {
+        "dir": "./.thirdparty/amxx-modding-kit",
+        "filter": [
+          "api/**/*.inc",
+          "util/*.inc",
+          "entities/include/*.inc",
+          "weapons/include/*.inc"
+        ]
+      },
+      "./.thirdparty/reapi/addons/amxmodx/scripting/include"
+    ],
+    "assets": [
+      {
+        "dir": "./assets"
+      }
+    ]
+  },
+  "output": {
+    "base": "./dist",
+    "plugins": "./addons/amxmodx/plugins",
+    "scripts": "./addons/amxmodx/scripting",
+    "include": "./addons/amxmodx/scripting/include",
+    "assets": "."
+  },
+  "rules": {
+    "flatCompilation": true,
+    "rebuildDependents": true
+  }
+}
