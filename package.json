@@ -12,7 +12,12 @@
     "build": "amxxpack build --no-cache && node tools/package.mjs && node tools/verify-build.mjs",
     "watch": "node tools/package.mjs && amxxpack build --watch",
     "compile": "amxxpack compile",
-    "verify": "node tools/verify-build.mjs"
+    "verify": "node tools/verify-build.mjs",
+    "research:pawn:setup": "python3 research/tools/toolchains.py --current",
+    "research:pawn:test": "python3 research/tools/pawn_lab.py",
+    "research:pawn:examples": "python3 research/tools/pawn_examples.py",
+    "research:pawn:gate": "python3 research/tools/pawn_gate.py --record",
+    "research:amxx": "python3 research/tools/amxx_lab.py"
   },
   "devDependencies": {
     "amxxpack": "1.5.3",

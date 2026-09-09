@@ -1,0 +1,3888 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-09T07:28:37.321176+00:00",
+  "purpose": "Guide-derived coverage obligations and independent claim review. This is NOT a gate pass, a count of mastered features or a test-result ledger.",
+  "source_manifest": {
+    "stable_archive": {
+      "id": "pawn-stable.zip",
+      "url": "https://www.compuphase.com/pawn/pawn-4.1.7487.zip",
+      "sha256": "05cf630baef59912a9ffaf2745652187038d8d5be1a3aab870d13ea0bd31c7bc",
+      "accessed": "2026-09-08",
+      "path": ".cache/research/downloads/pawn-stable.zip"
+    },
+    "language": {
+      "id": "Pawn_Language_Guide.pdf",
+      "url": "https://codeberg.org/compuphase/pawn/raw/commit/73b9ae62319c213936f179345addf1fc9ac728f1/doc/Pawn_Language_Guide.pdf",
+      "sha256": "398bac8b1e9d07aeec39af263862179bb5e1507a69bef773293958bebd052e79",
+      "accessed": "2026-09-08",
+      "path": ".cache/research/downloads/Pawn_Language_Guide.pdf"
+    },
+    "implementer": {
+      "id": "Pawn_Implementer_Guide.pdf",
+      "url": "https://codeberg.org/compuphase/pawn/raw/commit/73b9ae62319c213936f179345addf1fc9ac728f1/doc/Pawn_Implementer_Guide.pdf",
+      "sha256": "aeb323fed8fd6ebe197e86e78afe273a464a3b8e753902e184682763d43aea20",
+      "accessed": "2026-09-08",
+      "path": ".cache/research/downloads/Pawn_Implementer_Guide.pdf"
+    },
+    "separate_development": {
+      "id": "pawn-current.zip",
+      "url": "https://codeberg.org/compuphase/pawn/archive/79620fcfff474c622fdb11d78027598235b8f11f.zip",
+      "sha256": "d0c5b372c7e277f65b07909f24f0dd3c28bba82f4e7fc47031c2eb1cb9f6f030",
+      "accessed": "2026-09-08",
+      "path": ".cache/research/downloads/pawn-current.zip"
+    },
+    "provenance_note": "Stable advertised 4.1.7487 archive has compiler/svnrev.h revision7483 date2025-08-20. Guides are August2025 PDFs pinned to commit73b9ae62319c213936f179345addf1fc9ac728f1, not proof of byte-identical matching source. PDF physical page number = printed page +4 for these guides. Development archive is a separate comparison, not stable evidence."
+  },
+  "review_inputs_sha256": {
+    ".cache/research/review/prior-examples-audit.json": "7394ea6088f0b2e0ad1f409644e02cfb3d2cf8d71247e0e9b4a2c9ead96018f1",
+    ".cache/research/review/independent-exercise-predictions.json": "bb5d704277791b9813558367ef900900b88d7d50cb2b0c1b3f6dc7bd13bef1db",
+    ".cache/research/review/spot-results.json": "3feb60df9ad5330b67e103cf7be6edb240767be74d94b3674bc5a59d9d29d4a5",
+    "research/pawn/cases.json": "393e79ad58ea943b731e7d2eb3834b99745739f3a2c7d851b9cac6174dc2e68b",
+    "research/pawn/upstream-expectations.json": "c9cac76eacf91f3b674691fbe78a6051bf9a72ab9e0a3d541c5833750f75bfff",
+    "research/pawn/host/labrun.c": "5241f70f5b405bf01483efc64b2f3485797b2780b90fcba981c1249fd8b8eced",
+    "research/pawn/include/lab.inc": "024884ec07070e8e524a6546ebbeaa1bd3e26417ed7d2bf8de36353546d2e73f"
+  },
+  "inventory": [
+    {
+      "id": "L01",
+      "domain": "language",
+      "topic": "Language purpose, cells and host separation",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "1-2,52",
+          "section": "Language purpose, cells and host separation"
+        }
+      ],
+      "subtopics": [
+        "cell type",
+        "host isolation",
+        "tag classifications",
+        "host-provided operations"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Explain language versus compiler/host/library boundaries and test a minimal native-free program."
+      ]
+    },
+    {
+      "id": "L02",
+      "domain": "language",
+      "topic": "Lexical format and statement termination",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "83",
+          "section": "Lexical format and statement termination"
+        }
+      ],
+      "subtopics": [
+        "whitespace",
+        "optional semicolons",
+        "line-sensitive forms",
+        "optional parentheses and braces"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "preprocessing",
+          "path": "research/pawn/cases/preprocessing.p",
+          "sha256": "8b5bca9720be0fd2f36a7e7af02f17f53aefb7e5618d8044848041ad5c16a3e5",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "control_flow",
+          "path": "research/pawn/cases/control_flow.p",
+          "sha256": "e4021d93f68c2d20ff94186dc243b361a6b3a7b417da7694eac7ab7dbbf167d8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add positive and negative line-termination and indentation-sensitive syntax checks."
+      ]
+    },
+    {
+      "id": "L03",
+      "domain": "language",
+      "topic": "Comments and documentation comments",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "43-48,83",
+          "section": "Comments and documentation comments"
+        }
+      ],
+      "subtopics": [
+        "line comments",
+        "block comments",
+        "non-nesting",
+        "documentation markers and placement"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Test comment token separation, nested-comment diagnostics and generated documentation metadata."
+      ]
+    },
+    {
+      "id": "L04",
+      "domain": "language",
+      "topic": "Identifiers and reserved words",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "83-84",
+          "section": "Identifiers and reserved words"
+        }
+      ],
+      "subtopics": [
+        "case sensitivity",
+        "identifier character set and length",
+        "underscore",
+        "@ public convention",
+        "reserved words"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "undefined_error",
+          "path": "research/pawn/cases/undefined_error.p",
+          "sha256": "7480e3dd81018377642472aa175a3ed71318cf5e66277c4daa0ea19518ea8e84",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test boundary names and reserved-word diagnostics; retain prior state: tag rejection as a versioned correction."
+      ]
+    },
+    {
+      "id": "L05",
+      "domain": "language",
+      "topic": "Integer literal spelling",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "84,88",
+          "section": "Integer literal spelling"
+        }
+      ],
+      "subtopics": [
+        "binary",
+        "decimal",
+        "hexadecimal",
+        "digit group separators",
+        "cell constants"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "preprocessing",
+          "path": "research/pawn/cases/preprocessing.p",
+          "sha256": "8b5bca9720be0fd2f36a7e7af02f17f53aefb7e5618d8044848041ad5c16a3e5",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "boundaries",
+          "path": "research/pawn/cases/boundaries.p",
+          "sha256": "beac0df8ca6eb6782746c1b869d1d4aea8db7d48c8ba259f1e093a0a0944303a",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test grouped digits, malformed groups, leading zeros and representable-width boundaries."
+      ]
+    },
+    {
+      "id": "L06",
+      "domain": "language",
+      "topic": "Character literals, escapes and source encoding",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "85,120-122",
+          "section": "Character literals, escapes and source encoding"
+        }
+      ],
+      "subtopics": [
+        "ASCII",
+        "Unicode",
+        "escape sequences",
+        "terminators",
+        "UTF-8",
+        "codepages"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "preprocessing",
+          "path": "research/pawn/cases/preprocessing.p",
+          "sha256": "8b5bca9720be0fd2f36a7e7af02f17f53aefb7e5618d8044848041ad5c16a3e5",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "strings",
+          "path": "research/pawn/cases/strings.p",
+          "sha256": "e8270b9d4d5e07b555299f209f3360aa09a949563a7358b1b857cf6ed2a66180",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test escape termination, non-ASCII unpacked text and encoding diagnostics for documented configurations."
+      ]
+    },
+    {
+      "id": "L07",
+      "domain": "language",
+      "topic": "Rational literal syntax and representation selection",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "12,77-78,85,104-105",
+          "section": "Rational literal syntax and representation selection"
+        }
+      ],
+      "subtopics": [
+        "pragma rational",
+        "floating/scaled integer representation",
+        "precision",
+        "one format per compilation"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Check literal translation and rejected configurations; distinguish arithmetic native libraries from language syntax."
+      ]
+    },
+    {
+      "id": "L08",
+      "domain": "language",
+      "topic": "Packed and unpacked string literals",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "86-87,119-120",
+          "section": "Packed and unpacked string literals"
+        }
+      ],
+      "subtopics": [
+        "double quote packed",
+        "doubled single quote unpacked",
+        "zero termination",
+        "raw strings",
+        "literal concatenation"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "strings",
+          "path": "research/pawn/cases/strings.p",
+          "sha256": "e8270b9d4d5e07b555299f209f3360aa09a949563a7358b1b857cf6ed2a66180",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add raw/escaped/concatenated and mixed-format diagnostic cases; prove all quoted examples under pinned compiler."
+      ]
+    },
+    {
+      "id": "L09",
+      "domain": "language",
+      "topic": "Symbolic and predefined constants",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "87-88",
+          "section": "Symbolic and predefined constants"
+        }
+      ],
+      "subtopics": [
+        "const groups",
+        "automatic successor values",
+        "initial value",
+        "cellbits",
+        "cellmin",
+        "cellmax",
+        "charbits",
+        "EOS",
+        "tag constants"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "const_error",
+          "path": "research/pawn/cases/const_error.p",
+          "sha256": "12bf82c629a90bb359438d2b858cd7a6e37da38b85b00cee176a10b61b3e9065",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "preprocessing",
+          "path": "research/pawn/cases/preprocessing.p",
+          "sha256": "8b5bca9720be0fd2f36a7e7af02f17f53aefb7e5618d8044848041ad5c16a3e5",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "boundaries",
+          "path": "research/pawn/cases/boundaries.p",
+          "sha256": "beac0df8ca6eb6782746c1b869d1d4aea8db7d48c8ba259f1e093a0a0944303a",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test grouped constants, undefined initializer, compiler-defined symbols and constant-variable distinction."
+      ]
+    },
+    {
+      "id": "L10",
+      "domain": "language",
+      "topic": "Local and global declarations",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "52,54",
+          "section": "Local and global declarations"
+        }
+      ],
+      "subtopics": [
+        "var/new",
+        "scope",
+        "zero initialization",
+        "local run-time initialization",
+        "global constant initialization"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "storage",
+          "path": "research/pawn/cases/storage.p",
+          "sha256": "a6129aea56bfdc76a6ae59257e6e1bcaf380a155a3b7a17c25e6b97b0610661e",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add rejected nonconstant global initialization and boundary scope checks."
+      ]
+    },
+    {
+      "id": "L11",
+      "domain": "language",
+      "topic": "Static local and global storage",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "52-53",
+          "section": "Static local and global storage"
+        }
+      ],
+      "subtopics": [
+        "persistent local storage",
+        "file-local globals/functions",
+        "static initializer restrictions"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "storage",
+          "path": "research/pawn/cases/storage.p",
+          "sha256": "a6129aea56bfdc76a6ae59257e6e1bcaf380a155a3b7a17c25e6b97b0610661e",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add multi-file static name isolation and rejected dynamic static initializer."
+      ]
+    },
+    {
+      "id": "L12",
+      "domain": "language",
+      "topic": "Stock declarations",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "53,72",
+          "section": "Stock declarations"
+        }
+      ],
+      "subtopics": [
+        "unused removal",
+        "dependency retention",
+        "public stock"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Inspect emitted tables/bytecode for used and unused stocks across files."
+      ]
+    },
+    {
+      "id": "L13",
+      "domain": "language",
+      "topic": "Public variables and host visibility",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "53,71",
+          "section": "Public variables and host visibility"
+        }
+      ],
+      "subtopics": [
+        "public keyword",
+        "@ names",
+        "only scalar globals",
+        "host mutation",
+        "const public"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Exercise host enumeration/read/write and prohibited arrays/local public declarations."
+      ]
+    },
+    {
+      "id": "L14",
+      "domain": "language",
+      "topic": "Constant variables and const parameters",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "54,61-62",
+          "section": "Constant variables and const parameters"
+        }
+      ],
+      "subtopics": [
+        "immutable lvalues",
+        "array constness",
+        "public const exception"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "const_error",
+          "path": "research/pawn/cases/const_error.p",
+          "sha256": "12bf82c629a90bb359438d2b858cd7a6e37da38b85b00cee176a10b61b3e9065",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "functions",
+          "path": "research/pawn/cases/functions.p",
+          "sha256": "3a8ec788109462e230daff02ff7dc8afe2502860c33485f3768d7fe23fc24919",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add rejected const array mutation and verify diagnostic; const_error currently covers scalar symbolic constant only."
+      ]
+    },
+    {
+      "id": "L15",
+      "domain": "language",
+      "topic": "Cell and character array declarations",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "54-55",
+          "section": "Cell and character array declarations"
+        }
+      ],
+      "subtopics": [
+        "square bracket cell arrays",
+        "brace character arrays",
+        "inferred length",
+        "nonzero dimensions"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "strings",
+          "path": "research/pawn/cases/strings.p",
+          "sha256": "e8270b9d4d5e07b555299f209f3360aa09a949563a7358b1b857cf6ed2a66180",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add literal capacity and packed-index mismatch checks; preserve corrected brace initializer examples."
+      ]
+    },
+    {
+      "id": "L16",
+      "domain": "language",
+      "topic": "Array initializers and progressions",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "54-55",
+          "section": "Array initializers and progressions"
+        }
+      ],
+      "subtopics": [
+        "square list cell initializers",
+        "brace character initializers",
+        "constants",
+        "zero fill",
+        "ellipsis progression"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test positive/negative progressive sequences, trailing fill and compile-time size errors."
+      ]
+    },
+    {
+      "id": "L17",
+      "domain": "language",
+      "topic": "Symbolic array subscripts",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "55-56,16-18",
+          "section": "Symbolic array subscripts"
+        }
+      ],
+      "subtopics": [
+        "dot fields",
+        "subarrays",
+        "explicit field tags",
+        "numeric indexing prohibition",
+        "dot access"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Replace prior enum-as-record examples with canonical fields and executable size/access diagnostics."
+      ]
+    },
+    {
+      "id": "L18",
+      "domain": "language",
+      "topic": "Multidimensional and ragged arrays",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "56-57",
+          "section": "Multidimensional and ragged arrays"
+        }
+      ],
+      "subtopics": [
+        "up to three dimensions in this implementation",
+        "references to subarrays",
+        "uneven final dimensions"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add ragged/3-D cases and invalid cross-dimension assignments; do not infer raw memory layout from sizeof."
+      ]
+    },
+    {
+      "id": "L19",
+      "domain": "language",
+      "topic": "Array copy, aliasing and slices",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "61-62,67-68,91",
+          "section": "Array copy, aliasing and slices"
+        }
+      ],
+      "subtopics": [
+        "array assignment",
+        "reference parameters",
+        "element-address coercion",
+        "literal array parameters"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Check overlapping/sliced aliases and documented size constraints without unsafe memory access."
+      ]
+    },
+    {
+      "id": "L20",
+      "domain": "language",
+      "topic": "sizeof and dimension units",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "57,64-66,94",
+          "section": "sizeof and dimension units"
+        }
+      ],
+      "subtopics": [
+        "cells not bytes",
+        "packed arrays still cells",
+        "major dimension subarrays",
+        "unknown size zero",
+        "call-site defaults"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "strings",
+          "path": "research/pawn/cases/strings.p",
+          "sha256": "e8270b9d4d5e07b555299f209f3360aa09a949563a7358b1b857cf6ed2a66180",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "functions",
+          "path": "research/pawn/cases/functions.p",
+          "sha256": "3a8ec788109462e230daff02ff7dc8afe2502860c33485f3768d7fe23fc24919",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add unknown formal size, ragged dimensions and distinction between allocation capacity and logical string length."
+      ]
+    },
+    {
+      "id": "L21",
+      "domain": "language",
+      "topic": "Tags, casts and weak/strong rules",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "58-59,66,123-126",
+          "section": "Tags, casts and weak/strong rules"
+        }
+      ],
+      "subtopics": [
+        "weak lower-case versus strong upper-case",
+        "assignment and operator checks",
+        "explicit override",
+        "untagged values"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "operator_tag",
+          "path": "research/pawn/cases/operator_tag.p",
+          "sha256": "52473e9de45cd5e15f5d38ecf520d0611362b02c60b90fd0e2beaf3a2b56cfbc",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test weak/strong assignment and argument matrix, multi-tag parameters and tagof; never describe tags as runtime types."
+      ]
+    },
+    {
+      "id": "L22",
+      "domain": "language",
+      "topic": "Function declarations and returns",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "60,68-70,99",
+          "section": "Function declarations and returns"
+        }
+      ],
+      "subtopics": [
+        "single-cell returns",
+        "void-like usage",
+        "array returns",
+        "consistent return form",
+        "forward matching"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "functions",
+          "path": "research/pawn/cases/functions.p",
+          "sha256": "3a8ec788109462e230daff02ff7dc8afe2502860c33485f3768d7fe23fc24919",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add array return/copy lifetime and rejected inconsistent returns/prototypes."
+      ]
+    },
+    {
+      "id": "L23",
+      "domain": "language",
+      "topic": "Value, reference and array arguments",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "61-62,67-68",
+          "section": "Value, reference and array arguments"
+        }
+      ],
+      "subtopics": [
+        "scalar value copies",
+        "& references",
+        "arrays by reference",
+        "coercions"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "functions",
+          "path": "research/pawn/cases/functions.p",
+          "sha256": "3a8ec788109462e230daff02ff7dc8afe2502860c33485f3768d7fe23fc24919",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add references to indexed elements, array-element address coercions and alias-sensitive updates."
+      ]
+    },
+    {
+      "id": "L24",
+      "domain": "language",
+      "topic": "Named, positional and default arguments",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "62-66",
+          "section": "Named, positional and default arguments"
+        }
+      ],
+      "subtopics": [
+        "ordering",
+        "placeholders",
+        "omitted trailing defaults",
+        "reference defaults",
+        "array defaults",
+        "sizeof/tagof defaults"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "functions",
+          "path": "research/pawn/cases/functions.p",
+          "sha256": "3a8ec788109462e230daff02ff7dc8afe2502860c33485f3768d7fe23fc24919",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test named ordering failures, default reference storage, mutable default arrays and call-site tagof."
+      ]
+    },
+    {
+      "id": "L25",
+      "domain": "language",
+      "topic": "Variable argument lists",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "67,107-110",
+          "section": "Variable argument lists"
+        }
+      ],
+      "subtopics": [
+        "ellipsis",
+        "by-reference varargs",
+        "getarg/setarg contract",
+        "tag checking limitations"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Test numargs/getarg/setarg with actual varargs and isolate invalid uses; these helpers are optional core natives."
+      ]
+    },
+    {
+      "id": "L26",
+      "domain": "language",
+      "topic": "Procedure call syntax and evaluation",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "68-69,94-95,117",
+          "section": "Procedure call syntax and evaluation"
+        }
+      ],
+      "subtopics": [
+        "optional call parentheses",
+        "arguments on same line",
+        "undefined function argument evaluation order"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "evaluation",
+          "path": "research/pawn/cases/evaluation.p",
+          "sha256": "b1ede9bd4b5d07435766cdd46b048020ebab4c51b5385ba6ea948535db5d3b63",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add accepted procedure-call forms and distinguish associativity from unspecified argument evaluation order."
+      ]
+    },
+    {
+      "id": "L27",
+      "domain": "language",
+      "topic": "Recursion and call-stack lifetime",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "69,146",
+          "section": "Recursion and call-stack lifetime"
+        }
+      ],
+      "subtopics": [
+        "fresh automatic locals",
+        "shared statics",
+        "recursion depth",
+        "resource limits"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "functions",
+          "path": "research/pawn/cases/functions.p",
+          "sha256": "3a8ec788109462e230daff02ff7dc8afe2502860c33485f3768d7fe23fc24919",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "storage",
+          "path": "research/pawn/cases/storage.p",
+          "sha256": "a6129aea56bfdc76a6ae59257e6e1bcaf380a155a3b7a17c25e6b97b0610661e",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add bounded combined recursion/state/alias exercise and checked stack exhaustion; no unbounded recursive execution."
+      ]
+    },
+    {
+      "id": "L28",
+      "domain": "language",
+      "topic": "Entry points, public and static functions",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "70-72",
+          "section": "Entry points, public and static functions"
+        }
+      ],
+      "subtopics": [
+        "main",
+        "@start documentation",
+        "named public callbacks",
+        "public restrictions",
+        "forward declarations",
+        "static scope"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Verify stable entrypoint selection independently of guide examples and public dispatch through test host."
+      ]
+    },
+    {
+      "id": "L29",
+      "domain": "language",
+      "topic": "Native declarations and aliases",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "72-73",
+          "section": "Native declarations and aliases"
+        }
+      ],
+      "subtopics": [
+        "internal/external name",
+        "array returns",
+        "no states",
+        "host registration"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "native_error",
+          "path": "research/pawn/cases/native_error.p",
+          "sha256": "33e1670347b741672fe83b638e7208ceb48e210ae3ddf702b34d26c4eecc7577",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add alias resolution, missing native failures, array-return ABI and declaration checks."
+      ]
+    },
+    {
+      "id": "L30",
+      "domain": "language",
+      "topic": "User-defined arithmetic/relational operators",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "73-76",
+          "section": "User-defined arithmetic/relational operators"
+        }
+      ],
+      "subtopics": [
+        "allowed operators",
+        "arity",
+        "argument tags",
+        "explicit result tags",
+        "bool relation result",
+        "declaration before use",
+        "commutativity"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "operator_tag",
+          "path": "research/pawn/cases/operator_tag.p",
+          "sha256": "52473e9de45cd5e15f5d38ecf520d0611362b02c60b90fd0e2beaf3a2b56cfbc",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add original bad-result-tag warning oracle plus bool-result, forward-only rejection and commutative dispatch tests."
+      ]
+    },
+    {
+      "id": "L31",
+      "domain": "language",
+      "topic": "Assignment and logical-test operator hooks",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "76-77",
+          "section": "Assignment and logical-test operator hooks"
+        }
+      ],
+      "subtopics": [
+        "operator= uses return tag",
+        "by-value conversion",
+        "no by-reference conversion",
+        "implicit ! in tests",
+        "++/--"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Add tagged conversion and predicate/compound-assignment tests; ordinary result tags do not overload signatures."
+      ]
+    },
+    {
+      "id": "L32",
+      "domain": "language",
+      "topic": "Integer arithmetic and signed remainder",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "89-90",
+          "section": "Integer arithmetic and signed remainder"
+        }
+      ],
+      "subtopics": [
+        "floor division",
+        "divisor-sign remainder",
+        "identity D=q*d+r",
+        "prefix/postfix changes"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "signed_arithmetic",
+          "path": "research/pawn/cases/signed_arithmetic.p",
+          "sha256": "5135de7316afeb71c03c4a63f37e441bb0c84edef54d16475d1d66a97154e8aa",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Run matrix for each configured width/debug/optimization; retain minimum/-1 and zero divisor as separately bounded cases."
+      ]
+    },
+    {
+      "id": "L33",
+      "domain": "language",
+      "topic": "Bit operations and numeric boundaries",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "90-91,88",
+          "section": "Bit operations and numeric boundaries"
+        }
+      ],
+      "subtopics": [
+        "complement",
+        "arithmetic/logical shifts",
+        "AND/OR/XOR",
+        "width-dependent limits"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "boundaries",
+          "path": "research/pawn/cases/boundaries.p",
+          "sha256": "beac0df8ca6eb6782746c1b869d1d4aea8db7d48c8ba259f1e093a0a0944303a",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add complement and representable edge values; classify overflow and invalid shifts via bounded reproducers rather than universal semantics."
+      ]
+    },
+    {
+      "id": "L34",
+      "domain": "language",
+      "topic": "Assignment and compound expressions",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "91",
+          "section": "Assignment and compound expressions"
+        }
+      ],
+      "subtopics": [
+        "right-to-left assignment",
+        "side effects",
+        "array assignment constraints"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "evaluation",
+          "path": "research/pawn/cases/evaluation.p",
+          "sha256": "b1ede9bd4b5d07435766cdd46b048020ebab4c51b5385ba6ea948535db5d3b63",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add chained/compound assignment tests without unspecified side effects and reject forbidden array compound assignment."
+      ]
+    },
+    {
+      "id": "L35",
+      "domain": "language",
+      "topic": "Relational, Boolean and conditional expressions",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "92-94",
+          "section": "Relational, Boolean and conditional expressions"
+        }
+      ],
+      "subtopics": [
+        "chained comparisons",
+        "short circuit",
+        "ternary",
+        "comma sequencing",
+        "true/false tags"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "evaluation",
+          "path": "research/pawn/cases/evaluation.p",
+          "sha256": "b1ede9bd4b5d07435766cdd46b048020ebab4c51b5385ba6ea948535db5d3b63",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add middle-operand-once checks, skipped unsafe branches and relational tag consistency."
+      ]
+    },
+    {
+      "id": "L36",
+      "domain": "language",
+      "topic": "Introspection expression operators",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "93-94",
+          "section": "Introspection expression operators"
+        }
+      ],
+      "subtopics": [
+        "defined",
+        "sizeof",
+        "state",
+        "tagof",
+        "tag overrides"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "preprocessing",
+          "path": "research/pawn/cases/preprocessing.p",
+          "sha256": "8b5bca9720be0fd2f36a7e7af02f17f53aefb7e5618d8044848041ad5c16a3e5",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "states",
+          "path": "research/pawn/cases/states.p",
+          "sha256": "ae8be39c949c6937dea7e91b4f60f76c84be52944759e3f0de75459c32622ceb",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "strings",
+          "path": "research/pawn/cases/strings.p",
+          "sha256": "e8270b9d4d5e07b555299f209f3360aa09a949563a7358b1b857cf6ed2a66180",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add tagof and defined before/after declarations; cross-reference call-site default exceptions."
+      ]
+    },
+    {
+      "id": "L37",
+      "domain": "language",
+      "topic": "Precedence and associativity",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "94-95",
+          "section": "Precedence and associativity"
+        }
+      ],
+      "subtopics": [
+        "all precedence groups",
+        "unary and binary forms",
+        "comma",
+        "assignment right association"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "evaluation",
+          "path": "research/pawn/cases/evaluation.p",
+          "sha256": "b1ede9bd4b5d07435766cdd46b048020ebab4c51b5385ba6ea948535db5d3b63",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add mixed-feature exercises exercising each precedence boundary; do not treat one trace as proving unspecified order."
+      ]
+    },
+    {
+      "id": "L38",
+      "domain": "language",
+      "topic": "Labels, blocks, expression and empty statements",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "96-97",
+          "section": "Labels, blocks, expression and empty statements"
+        }
+      ],
+      "subtopics": [
+        "block scopes",
+        "labels require statement",
+        "{} empty",
+        "goto same function"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Add valid label/goto flow and prohibited empty semicolon/invalid jump diagnostics."
+      ]
+    },
+    {
+      "id": "L39",
+      "domain": "language",
+      "topic": "Conditionals and loops",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "97-100",
+          "section": "Conditionals and loops"
+        }
+      ],
+      "subtopics": [
+        "if/else association",
+        "while",
+        "do",
+        "for omitted fields",
+        "break",
+        "continue"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "control_flow",
+          "path": "research/pawn/cases/control_flow.p",
+          "sha256": "e4021d93f68c2d20ff94186dc243b361a6b3a7b417da7694eac7ab7dbbf167d8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add omitted-clause and nested-loop tests plus else association; timeout deliberate infinite-loop diagnostic probes."
+      ]
+    },
+    {
+      "id": "L40",
+      "domain": "language",
+      "topic": "Switch clauses",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "100",
+          "section": "Switch clauses"
+        }
+      ],
+      "subtopics": [
+        "single statement or block",
+        "multiple/range case values",
+        "default last",
+        "no fallthrough"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "control_flow",
+          "path": "research/pawn/cases/control_flow.p",
+          "sha256": "e4021d93f68c2d20ff94186dc243b361a6b3a7b417da7694eac7ab7dbbf167d8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add case ranges, unmatched default, duplicate/default-position diagnostics."
+      ]
+    },
+    {
+      "id": "L41",
+      "domain": "language",
+      "topic": "Assertions versus release validation",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "41-43,97,148",
+          "section": "Assertions versus release validation"
+        }
+      ],
+      "subtopics": [
+        "assert",
+        "debug level stripping",
+        "#assert compile-time check",
+        "dynamic validation"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "assertion",
+          "path": "research/pawn/cases/assertion.p",
+          "sha256": "dc7ff2c803a1154665c2a4f08cafdcd3ce7b21948b7081cf16ce4370dc65d809",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "release_safe_index",
+          "path": "research/pawn/cases/release_safe_index.p",
+          "sha256": "d8cbe7648f36ee225ffce606e57d9b261aebc72313a2ee7794a7173f0d1d4b71",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Execute corrected lower/upper bound guard in checked and release profiles; separately test #assert diagnostics."
+      ]
+    },
+    {
+      "id": "L42",
+      "domain": "language",
+      "topic": "Return, exit and sleep",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "98-100",
+          "section": "Return, exit and sleep"
+        }
+      ],
+      "subtopics": [
+        "return versus program abort",
+        "exit tag/value host-defined",
+        "sleep continuation"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "sleep_resume",
+          "path": "research/pawn/cases/sleep_resume.p",
+          "sha256": "4c94105c3c085dd0aee88801ea541ee563c2fe79d0b31244a5b029b25157ea52",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test host-visible exit result and resumption state beyond one sleep; no inference about scheduling from language sleep alone."
+      ]
+    },
+    {
+      "id": "L43",
+      "domain": "language",
+      "topic": "State classifiers and automata",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "31-40,70-71",
+          "section": "State classifiers and automata"
+        }
+      ],
+      "subtopics": [
+        "named/anonymous automata",
+        "mutually exclusive states",
+        "transition statement",
+        "conditional transition",
+        "query operator"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "states",
+          "path": "research/pawn/cases/states.p",
+          "sha256": "ae8be39c949c6937dea7e91b4f60f76c84be52944759e3f0de75459c32622ceb",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add multiple independent automata, fall-back and missing-state runtime behavior."
+      ]
+    },
+    {
+      "id": "L44",
+      "domain": "language",
+      "topic": "State entry, exit and state variables",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "34-40,52,99",
+          "section": "State entry, exit and state variables"
+        }
+      ],
+      "subtopics": [
+        "entry/exit ordering",
+        "uninitialized state storage",
+        "restricted lifetimes",
+        "overlays of state data"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "states",
+          "path": "research/pawn/cases/states.p",
+          "sha256": "ae8be39c949c6937dea7e91b4f60f76c84be52944759e3f0de75459c32622ceb",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add exit order and entry initialization; never assert state storage is zero initialized or retained outside its classifier."
+      ]
+    },
+    {
+      "id": "L45",
+      "domain": "language",
+      "topic": "Pattern macros and expansion",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "79-82,101",
+          "section": "Pattern macros and expansion"
+        }
+      ],
+      "subtopics": [
+        "pattern matching",
+        "captured parameters",
+        "token delimiters",
+        "repeated side effects",
+        "whitespace",
+        "recursion limits"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "preprocessing",
+          "path": "research/pawn/cases/preprocessing.p",
+          "sha256": "8b5bca9720be0fd2f36a7e7af02f17f53aefb7e5618d8044848041ad5c16a3e5",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add captures, nested/recursive substitutions, stringification/escape behavior and rejected malformed patterns."
+      ]
+    },
+    {
+      "id": "L46",
+      "domain": "language",
+      "topic": "Conditional preprocessing and includes",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "101-102,106",
+          "section": "Conditional preprocessing and includes"
+        }
+      ],
+      "subtopics": [
+        "#if/#elseif/#else/#endif",
+        "#include",
+        "#tryinclude",
+        "#endinput",
+        "#undef"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "preprocessing",
+          "path": "research/pawn/cases/preprocessing.p",
+          "sha256": "8b5bca9720be0fd2f36a7e7af02f17f53aefb7e5618d8044848041ad5c16a3e5",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test include search order, missing optional versus required includes and nested conditionals/unbalanced failures."
+      ]
+    },
+    {
+      "id": "L47",
+      "domain": "language",
+      "topic": "Preprocessor diagnostics and source mapping",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "101-102,106",
+          "section": "Preprocessor diagnostics and source mapping"
+        }
+      ],
+      "subtopics": [
+        "#assert",
+        "#error",
+        "#warning",
+        "#file",
+        "#line"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Check exact diagnostic category/code, source filename/line and error/warning exit policy."
+      ]
+    },
+    {
+      "id": "L48",
+      "domain": "compiler",
+      "topic": "Pragmas for memory, alignment and code generation",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "102-105",
+          "section": "Pragmas for memory, alignment and code generation"
+        }
+      ],
+      "subtopics": [
+        "align",
+        "amxlimit",
+        "amxram",
+        "dynamic",
+        "opcodeset",
+        "overlay"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Verify requested sizes/flags/opcodes and explicit resource-limit diagnostics for configured interpreter."
+      ]
+    },
+    {
+      "id": "L49",
+      "domain": "compiler",
+      "topic": "Pragmas for libraries, representation and sections",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "103-106",
+          "section": "Pragmas for libraries, representation and sections"
+        }
+      ],
+      "subtopics": [
+        "codepage",
+        "library",
+        "rational",
+        "section"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Inspect library and section metadata; separate optional library resolution from language validity."
+      ]
+    },
+    {
+      "id": "L50",
+      "domain": "compiler",
+      "topic": "Pragmas for warnings and authoring",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "103,105",
+          "section": "Pragmas for warnings and authoring"
+        }
+      ],
+      "subtopics": [
+        "deprecated",
+        "tabsize",
+        "unused",
+        "warning push/pop/enable/disable"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Test warning stack restoration and absence/presence with exact diagnostic expectations."
+      ]
+    },
+    {
+      "id": "L51",
+      "domain": "optional_library",
+      "topic": "Proposed library boundary",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "107",
+          "section": "Proposed library boundary"
+        }
+      ],
+      "subtopics": [
+        "optional host-supplied functions",
+        "includes do not implement natives"
+      ],
+      "applicability": "optional host/library configuration; not a language primitive",
+      "available_checks": [
+        {
+          "case_id": "native_error",
+          "path": "research/pawn/cases/native_error.p",
+          "sha256": "33e1670347b741672fe83b638e7208ceb48e210ae3ddf702b34d26c4eecc7577",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Document what the lab registers, what canonical pawnrun links and unresolved native behavior."
+      ]
+    },
+    {
+      "id": "L52",
+      "domain": "optional_library",
+      "topic": "Proposed core library",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "107-110",
+          "section": "Proposed core library"
+        }
+      ],
+      "subtopics": [
+        "clamp",
+        "funcidx",
+        "getarg",
+        "heapspace",
+        "max/min",
+        "numargs",
+        "random",
+        "setarg",
+        "swapchars",
+        "tolower/toupper"
+      ],
+      "applicability": "optional host/library configuration; not a language primitive",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Inventory pinned core.inc/amxcore.c and test consequential helpers used by instructional examples; no randomness-quality claim."
+      ]
+    },
+    {
+      "id": "L53",
+      "domain": "optional_library",
+      "topic": "Console and terminal library",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "110-114",
+          "section": "Console and terminal library"
+        }
+      ],
+      "subtopics": [
+        "getchar/getstring/getvalue",
+        "print/printf",
+        "cursor/terminal control",
+        "callbacks"
+      ],
+      "applicability": "optional host/library configuration; not a language primitive",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Test deterministic console formatting/encoding under selected terminal profile; record interactive/platform exclusions."
+      ]
+    },
+    {
+      "id": "L54",
+      "domain": "optional_library",
+      "topic": "Date/time and file I/O libraries",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "114",
+          "section": "Date/time and file I/O libraries"
+        }
+      ],
+      "subtopics": [
+        "calendar/timers",
+        "filesystem handles",
+        "host resources"
+      ],
+      "applicability": "optional host/library configuration; not a language primitive",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Record include/source versions and selected contracts; isolate filesystem/time tests and avoid assuming host availability."
+      ]
+    },
+    {
+      "id": "L55",
+      "domain": "optional_library",
+      "topic": "Fixed and floating point libraries",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "114-115,77-78",
+          "section": "Fixed and floating point libraries"
+        }
+      ],
+      "subtopics": [
+        "native arithmetic",
+        "rational representation",
+        "cell-width compatibility"
+      ],
+      "applicability": "optional host/library configuration; not a language primitive",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Test enabled modules in matching widths; explicitly exclude unsupported 16-bit floating configurations rather than claiming portability."
+      ]
+    },
+    {
+      "id": "L56",
+      "domain": "optional_library",
+      "topic": "Process, foreign library calls and strings",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "115",
+          "section": "Process, foreign library calls and strings"
+        }
+      ],
+      "subtopics": [
+        "process module",
+        "external function calls",
+        "string routines"
+      ],
+      "applicability": "optional host/library configuration; not a language primitive",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Record optional dependencies and wrappers; do not infer language support from unavailable dyncall or host module."
+      ]
+    },
+    {
+      "id": "L57",
+      "domain": "reference",
+      "topic": "Differences from C and application tips",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "116-128",
+          "section": "Differences from C and application tips"
+        }
+      ],
+      "subtopics": [
+        "references not pointers",
+        "array/string syntax",
+        "division",
+        "switch",
+        "short circuit",
+        "tags",
+        "internationalization",
+        "line concatenation",
+        "quine"
+      ],
+      "applicability": "source/documentation obligation; executable check only where behavior applies",
+      "available_checks": [
+        {
+          "case_id": "signed_arithmetic",
+          "path": "research/pawn/cases/signed_arithmetic.p",
+          "sha256": "5135de7316afeb71c03c4a63f37e441bb0c84edef54d16475d1d66a97154e8aa",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "strings",
+          "path": "research/pawn/cases/strings.p",
+          "sha256": "e8270b9d4d5e07b555299f209f3360aa09a949563a7358b1b857cf6ed2a66180",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "evaluation",
+          "path": "research/pawn/cases/evaluation.p",
+          "sha256": "b1ede9bd4b5d07435766cdd46b048020ebab4c51b5385ba6ea948535db5d3b63",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "control_flow",
+          "path": "research/pawn/cases/control_flow.p",
+          "sha256": "e4021d93f68c2d20ff94186dc243b361a6b3a7b417da7694eac7ab7dbbf167d8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Cross-check every practical claim with its normative topic; compile complete replacement examples, mark fragments explicitly."
+      ]
+    },
+    {
+      "id": "L58",
+      "domain": "compiler",
+      "topic": "Diagnostic taxonomy and catalog",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "49-50,129-146",
+          "section": "Diagnostic taxonomy and catalog"
+        }
+      ],
+      "subtopics": [
+        "errors",
+        "fatal errors",
+        "warnings",
+        "recovery",
+        "possible cascading diagnostics"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "const_error",
+          "path": "research/pawn/cases/const_error.p",
+          "sha256": "12bf82c629a90bb359438d2b858cd7a6e37da38b85b00cee176a10b61b3e9065",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "undefined_error",
+          "path": "research/pawn/cases/undefined_error.p",
+          "sha256": "7480e3dd81018377642472aa175a3ed71318cf5e66277c4daa0ea19518ea8e84",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Map regression suite to catalog, require explicit expected codes/multiplicity and preserve extra diagnostics; REXX exit status is insufficient."
+      ]
+    },
+    {
+      "id": "L59",
+      "domain": "compiler",
+      "topic": "Compiler invocation and outputs",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "147-151",
+          "section": "Compiler invocation and outputs"
+        }
+      ],
+      "subtopics": [
+        "options",
+        "include/prefix paths",
+        "response/config files",
+        "listings",
+        "optimization",
+        "debug",
+        "cell width"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Retain exact commands, banners, executable/config/include hashes, exit statuses and generated AMX headers for each profile."
+      ]
+    },
+    {
+      "id": "L60",
+      "domain": "reference",
+      "topic": "Rationale and license",
+      "source_refs": [
+        {
+          "guide": "language",
+          "edition": "August 2025",
+          "printed_pages": "152-162",
+          "section": "Rationale and license"
+        }
+      ],
+      "subtopics": [
+        "design tradeoffs",
+        "language limits",
+        "redistribution terms"
+      ],
+      "applicability": "source/documentation obligation; executable check only where behavior applies",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Provide versioned explanatory citations and preserve upstream notices; not an executable language feature."
+      ]
+    },
+    {
+      "id": "I01",
+      "domain": "host_api",
+      "topic": "Embedding architecture and implicit prefix include",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "1-5",
+          "section": "Embedding architecture and implicit prefix include"
+        }
+      ],
+      "subtopics": [
+        "compiler versus VM library",
+        "default.inc",
+        "host forward/native declarations",
+        "pc_compile diagnostics"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Record compiler API/options and demonstrate absent/explicit prefix behavior; do not expose lab natives as language primitives."
+      ]
+    },
+    {
+      "id": "I02",
+      "domain": "host_api",
+      "topic": "VM deployment and lifecycle",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "6-15,30-31",
+          "section": "VM deployment and lifecycle"
+        }
+      ],
+      "subtopics": [
+        "load/init/register/exec/cleanup",
+        "AMX structure initialization",
+        "data allocation",
+        "error checks"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "native_error",
+          "path": "research/pawn/cases/native_error.p",
+          "sha256": "33e1670347b741672fe83b638e7208ceb48e210ae3ddf702b34d26c4eecc7577",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "sleep_resume",
+          "path": "research/pawn/cases/sleep_resume.p",
+          "sha256": "4c94105c3c085dd0aee88801ea541ee563c2fe79d0b31244a5b029b25157ea52",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add independent init/cleanup/reinitialization checks and validate host failure paths; current lab loader is trusted-artifact-only."
+      ]
+    },
+    {
+      "id": "I03",
+      "domain": "host_api",
+      "topic": "Public invocation and host argument ownership",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "16-21,25-26,33-36",
+          "section": "Public invocation and host argument ownership"
+        }
+      ],
+      "subtopics": [
+        "find public",
+        "reverse-order pushing",
+        "arrays/strings",
+        "heap release",
+        "return value"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Exercise repeated public calls, scalar/reference/packed strings and documented release ordering with memory accounting."
+      ]
+    },
+    {
+      "id": "I04",
+      "domain": "host_api",
+      "topic": "Address and endian helpers",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "22-24",
+          "section": "Address and endian helpers"
+        }
+      ],
+      "subtopics": [
+        "amx_Address",
+        "Align16/32/64/Cell",
+        "Allot",
+        "truncated addresses"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Test matching 16/32/64 cell and host-pointer widths; preserve address reconstruction configuration and bound endian claims to tested host."
+      ]
+    },
+    {
+      "id": "I05",
+      "domain": "host_api",
+      "topic": "Callback dispatch and native registration",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "24-25,32,36-37",
+          "section": "Callback dispatch and native registration"
+        }
+      ],
+      "subtopics": [
+        "amx_Callback",
+        "NativeInfo",
+        "Register",
+        "SetCallback",
+        "missing natives"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "native_error",
+          "path": "research/pawn/cases/native_error.p",
+          "sha256": "33e1670347b741672fe83b638e7208ceb48e210ae3ddf702b34d26c4eecc7577",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test missing/unregistered/aliased natives and callback error propagation; no successful AMX load without checked registration."
+      ]
+    },
+    {
+      "id": "I06",
+      "domain": "host_api",
+      "topic": "Public/native/pubvar enumeration",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "25-28,32-33",
+          "section": "Public/native/pubvar enumeration"
+        }
+      ],
+      "subtopics": [
+        "Find/Get/Num Native/Public/PubVar",
+        "NameLength"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Add host-side table enumeration and lookup failure tests correlated with compiled source visibility."
+      ]
+    },
+    {
+      "id": "I07",
+      "domain": "host_api",
+      "topic": "Host string transfer and float conversion",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "24,27,29,35,37,39-41",
+          "section": "Host string transfer and float conversion"
+        }
+      ],
+      "subtopics": [
+        "ctof/ftoc",
+        "Get/SetString",
+        "StrLen/StrParam",
+        "UTF8 helpers"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Test exact length units, capacity, packed/unpacked data and UTF-8 boundary failures; distinguish bit conversion from numeric conversion."
+      ]
+    },
+    {
+      "id": "I08",
+      "domain": "host_api",
+      "topic": "VM metadata, flags and user data",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "26,29,31-32,38",
+          "section": "VM metadata, flags and user data"
+        }
+      ],
+      "subtopics": [
+        "Flags",
+        "MemInfo",
+        "NameLength",
+        "Get/SetUserData"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Inspect stable headers and API results; correct Implementer p.82 NOCHECKS description using amx.h."
+      ]
+    },
+    {
+      "id": "I09",
+      "domain": "host_api",
+      "topic": "Execution, errors and suspended state",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "12-15,25,35,42-43",
+          "section": "Execution, errors and suspended state"
+        }
+      ],
+      "subtopics": [
+        "Exec",
+        "RaiseError",
+        "sleep/continue",
+        "host versus script errors"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "native_error",
+          "path": "research/pawn/cases/native_error.p",
+          "sha256": "33e1670347b741672fe83b638e7208ceb48e210ae3ddf702b34d26c4eecc7577",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "assertion",
+          "path": "research/pawn/cases/assertion.p",
+          "sha256": "dc7ff2c803a1154665c2a4f08cafdcd3ce7b21948b7081cf16ce4370dc65d809",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "bounds_error",
+          "path": "research/pawn/cases/bounds_error.p",
+          "sha256": "a47e96a718365237c90717bfaf656ec6bf08c236472958b592b91e622160fd23",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "divide_error",
+          "path": "research/pawn/cases/divide_error.p",
+          "sha256": "1af9964ec62df5e0de58840c6aa0725867040320382cb42b834449de905dbe65",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "sleep_resume",
+          "path": "research/pawn/cases/sleep_resume.p",
+          "sha256": "4c94105c3c085dd0aee88801ea541ee563c2fe79d0b31244a5b029b25157ea52",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Complete runtime error catalog with expected category/output and bounded unavailable cases; repeated success after recoverable error needs evidence."
+      ]
+    },
+    {
+      "id": "I10",
+      "domain": "host_api",
+      "topic": "Extension wrappers and native boundary",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "44-53",
+          "section": "Extension wrappers and native boundary"
+        }
+      ],
+      "subtopics": [
+        "AMX_NATIVE_CALL",
+        "params[0] byte count",
+        "values/references",
+        "arrays",
+        "string conversion",
+        "host validation"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "native_error",
+          "path": "research/pawn/cases/native_error.p",
+          "sha256": "33e1670347b741672fe83b638e7208ceb48e210ae3ddf702b34d26c4eecc7577",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Add native scalar/reference/array mutation and rejected length/parameter tests; validate before any host memory dereference."
+      ]
+    },
+    {
+      "id": "I11",
+      "domain": "host_api",
+      "topic": "Dynamic modules and native error checking",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "54-58",
+          "section": "Dynamic modules and native error checking"
+        }
+      ],
+      "subtopics": [
+        "Init/Cleanup exports",
+        "dynamic loading",
+        "module lifetime",
+        "custom callback",
+        "recoverable errors"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "native_error",
+          "path": "research/pawn/cases/native_error.p",
+          "sha256": "33e1670347b741672fe83b638e7208ceb48e210ae3ddf702b34d26c4eecc7577",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Test module registration/lifetime and failure cleanup for selected host; source-only review must be explicitly labeled."
+      ]
+    },
+    {
+      "id": "I12",
+      "domain": "compiler",
+      "topic": "Building and porting the compiler",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "59-62",
+          "section": "Building and porting the compiler"
+        }
+      ],
+      "subtopics": [
+        "C portability",
+        "host hooks",
+        "standalone/shared front end",
+        "headers",
+        "configuration"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Retain build commands, compiler version, C standard, reproducible source changes and compiler warnings; compare development separately."
+      ]
+    },
+    {
+      "id": "I13",
+      "domain": "vm",
+      "topic": "Portable C VM configuration",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "63-68,73-74",
+          "section": "Portable C VM configuration"
+        }
+      ],
+      "subtopics": [
+        "PAWN_CELL_SIZE",
+        "calling conventions",
+        "reentrancy",
+        "memory",
+        "endian handling",
+        "instruction feature switches"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Run matched 32-bit baseline, 64-bit portability and supported minimal 16-bit profile; compiler cell target and VM cell width both explicit."
+      ]
+    },
+    {
+      "id": "I14",
+      "domain": "vm_optional_platform",
+      "topic": "Assembler cores and JIT",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "68-73",
+          "section": "Assembler cores and JIT"
+        }
+      ],
+      "subtopics": [
+        "architecture-specific cores",
+        "NX/memory protection",
+        "debug hook limitation",
+        "JIT init"
+      ],
+      "applicability": "separate platform/configuration; not covered by C interpreter execution",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Bound conclusions to C interpreter until an actual assembler/JIT configuration is built and tested; no performance or platform-equivalence claim."
+      ]
+    },
+    {
+      "id": "I15",
+      "domain": "optional_library",
+      "topic": "Custom terminals and arithmetic/module build flags",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "74-78",
+          "section": "Custom terminals and arithmetic/module build flags"
+        }
+      ],
+      "subtopics": [
+        "AMX_TERMINAL",
+        "FLOATPOINT/FIXEDPOINT",
+        "shared exports",
+        "native calling conventions"
+      ],
+      "applicability": "optional host/library configuration; not a language primitive",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Record selected terminal/module compile flags; classify Windows/GraphApp and missing foreign-call dependencies explicitly."
+      ]
+    },
+    {
+      "id": "I16",
+      "domain": "compiler",
+      "topic": "CMake build configuration",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "79",
+          "section": "CMake build configuration"
+        }
+      ],
+      "subtopics": [
+        "compiler/runtime/module targets",
+        "source/build separation",
+        "host tool requirements"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Record CMake version, explicit C language standard and all command arguments in reproducible provisioning."
+      ]
+    },
+    {
+      "id": "I17",
+      "domain": "vm",
+      "topic": "AMX binary prefix and metadata tables",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "80-83",
+          "section": "AMX binary prefix and metadata tables"
+        }
+      ],
+      "subtopics": [
+        "magic",
+        "file/VM versions",
+        "cod/dat/hea/stp",
+        "public/native/library/pubvar/tag/name tables",
+        "flags"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Parse emitted headers and compare source definitions; verify cell-width mismatch rejection with trusted malformed fixtures."
+      ]
+    },
+    {
+      "id": "I18",
+      "domain": "vm",
+      "topic": "Registers, memory regions and instruction set",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "80,84-91",
+          "section": "Registers, memory regions and instruction set"
+        }
+      ],
+      "subtopics": [
+        "PRI/ALT/CIP/FRM/STK/HEA",
+        "relative addresses",
+        "stack/heap",
+        "core/supplemental/packed/overlay opcodes"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "functions",
+          "path": "research/pawn/cases/functions.p",
+          "sha256": "3a8ec788109462e230daff02ff7dc8afe2502860c33485f3768d7fe23fc24919",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "storage",
+          "path": "research/pawn/cases/storage.p",
+          "sha256": "a6129aea56bfdc76a6ae59257e6e1bcaf380a155a3b7a17c25e6b97b0610661e",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Use disassembly and host memory checks; map instruction classes to executable cases, without claiming every opcode tested."
+      ]
+    },
+    {
+      "id": "I19",
+      "domain": "vm",
+      "topic": "Debug hook and symbolic information",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "92-95",
+          "section": "Debug hook and symbolic information"
+        }
+      ],
+      "subtopics": [
+        "BREAK",
+        "debug header",
+        "file/line/symbol/tag/machine/state tables",
+        "scope"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "assertion",
+          "path": "research/pawn/cases/assertion.p",
+          "sha256": "dc7ff2c803a1154665c2a4f08cafdcd3ce7b21948b7081cf16ce4370dc65d809",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "states",
+          "path": "research/pawn/cases/states.p",
+          "sha256": "ae8be39c949c6937dea7e91b4f60f76c84be52944759e3f0de75459c32622ceb",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Install debug hook and verify source mapping at breakpoints, plus absence in release; checking assert alone does not cover debugging."
+      ]
+    },
+    {
+      "id": "I20",
+      "domain": "vm",
+      "topic": "Calls, parameter ABI and temporary storage",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "96",
+          "section": "Calls, parameter ABI and temporary storage"
+        }
+      ],
+      "subtopics": [
+        "right-to-left argument stack",
+        "byte count",
+        "RETN versus SYSREQ cleanup",
+        "default/vararg heap temporaries"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "functions",
+          "path": "research/pawn/cases/functions.p",
+          "sha256": "3a8ec788109462e230daff02ff7dc8afe2502860c33485f3768d7fe23fc24919",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "sleep_resume",
+          "path": "research/pawn/cases/sleep_resume.p",
+          "sha256": "4c94105c3c085dd0aee88801ea541ee563c2fe79d0b31244a5b029b25157ea52",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Instrument stack/heap around public/native/default/vararg calls; invocation evaluation order remains distinct from push order."
+      ]
+    },
+    {
+      "id": "I21",
+      "domain": "vm",
+      "topic": "Array layout, destruction, state dispatch and optimizer",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "97-98",
+          "section": "Array layout, destruction, state dispatch and optimizer"
+        }
+      ],
+      "subtopics": [
+        "offset vectors",
+        "destructor flattening",
+        "HALT entry return",
+        "sleep frame preservation",
+        "state jump tables",
+        "peephole markers"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [
+        {
+          "case_id": "array_aliasing",
+          "path": "research/pawn/cases/array_aliasing.p",
+          "sha256": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "states",
+          "path": "research/pawn/cases/states.p",
+          "sha256": "ae8be39c949c6937dea7e91b4f60f76c84be52944759e3f0de75459c32622ceb",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        },
+        {
+          "case_id": "sleep_resume",
+          "path": "research/pawn/cases/sleep_resume.p",
+          "sha256": "4c94105c3c085dd0aee88801ea541ee563c2fe79d0b31244a5b029b25157ea52",
+          "evidence_kind": "source-and-expected-oracle-present; execution-not-reviewed-here"
+        }
+      ],
+      "status": "source-mapped-partial-checks",
+      "remaining_obligations": [
+        "Inspect exact generated layout/opcodes; destructor/GC behavior requires separate optional-module case, not inferred from arrays."
+      ]
+    },
+    {
+      "id": "I22",
+      "domain": "optional_library",
+      "topic": "Garbage collector extension",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "99-105",
+          "section": "Garbage collector extension"
+        }
+      ],
+      "subtopics": [
+        "host objects",
+        "reference management",
+        "destructor hook",
+        "tracing/collection options"
+      ],
+      "applicability": "optional host/library configuration; not a language primitive",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Document as optional host extension; if used, build and test ownership/collection examples, otherwise make exclusion explicit."
+      ]
+    },
+    {
+      "id": "I23",
+      "domain": "vm_optional_platform",
+      "topic": "Encrypted scripts",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "106",
+          "section": "Encrypted scripts"
+        }
+      ],
+      "subtopics": [
+        "encryption/decryption hooks",
+        "distribution format"
+      ],
+      "applicability": "separate platform/configuration; not covered by C interpreter execution",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Source-backed bounded account; do not claim security guarantees from this feature or add it to baseline without dedicated tests."
+      ]
+    },
+    {
+      "id": "I24",
+      "domain": "vm_optional_platform",
+      "topic": "ROM execution and minimal VM",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "107-114",
+          "section": "ROM execution and minimal VM"
+        }
+      ],
+      "subtopics": [
+        "split code/data",
+        "AMX_DSEG_INIT",
+        "ROM constraints",
+        "relocation",
+        "minimal instruction set"
+      ],
+      "applicability": "separate platform/configuration; not covered by C interpreter execution",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Test the supported minimal instruction profile; identify real ROM hardware as untested and distinguish host emulation from deployment."
+      ]
+    },
+    {
+      "id": "I25",
+      "domain": "vm",
+      "topic": "Overlays and overlay pools",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "115-118",
+          "section": "Overlays and overlay pools"
+        }
+      ],
+      "subtopics": [
+        "overlay table",
+        "loading callbacks",
+        "pool sizing",
+        "active function lifetime",
+        "recursion"
+      ],
+      "applicability": "canonical baseline; widths/profiles require explicit applicability",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Adapt official overlay cases with explicit pool/limit results or document scoped implementation defect with reproducer; no silent skip."
+      ]
+    },
+    {
+      "id": "I26",
+      "domain": "reference",
+      "topic": "Implementer license and API omissions",
+      "source_refs": [
+        {
+          "guide": "implementer",
+          "edition": "August 2025",
+          "printed_pages": "119-122",
+          "section": "Implementer license and API omissions"
+        }
+      ],
+      "subtopics": [
+        "distribution notices",
+        "documented API versus current amx.h"
+      ],
+      "applicability": "source/documentation obligation; executable check only where behavior applies",
+      "available_checks": [],
+      "status": "source-mapped-checks-unassigned",
+      "remaining_obligations": [
+        "Preserve notices and audit header APIs absent from guide (for example Cleanup/Clone/tag helpers) as versioned implementation surface."
+      ]
+    }
+  ],
+  "diagnostic_catalog": [
+    {
+      "code": 1,
+      "title_first_line": "expected token: token, but found token",
+      "printed_page": 129,
+      "source": "language",
+      "required_by_upstream_cases": [
+        30,
+        31,
+        38,
+        88,
+        109,
+        123,
+        133,
+        138
+      ]
+    },
+    {
+      "code": 2,
+      "title_first_line": "only a single statement (or expression) can follow each \u2018case\u2019",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 3,
+      "title_first_line": "declaration of a local variable must appear in a compound block",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": [
+        54
+      ]
+    },
+    {
+      "code": 4,
+      "title_first_line": "function name is not implemented",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 5,
+      "title_first_line": "function may not have arguments",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 6,
+      "title_first_line": "must be assigned to an array",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": [
+        8
+      ]
+    },
+    {
+      "code": 7,
+      "title_first_line": "operator cannot be redefined",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 8,
+      "title_first_line": "must be a constant expression; assumed zero",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": [
+        137
+      ]
+    },
+    {
+      "code": 9,
+      "title_first_line": "invalid array size (negative, zero or out of bounds)",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": [
+        87,
+        100,
+        116,
+        155
+      ]
+    },
+    {
+      "code": 10,
+      "title_first_line": "illegal function or declaration",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": [
+        51
+      ]
+    },
+    {
+      "code": 11,
+      "title_first_line": "invalid outside functions",
+      "printed_page": 130,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 12,
+      "title_first_line": "invalid function call, not a valid address",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 13,
+      "title_first_line": "no entry point (no public functions)",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": [
+        154
+      ]
+    },
+    {
+      "code": 14,
+      "title_first_line": "invalid statement; not in switch",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 15,
+      "title_first_line": "\u2018default\u2019 must be the last clause in switch statement",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 16,
+      "title_first_line": "multiple defaults in \u2018switch\u2019",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 17,
+      "title_first_line": "undefined symbol symbol",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": [
+        1,
+        44,
+        47,
+        94
+      ]
+    },
+    {
+      "code": 18,
+      "title_first_line": "initialization data exceeds declared size",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 19,
+      "title_first_line": "not a label: name",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 20,
+      "title_first_line": "invalid symbol name",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 21,
+      "title_first_line": "symbol already defined: identifier",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": [
+        51,
+        63,
+        149
+      ]
+    },
+    {
+      "code": 22,
+      "title_first_line": "must be lvalue (non\u2010constant)",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": [
+        19
+      ]
+    },
+    {
+      "code": 23,
+      "title_first_line": "array assignment must be simple assignment",
+      "printed_page": 131,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 24,
+      "title_first_line": "\u2018break\u2019 or \u2018continue\u2019 is out of context",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 25,
+      "title_first_line": "function heading differs from prototype",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": [
+        18,
+        48,
+        74,
+        126
+      ]
+    },
+    {
+      "code": 26,
+      "title_first_line": "no matching \u2018#if...\u2019",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 27,
+      "title_first_line": "invalid character constant",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 28,
+      "title_first_line": "invalid subscript (not an array or too many subscripts): identifier",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": [
+        159
+      ]
+    },
+    {
+      "code": 29,
+      "title_first_line": "invalid expression, assumed zero",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": [
+        153
+      ]
+    },
+    {
+      "code": 30,
+      "title_first_line": "compound statement not closed at the end of file (started at line number)",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 31,
+      "title_first_line": "unknown directive",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 32,
+      "title_first_line": "array index out of bounds",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": [
+        59
+      ]
+    },
+    {
+      "code": 33,
+      "title_first_line": "array must be indexed (variable name)",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": [
+        98
+      ]
+    },
+    {
+      "code": 34,
+      "title_first_line": "argument does not have a default value (argument index)",
+      "printed_page": 132,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 35,
+      "title_first_line": "argument type mismatch (argument index)",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 36,
+      "title_first_line": "empty statement",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 37,
+      "title_first_line": "invalid string (possibly non\u2010terminated string)",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": [
+        5
+      ]
+    },
+    {
+      "code": 38,
+      "title_first_line": "extra characters on line",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 39,
+      "title_first_line": "constant symbol has no size",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 40,
+      "title_first_line": "duplicate \u2018case\u2019 label (value value)",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 41,
+      "title_first_line": "invalid ellipsis, array size is not known",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 42,
+      "title_first_line": "invalid combination of class specifiers",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": [
+        21,
+        22
+      ]
+    },
+    {
+      "code": 43,
+      "title_first_line": "character constant value exceeds range for a packed string/array",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 44,
+      "title_first_line": "positional parameters must precede all named parameters",
+      "printed_page": 133,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 45,
+      "title_first_line": "too many function arguments",
+      "printed_page": 134,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 46,
+      "title_first_line": "unknown array size (variable name)",
+      "printed_page": 134,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 47,
+      "title_first_line": "array sizes do not match, or destination array is too small",
+      "printed_page": 134,
+      "source": "language",
+      "required_by_upstream_cases": [
+        7,
+        28,
+        72,
+        73,
+        131
+      ]
+    },
+    {
+      "code": 48,
+      "title_first_line": "array dimensions do not match",
+      "printed_page": 134,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 49,
+      "title_first_line": "invalid line continuation",
+      "printed_page": 134,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 50,
+      "title_first_line": "invalid range",
+      "printed_page": 134,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 51,
+      "title_first_line": "invalid subscript, use \u2018[ ]\u2019 operators on major dimensions and for named",
+      "printed_page": 134,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 52,
+      "title_first_line": "multi\u2010dimensional arrays must be fully initialized",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": [
+        57,
+        86
+      ]
+    },
+    {
+      "code": 53,
+      "title_first_line": "exceeding maximum number of dimensions",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 54,
+      "title_first_line": "unmatched closing bracket",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": [
+        118
+      ]
+    },
+    {
+      "code": 55,
+      "title_first_line": "start of function body without function header",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 56,
+      "title_first_line": "arrays, local variables and function arguments cannot be public",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": [
+        23
+      ]
+    },
+    {
+      "code": 57,
+      "title_first_line": "Unfinished expression before compiler directive",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 58,
+      "title_first_line": "duplicate argument; same argument is passed twice",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 59,
+      "title_first_line": "function argument may not have a default value (variable name)",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 60,
+      "title_first_line": "multiple \u2018#else\u2019 directives between \u2018#if . . . #endif",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 61,
+      "title_first_line": "\u2018#elseif \u2019 directive follows an \u2018#else\u2019 directive",
+      "printed_page": 135,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 62,
+      "title_first_line": "number of operands does not fit the operator",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 63,
+      "title_first_line": "function result tag of operator name must be name",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 64,
+      "title_first_line": "cannot change predefined operators",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 65,
+      "title_first_line": "function argument may only have a single tag (argument number)",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 66,
+      "title_first_line": "function argument may not be a reference argument or an array",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 67,
+      "title_first_line": "variable cannot be both a reference and an array (variable name)",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 68,
+      "title_first_line": "invalid rational number precision in #pragma",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 69,
+      "title_first_line": "rational number format already defined",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 71,
+      "title_first_line": "user\u2010defined operator must be declared before use (function name)",
+      "printed_page": 136,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 72,
+      "title_first_line": "\u2018sizeof \u2019 operator is invalid on \u2018function\u2019 symbols",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 73,
+      "title_first_line": "function argument must be an array (argument name)",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 75,
+      "title_first_line": "input line too long (after substitutions)",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 76,
+      "title_first_line": "syntax error in the expression, or invalid function call",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 77,
+      "title_first_line": "malformed UTF\u20108 encoding, or corrupted file: filename",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 78,
+      "title_first_line": "function uses both \u2018return\u2019 and \u2018return <value>\u2019",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 79,
+      "title_first_line": "inconsistent return types (array & non\u2010array)",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 80,
+      "title_first_line": "unknown symbol, or not a constant symbol (symbol name)",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 81,
+      "title_first_line": "expression with tag override must appear between parentheses",
+      "printed_page": 137,
+      "source": "language",
+      "required_by_upstream_cases": [
+        70
+      ]
+    },
+    {
+      "code": 82,
+      "title_first_line": "user\u2010defined operators and native functions may not have states",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 83,
+      "title_first_line": "a function or variable may only belong to a single automaton (symbol",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 84,
+      "title_first_line": "state conflict: one of the states is already assigned to another imple\u2010",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 85,
+      "title_first_line": "no states are defined for symbol name",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 86,
+      "title_first_line": "unknown automaton name",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 87,
+      "title_first_line": "unknown state name for automaton name",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 88,
+      "title_first_line": "public variables and local variables may not have states (symbol name)",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": [
+        92
+      ]
+    },
+    {
+      "code": 89,
+      "title_first_line": "state variables may not be initialized (symbol name)",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": [
+        93
+      ]
+    },
+    {
+      "code": 90,
+      "title_first_line": "public functions may not return arrays (symbol name)",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 91,
+      "title_first_line": "first constant in an enumerated list must be initialized (symbol name)",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 92,
+      "title_first_line": "invalid number format",
+      "printed_page": 138,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 93,
+      "title_first_line": "array fields with a size may only appear in the final dimension",
+      "printed_page": 139,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 94,
+      "title_first_line": "invalid subscript, subscript does not match array definition regarding",
+      "printed_page": 139,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 100,
+      "title_first_line": "cannot read from file: filename",
+      "printed_page": 139,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 101,
+      "title_first_line": "cannot write to file: filename",
+      "printed_page": 139,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 102,
+      "title_first_line": "table overflow: table name",
+      "printed_page": 139,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 103,
+      "title_first_line": "insufficient memory",
+      "printed_page": 140,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 104,
+      "title_first_line": "incompatible options: option versus option",
+      "printed_page": 140,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 105,
+      "title_first_line": "numeric overflow, exceeding capacity",
+      "printed_page": 140,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 106,
+      "title_first_line": "compiled script exceeds the maximum memory size (number bytes)",
+      "printed_page": 140,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 107,
+      "title_first_line": "too many error/warning messages on one line",
+      "printed_page": 140,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 108,
+      "title_first_line": "codepage mapping file not found",
+      "printed_page": 140,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 109,
+      "title_first_line": "invalid path: path name",
+      "printed_page": 140,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 112,
+      "title_first_line": "overlay function name exceeds limit by value bytes",
+      "printed_page": 141,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 200,
+      "title_first_line": "symbol is truncated to number characters",
+      "printed_page": 141,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 201,
+      "title_first_line": "redefinition of constant/macro (symbol name)",
+      "printed_page": 141,
+      "source": "language",
+      "required_by_upstream_cases": [
+        102
+      ]
+    },
+    {
+      "code": 202,
+      "title_first_line": "number of arguments does not match definition",
+      "printed_page": 141,
+      "source": "language",
+      "required_by_upstream_cases": [
+        24
+      ]
+    },
+    {
+      "code": 203,
+      "title_first_line": "symbol is never used: identifier",
+      "printed_page": 141,
+      "source": "language",
+      "required_by_upstream_cases": [
+        6,
+        11,
+        29,
+        56,
+        119
+      ]
+    },
+    {
+      "code": 204,
+      "title_first_line": "symbol is assigned a value that is never used: identifier",
+      "printed_page": 141,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 205,
+      "title_first_line": "redundant code: constant expression is zero",
+      "printed_page": 141,
+      "source": "language",
+      "required_by_upstream_cases": [
+        35
+      ]
+    },
+    {
+      "code": 206,
+      "title_first_line": "redundant test: constant expression is non\u2010zero",
+      "printed_page": 141,
+      "source": "language",
+      "required_by_upstream_cases": [
+        34
+      ]
+    },
+    {
+      "code": 207,
+      "title_first_line": "unknown \u2018#pragma\u2019",
+      "printed_page": 142,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 208,
+      "title_first_line": "function with tag result used before definition, forcing reparse",
+      "printed_page": 142,
+      "source": "language",
+      "required_by_upstream_cases": [
+        147
+      ]
+    },
+    {
+      "code": 209,
+      "title_first_line": "function should return a value",
+      "printed_page": 142,
+      "source": "language",
+      "required_by_upstream_cases": [
+        50
+      ]
+    },
+    {
+      "code": 210,
+      "title_first_line": "possible use of symbol before initialization: identifier",
+      "printed_page": 142,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 211,
+      "title_first_line": "possibly unintended assignment",
+      "printed_page": 142,
+      "source": "language",
+      "required_by_upstream_cases": [
+        157
+      ]
+    },
+    {
+      "code": 212,
+      "title_first_line": "possibly unintended bitwise operation",
+      "printed_page": 142,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 213,
+      "title_first_line": "tag mismatch",
+      "printed_page": 142,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 214,
+      "title_first_line": "possibly a \u2018const\u2019 array argument was intended: identifier",
+      "printed_page": 143,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 215,
+      "title_first_line": "expression has no effect",
+      "printed_page": 143,
+      "source": "language",
+      "required_by_upstream_cases": [
+        110,
+        136
+      ]
+    },
+    {
+      "code": 216,
+      "title_first_line": "nested comment",
+      "printed_page": 143,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 217,
+      "title_first_line": "loose indentation",
+      "printed_page": 143,
+      "source": "language",
+      "required_by_upstream_cases": [
+        10,
+        136
+      ]
+    },
+    {
+      "code": 218,
+      "title_first_line": "old style forward declarations of functions are deprecated",
+      "printed_page": 143,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 219,
+      "title_first_line": "local variable identifier shadows a symbol at a preceding level",
+      "printed_page": 143,
+      "source": "language",
+      "required_by_upstream_cases": [
+        12
+      ]
+    },
+    {
+      "code": 220,
+      "title_first_line": "expression with tag override must appear between parentheses",
+      "printed_page": 143,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 221,
+      "title_first_line": "label name identifier shadows tag name",
+      "printed_page": 144,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 222,
+      "title_first_line": "number of digits exceeds rational number precision",
+      "printed_page": 144,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 223,
+      "title_first_line": "redundant \u2018sizeof \u2019: argument size is always 1 (symbol name)",
+      "printed_page": 144,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 224,
+      "title_first_line": "indeterminate array size in \u2018sizeof \u2019 expression (symbol name)",
+      "printed_page": 144,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 225,
+      "title_first_line": "unreachable code",
+      "printed_page": 144,
+      "source": "language",
+      "required_by_upstream_cases": [
+        52,
+        108
+      ]
+    },
+    {
+      "code": 226,
+      "title_first_line": "a variable is assigned to itself (symbol name)",
+      "printed_page": 144,
+      "source": "language",
+      "required_by_upstream_cases": [
+        53,
+        150
+      ]
+    },
+    {
+      "code": 227,
+      "title_first_line": "more initiallers than array fields",
+      "printed_page": 144,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 228,
+      "title_first_line": "length of initialler exceeds size of the array field",
+      "printed_page": 145,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 229,
+      "title_first_line": "mixing packed and unpacked array indexing or array assignment",
+      "printed_page": 145,
+      "source": "language",
+      "required_by_upstream_cases": [
+        4,
+        139,
+        144
+      ]
+    },
+    {
+      "code": 230,
+      "title_first_line": "no implementation for state name in function name, no fall\u2010back",
+      "printed_page": 145,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 231,
+      "title_first_line": "state specification on forward declaration is ignored",
+      "printed_page": 145,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 232,
+      "title_first_line": "native function lacks a predefined index (symbol name)",
+      "printed_page": 145,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 233,
+      "title_first_line": "state variable name shadows a global variable",
+      "printed_page": 145,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 234,
+      "title_first_line": "function is deprecated (symbol name)",
+      "printed_page": 145,
+      "source": "language",
+      "required_by_upstream_cases": []
+    },
+    {
+      "code": 235,
+      "title_first_line": "public function lacks forward declaration (symbol name)",
+      "printed_page": 145,
+      "source": "language",
+      "required_by_upstream_cases": [
+        96,
+        101
+      ]
+    },
+    {
+      "code": 236,
+      "title_first_line": "unknown parameter in substitution (incorrect #define pattern)",
+      "printed_page": 146,
+      "source": "language",
+      "required_by_upstream_cases": [
+        105,
+        106
+      ]
+    },
+    {
+      "code": 237,
+      "title_first_line": "recursive function name",
+      "printed_page": 146,
+      "source": "language",
+      "required_by_upstream_cases": [
+        114
+      ]
+    },
+    {
+      "code": 238,
+      "title_first_line": "mixing string formats in concatenation",
+      "printed_page": 146,
+      "source": "language",
+      "required_by_upstream_cases": [
+        125
+      ]
+    }
+  ],
+  "gate_obligations": [
+    "Each topic must acquire version/configuration-specific claim evidence and an executable check where applicable, or an explicit bounded non-applicability classification. Presence of a case source is not evidence it passed.",
+    "Attach official regression results, including adaptations, unsupported cases and expected/extra diagnostics. Never substitute REXX process exit for per-case verdicts.",
+    "Compile and execute complete replacement instructional examples; retain original artifacts and classify fragments/deliberately invalid examples. Original prior-example audit wrappers are adaptations.",
+    "Require fresh independent combined-feature exercise results; predictions alone are not execution evidence.",
+    "Record matching cell widths, checked/release profiles, optimization levels and process-limited hazardous probes. Rehash toolchain sources, headers, configuration, cases and expected results on relevant changes.",
+    "Resolve required consequential semantic questions and bound compiler/document defects before enabling any AMXX research."
+  ],
+  "independent_exercise_predictions": {
+    "1": "-3,2,-3,-2,|2,-3,-3|",
+    "2": "0,1,0,65,66,0,2,84,116,0|",
+    "3": "37,37|",
+    "4": "12341,1,2|",
+    "5": "1,0,5,5,3,24|"
+  },
+  "independent_exercise_status": "predictions retained from earlier independent reviewer; source/config-hashed execution results not reviewed in this inventory task"
+}

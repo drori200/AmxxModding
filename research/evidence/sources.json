@@ -1,0 +1,37 @@
+[
+  {
+    "id": "pawn-stable.zip",
+    "url": "https://www.compuphase.com/pawn/pawn-4.1.7487.zip",
+    "sha256": "05cf630baef59912a9ffaf2745652187038d8d5be1a3aab870d13ea0bd31c7bc",
+    "accessed": "2026-09-08",
+    "path": ".cache/research/downloads/pawn-stable.zip"
+  },
+  {
+    "id": "pawn-current.zip",
+    "url": "https://codeberg.org/compuphase/pawn/archive/79620fcfff474c622fdb11d78027598235b8f11f.zip",
+    "sha256": "d0c5b372c7e277f65b07909f24f0dd3c28bba82f4e7fc47031c2eb1cb9f6f030",
+    "accessed": "2026-09-08",
+    "path": ".cache/research/downloads/pawn-current.zip"
+  },
+  {
+    "id": "Pawn_Language_Guide.pdf",
+    "url": "https://codeberg.org/compuphase/pawn/raw/commit/73b9ae62319c213936f179345addf1fc9ac728f1/doc/Pawn_Language_Guide.pdf",
+    "sha256": "398bac8b1e9d07aeec39af263862179bb5e1507a69bef773293958bebd052e79",
+    "accessed": "2026-09-08",
+    "path": ".cache/research/downloads/Pawn_Language_Guide.pdf"
+  },
+  {
+    "id": "Pawn_Implementer_Guide.pdf",
+    "url": "https://codeberg.org/compuphase/pawn/raw/commit/73b9ae62319c213936f179345addf1fc9ac728f1/doc/Pawn_Implementer_Guide.pdf",
+    "sha256": "aeb323fed8fd6ebe197e86e78afe273a464a3b8e753902e184682763d43aea20",
+    "accessed": "2026-09-08",
+    "path": ".cache/research/downloads/Pawn_Implementer_Guide.pdf"
+  },
+  {
+    "id": "pawntest.zip",
+    "url": "https://www.compuphase.com/pawn/pawntest.zip",
+    "sha256": "096a1bf093f5d9d9d1ddc021cb77f22f655f6611c096839fef909c939a97e82d",
+    "accessed": "2026-09-08",
+    "path": ".cache/research/downloads/pawntest.zip"
+  }
+]

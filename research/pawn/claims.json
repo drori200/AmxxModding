@@ -1,0 +1,264 @@
+{
+  "schema": 1,
+  "source_ledger": "research/evidence/sources.json",
+  "purpose": "Claim-to-source-to-test index; status is not a gate approval. Evidence hashes identify the cited snapshot, which may predate later reruns.",
+  "claims": [
+    {
+      "id": "P01",
+      "claim": "The advertised4.1.7487 archive contains revision7483 metadata and builds a4.1.7483 compiler.",
+      "scope": "toolchain provenance",
+      "sources": [
+        {
+          "id": "pawn-stable.zip"
+        }
+      ],
+      "source_locations": [
+        "compiler/svnrev.h",
+        "compiler/sc1.c"
+      ],
+      "tests": [],
+      "evidence": [
+        {
+          "path": "research/evidence/toolchains.json",
+          "sha256": "afd95d4af1778f27f0c242bcc904826deec2df981bd510be1055dd4083c41f0b"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P02",
+      "claim": "For nonzero divisors, division floors and a nonzero remainder follows the divisor sign. The older positive-only wording is incomplete.",
+      "scope": "language contract; execution limited to reported profiles",
+      "sources": [
+        {
+          "id": "Pawn_Language_Guide.pdf"
+        }
+      ],
+      "source_locations": [
+        "Language printed pp.89-90",
+        "compiler/sc3.c flooreddiv"
+      ],
+      "tests": [
+        "signed_arithmetic"
+      ],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-original-results.json",
+          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P03",
+      "claim": "Release-safe index validation rejects indexes below0 and at or above the count before dereferencing. Assertions alone do not provide release validation.",
+      "scope": "language plus defensive programming",
+      "sources": [
+        {
+          "id": "Pawn_Language_Guide.pdf"
+        }
+      ],
+      "source_locations": [
+        "Language printed pp.98-99"
+      ],
+      "tests": [
+        "release_safe_index",
+        "assertion",
+        "bounds_error"
+      ],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-original-results.json",
+          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P04",
+      "claim": "An arithmetic operator result needs an explicit result tag; parameter tags do not determine the declared result tag.",
+      "scope": "compiler tag checking",
+      "sources": [
+        {
+          "id": "Pawn_Language_Guide.pdf"
+        }
+      ],
+      "source_locations": [
+        "Language printed pp.75-81"
+      ],
+      "tests": [
+        "operator_tag"
+      ],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-examples-results.json",
+          "sha256": "a80dfd6cfec005897d300ea1f5c727bd80d8d3c7afcf95aabc550eeeac8ce1d5"
+        },
+        {
+          "path": "research/evidence/pawn-original-results.json",
+          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P05",
+      "claim": "The pinned compiler uses square initializers for cell arrays and braces for packed character arrays; older brace examples cannot be assumed equivalent.",
+      "scope": "versioned compiler syntax; guide inconsistency",
+      "sources": [
+        {
+          "id": "Pawn_Language_Guide.pdf"
+        },
+        {
+          "id": "pawn-stable.zip"
+        }
+      ],
+      "source_locations": [
+        "Language printed pp.55,87",
+        "compiler/sc1.c initials"
+      ],
+      "tests": [
+        "array_aliasing"
+      ],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-examples-results.json",
+          "sha256": "a80dfd6cfec005897d300ea1f5c727bd80d8d3c7afcf95aabc550eeeac8ce1d5"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P06",
+      "claim": "Double-quoted literals are packed in this canonical version; explicitly unpacked literals require the documented alternative spelling. Cell and character indexes differ.",
+      "scope": "versioned language representation",
+      "sources": [
+        {
+          "id": "Pawn_Language_Guide.pdf"
+        }
+      ],
+      "source_locations": [
+        "Language printed pp.86-87,119-120"
+      ],
+      "tests": [
+        "strings"
+      ],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-original-results.json",
+          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P07",
+      "claim": "Function-argument evaluation order is unspecified; the stack push order of a selected implementation is a separate ABI fact.",
+      "scope": "language/implementation distinction",
+      "sources": [
+        {
+          "id": "Pawn_Language_Guide.pdf"
+        },
+        {
+          "id": "Pawn_Implementer_Guide.pdf"
+        }
+      ],
+      "source_locations": [
+        "Language printed p.93",
+        "Implementer printed pp.16-21"
+      ],
+      "tests": [
+        "evaluation",
+        "host_contracts"
+      ],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-examples-results.json",
+          "sha256": "a80dfd6cfec005897d300ea1f5c727bd80d8d3c7afcf95aabc550eeeac8ce1d5"
+        },
+        {
+          "path": "research/evidence/pawn-original-results.json",
+          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P08",
+      "claim": "Fixed-width stores in FILL and SWAP corrupt specific16-bit and64-bit portable-C execution cases; a local cell-store repair fixes the same bytecode fixtures.",
+      "scope": "bounded implementation defect",
+      "sources": [
+        {
+          "id": "pawn-stable.zip"
+        }
+      ],
+      "source_locations": [
+        "amx/amx.c __fill and OP_SWAP_PRI/ALT"
+      ],
+      "tests": [
+        "cell16_fill",
+        "cell16_swap",
+        "cell64_fill"
+      ],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-defect-probes.json",
+          "sha256": "520b185b8d7afdc924d2fbd11ac5ab65dbf78b6ba9a2060428ef860baabc1bde"
+        },
+        {
+          "path": "research/pawn/review-findings.md",
+          "sha256": "4d81ad338d39ef5c8fd9e2b74553222d2a3d9fcb7f4a7cd1e2e9c7fd51594bfb"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P09",
+      "claim": "The official161-case REXX suite supplies manual oracles; the Python adapter explicitly verifies outputs and diagnostics and preserves unsupported cases.",
+      "scope": "test-method evidence",
+      "sources": [
+        {
+          "id": "pawntest.zip"
+        }
+      ],
+      "source_locations": [
+        "test.rexx"
+      ],
+      "tests": [],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-upstream-results.json",
+          "sha256": "a398fe3b2e2cd6ae8843202af5a7744010422082886f8a5a11a3cc4336be3377"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    },
+    {
+      "id": "P10",
+      "claim": "Host-allocated array/string arguments remain caller-owned until release; native errors propagate and tested subsequent calls recover.",
+      "scope": "canonical host API; selected fixtures and profiles",
+      "sources": [
+        {
+          "id": "Pawn_Implementer_Guide.pdf"
+        },
+        {
+          "id": "pawn-stable.zip"
+        }
+      ],
+      "source_locations": [
+        "Implementer printed pp.16-21,42,55-56",
+        "amx/amx.c amx_PushArray/amx_Release/amx_Exec"
+      ],
+      "tests": [
+        "host_contracts"
+      ],
+      "evidence": [
+        {
+          "path": "research/evidence/pawn-original-results.json",
+          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+        }
+      ],
+      "status": "evidence_recorded_scope_review_required"
+    }
+  ]
+}

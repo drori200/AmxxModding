@@ -1,0 +1,399 @@
+{
+  "schema": 1,
+  "oracle": "Expected values are derived before execution from August 2025 Language Guide and pinned source; implementations are not their own oracle.",
+  "cases": [
+    {
+      "id": "signed_arithmetic",
+      "checks": 29,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.89-90",
+        "compiler/sc3.c flooreddiv"
+      ]
+    },
+    {
+      "id": "release_safe_index",
+      "checks": 8,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.41-43,98-99"
+      ]
+    },
+    {
+      "id": "operator_tag",
+      "checks": 1,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.75-81"
+      ]
+    },
+    {
+      "id": "strings",
+      "checks": 9,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.86-87,119-120"
+      ]
+    },
+    {
+      "id": "array_aliasing",
+      "checks": 7,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.54-57,61-64"
+      ]
+    },
+    {
+      "id": "functions",
+      "checks": 6,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "diagnostics_by_debug": {
+        "2": [
+          237
+        ]
+      },
+      "references": [
+        "Language pp.60-69",
+        "compiler/sc1.c recursion warning under symbolic debug output"
+      ]
+    },
+    {
+      "id": "evaluation",
+      "checks": 9,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.91-95"
+      ]
+    },
+    {
+      "id": "storage",
+      "checks": 4,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.52-54"
+      ]
+    },
+    {
+      "id": "preprocessing",
+      "checks": 3,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.83-88,101-108"
+      ]
+    },
+    {
+      "id": "control_flow",
+      "checks": 4,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.96-101"
+      ]
+    },
+    {
+      "id": "states",
+      "checks": 6,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.31-40,70-71"
+      ]
+    },
+    {
+      "id": "boundaries",
+      "checks": 9,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "references": [
+        "Language pp.88-91"
+      ]
+    },
+    {
+      "id": "assertion",
+      "checks": 0,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "error": 2,
+      "release_error": 0,
+      "release_result": 42,
+      "references": [
+        "Language p.98",
+        "Implementer p.42"
+      ]
+    },
+    {
+      "id": "bounds_error",
+      "checks": 0,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "error": 4,
+      "checked_only": true,
+      "hazard": "invalid-memory",
+      "references": [
+        "Language pp.54,98",
+        "Implementer p.42"
+      ]
+    },
+    {
+      "id": "divide_error",
+      "checks": 0,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "error": 11,
+      "checked_only": true,
+      "references": [
+        "Implementer p.42"
+      ]
+    },
+    {
+      "id": "native_error",
+      "checks": 0,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "error": 10,
+      "references": [
+        "Implementer pp.42,55-56"
+      ]
+    },
+    {
+      "id": "sleep_resume",
+      "checks": 2,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "sleeps": 1,
+      "references": [
+        "Language p.100",
+        "Implementer pp.12-13"
+      ]
+    },
+    {
+      "id": "const_error",
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "diagnostics": [
+        22
+      ],
+      "compile_fails": true,
+      "references": [
+        "Language p.54",
+        "compiler/sc3.c assignment checking"
+      ]
+    },
+    {
+      "id": "undefined_error",
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "diagnostics": [
+        17
+      ],
+      "compile_fails": true,
+      "references": [
+        "Language pp.129-131"
+      ]
+    },
+    {
+      "id": "host_contracts",
+      "widths": [
+        32,
+        64
+      ],
+      "checks": 1,
+      "host_args": [
+        "--contracts"
+      ],
+      "host_checks": 46,
+      "references": [
+        "Implementer pp.16-56",
+        "stable amx.h and amx.c public/native/heap/string API"
+      ]
+    },
+    {
+      "id": "symbolic_fields",
+      "checks": 5,
+      "widths": [
+        32
+      ],
+      "references": [
+        "Language pp.55-56"
+      ]
+    },
+    {
+      "id": "progressive_arrays",
+      "checks": 5,
+      "widths": [
+        32
+      ],
+      "references": [
+        "Language p.55, corrected square initializer syntax"
+      ]
+    },
+    {
+      "id": "lexical",
+      "checks": 8,
+      "widths": [
+        32
+      ],
+      "references": [
+        "Language pp.83-85"
+      ]
+    },
+    {
+      "id": "constants",
+      "checks": 8,
+      "widths": [
+        32
+      ],
+      "references": [
+        "Language pp.87-88"
+      ]
+    },
+    {
+      "id": "preprocessor_expansion",
+      "checks": 6,
+      "widths": [
+        32
+      ],
+      "references": [
+        "Language pp.79-82,101-102"
+      ]
+    },
+    {
+      "id": "precedence",
+      "checks": 9,
+      "widths": [
+        32
+      ],
+      "references": [
+        "Language pp.89-95"
+      ]
+    },
+    {
+      "id": "ragged_arrays",
+      "checks": 7,
+      "widths": [
+        32
+      ],
+      "references": [
+        "Language pp.56-57"
+      ]
+    },
+    {
+      "id": "global_init_error",
+      "widths": [
+        32
+      ],
+      "compile_fails": true,
+      "diagnostics": [
+        8
+      ],
+      "references": [
+        "Language pp.52-54,97; diagnostic catalog"
+      ]
+    },
+    {
+      "id": "const_array_error",
+      "widths": [
+        32
+      ],
+      "compile_fails": true,
+      "diagnostics": [
+        22
+      ],
+      "references": [
+        "Language pp.52-54,97; diagnostic catalog"
+      ]
+    },
+    {
+      "id": "empty_statement_error",
+      "widths": [
+        32
+      ],
+      "compile_fails": true,
+      "diagnostics": [
+        36
+      ],
+      "references": [
+        "Language pp.52-54,97; diagnostic catalog"
+      ]
+    },
+    {
+      "id": "minimal",
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "checks": 0,
+      "result": 42,
+      "references": [
+        "Language entry function and return; no default prefix file"
+      ]
+    }
+  ]
+}

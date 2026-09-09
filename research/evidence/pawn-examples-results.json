@@ -1,0 +1,2871 @@
+{
+  "purpose": "Preserved-example audit plus independent combined-feature exercises",
+  "compiler_sha256": "0627f3ebb3c8859207d38f4b179155a07cc0fa6ec5e564ed3e95e57a431a7b36",
+  "vm_sha256": "c20639498fd208351287992822fdc257ea100598ac6d3a8eee753f742cd9ab13",
+  "prior_artifacts": {
+    "original_task": "01a07d33-0d5d-7033-9263-724ae01687fc",
+    "original_workspace": "/home/crowg/Documents/Codex/2026-09-07/explore-x20",
+    "files": [
+      {
+        "path": "/home/crowg/Documents/Codex/2026-09-07/explore-x20/.pptx-build/pawn-course/build-detailed-course.mjs",
+        "sha256": "b0332dc06e6f6d44aa59d567234ebb90faf11527da70c4500f87aa460f9f190e",
+        "preserved_in_place": true
+      },
+      {
+        "path": "/home/crowg/Documents/Codex/2026-09-07/explore-x20/.pptx-build/pawn-course/build-pawn-course.mjs",
+        "sha256": "4fb4881ee588dbeb8973f4fdeefad53d5287b5b1d3e8ce820f93c4a4c1270c64",
+        "preserved_in_place": true
+      },
+      {
+        "path": "/home/crowg/Documents/Codex/2026-09-07/explore-x20/output/pawn-zero-to-hero-course.pptx",
+        "sha256": "4db4aba3c2f06dd664ee5041500d890f06d4ff3a55301bf661c13816293d0cef",
+        "preserved_in_place": true
+      },
+      {
+        "path": "/home/crowg/Documents/Codex/2026-09-07/explore-x20/output/pawn-zero-to-hero-detailed-course.pptx",
+        "sha256": "c779d618c27dde7ff87645281f05508b2548a72849fdafe714497804b6115943",
+        "preserved_in_place": true
+      }
+    ]
+  },
+  "audit": [
+    {
+      "name": "short-01",
+      "classification": "standalone",
+      "wrapped_source_sha256": "037aea0db37db00b176e10a27c8b321e529e589bf4bc66d558406827539b7af4",
+      "wrapper_prefix": "",
+      "original_snippet": "main()\n{\n    // Build from cells upward\n}",
+      "wrapper_suffix": "",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-01/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-01/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             64 bytes\nCode size:               28 bytes\nData size:                0 bytes\nStack/heap size:      16384 bytes; estimated max. use=4 cells (16 bytes)\nTotal requirements:   16476 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-01/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": ""
+      }
+    },
+    {
+      "name": "short-03",
+      "classification": "fragment",
+      "wrapped_source_sha256": "2c66efdf035e7046bfdb477556c85f7e07e2d9dc7486b90724ffe11a7853f48d",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new score = 42\nnew bool:ready = true\n\nif (ready)\n    score += 1",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",score,ready);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-03/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-03/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              212 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=10 cells (40 bytes)\nTotal requirements:   16700 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-03/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "43,1"
+      }
+    },
+    {
+      "name": "short-04",
+      "classification": "fragment",
+      "wrapped_source_sha256": "88bc5857e9c42ae626d7bb0c09e25301f7b0f6d46287906244043c858b546595",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "const MaxPlayers = 16\nnew lives = 3\nnew bool:alive = true\n\nstatic totalRuns = 0",
+      "wrapper_suffix": "\nprintf(\"%d,%d,%d,%d\",MaxPlayers,lives,alive,totalRuns);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-04/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-04/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              216 bytes\nData size:               16 bytes\nStack/heap size:      16384 bytes; estimated max. use=13 cells (52 bytes)\nTotal requirements:   16712 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-04/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "16,3,1,0"
+      }
+    },
+    {
+      "name": "short-05",
+      "classification": "fragment",
+      "wrapped_source_sha256": "c0985ac41fcc76ccd4246cb9f70eefea376e44a54056ff13a42ff17ec76708a3",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new a = 7\nnew b = 3\n\nnew q = a / b       // 2\nnew r = a % b       // 1\nnew ok = a > b && b != 0",
+      "wrapper_suffix": "\nprintf(\"%d,%d,%d\",q,r,ok);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-05/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-05/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              384 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=14 cells (56 bytes)\nTotal requirements:   16876 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-05/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "2,1,1"
+      }
+    },
+    {
+      "name": "short-06",
+      "classification": "fragment",
+      "wrapped_source_sha256": "2cc1dc535e72235cc10f3b338bafba79a73b919b10572dad323f78d70b9fde19",
+      "wrapper_prefix": "",
+      "original_snippet": "max_value(a, b)\n{\n    if (a > b)\n        return a\n    return b\n}",
+      "wrapper_suffix": "\nmain() printf(\"%d,%d\",max_value(4,9),max_value(12,9));",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-06/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-06/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              292 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16780 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-06/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "9,12"
+      }
+    },
+    {
+      "name": "short-07",
+      "classification": "fragment",
+      "wrapped_source_sha256": "5927b20401c44aaf98c5660d12e54066ea662aad2ee0e5823b97d8dd9a37a53e",
+      "wrapper_prefix": "",
+      "original_snippet": "swap(&left, &right)\n{\n    new temp = left\n    left = right\n    right = temp\n}",
+      "wrapper_suffix": "\nmain() { var a=4,b=9; swap(a,b); printf(\"%d,%d\",a,b); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-07/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-07/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              300 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16788 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-07/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "9,4"
+      }
+    },
+    {
+      "name": "short-08",
+      "classification": "fragment",
+      "wrapped_source_sha256": "9445ea13a945b7131fa4281e83f9cd6506a86e57595265f59a72e6b08235610e",
+      "wrapper_prefix": "main() { var health=1; var bool:alive=true,bool:warning=false;\n",
+      "original_snippet": "if (health <= 0)\n{\n    alive = false\n}\nelse if (health < 25)\n{\n    warning = true\n}",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",alive,warning);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-08/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-08/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-08/wrapped.p(2) : warning 217: loose indentation\n\nHeader size:             96 bytes\nCode size:              320 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=11 cells (44 bytes)\nTotal requirements:   16808 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-08/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "1,1"
+      }
+    },
+    {
+      "name": "short-09",
+      "classification": "fragment",
+      "wrapped_source_sha256": "6bee5e0c24c3c908d0d24a7cf8c89e527b70dee9f6532dc0f7f11e35e141ba37",
+      "wrapper_prefix": "print_number(n) { printf(\"%d,\",n); }\nmain() { var remaining=3,tries=0;\n",
+      "original_snippet": "for (new i = 0; i < 5; i++)\n    print_number(i)\n\nwhile (remaining > 0)\n    remaining--\n\ndo\n    tries++\nwhile (tries < 3)",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",remaining,tries);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-09/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-09/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-09/wrapped.p(3) : warning 217: loose indentation\n\nHeader size:             96 bytes\nCode size:              568 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=14 cells (56 bytes)\nTotal requirements:   17060 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-09/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "0,1,2,3,4,0,3"
+      }
+    },
+    {
+      "name": "short-10",
+      "classification": "fragment",
+      "wrapped_source_sha256": "7bc64f984e1527fb1218fe701eff70c9dac93e8d825801b9542fd3dd64b4967e",
+      "wrapper_prefix": "main() { var day=3;\n",
+      "original_snippet": "switch (day)\n{\n    case 0, 6: print \"weekend\"\n    case 1..5: print \"weekday\"\n    default:    print \"invalid\"\n}",
+      "wrapper_suffix": "\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-10/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-10/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-10/wrapped.p(2) : warning 217: loose indentation\n\nHeader size:             92 bytes\nCode size:              416 bytes\nData size:               24 bytes\nStack/heap size:      16384 bytes; estimated max. use=10 cells (40 bytes)\nTotal requirements:   16916 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-10/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "weekday\u001b[37m\u001b[40m\u001b[0m"
+      }
+    },
+    {
+      "name": "short-11",
+      "classification": "fragment",
+      "wrapped_source_sha256": "d4203f46cc2ba352d0bdd5f69512e898f735c00fd3d22f105164625308cce0a6",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new scores[4] = { 10, 20, 30, 40 }\n\nfor (new i = 0; i < sizeof scores; i++)\n    scores[i] += 5",
+      "wrapper_suffix": "\nprintf(\"%d,%d,%d,%d\",scores[0],scores[1],scores[2],scores[3]);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-11/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-11/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-11/wrapped.p(2) : warning 229: mixing packed and unpacked array indexing or array assignment\n\nHeader size:             96 bytes\nCode size:              424 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=14 cells (56 bytes)\nTotal requirements:   16916 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-11/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "169090605,5,5,5"
+      }
+    },
+    {
+      "name": "short-12",
+      "classification": "fragment",
+      "wrapped_source_sha256": "03cd296aa06851e618d533b7e0bb4afa5dee1c9e60b4e8be824566a31e88496a",
+      "wrapper_prefix": "",
+      "original_snippet": "sum(const values[], count)\n{\n    new total = 0\n    for (new i = 0; i < count; i++)\n        total += values[i]\n    return total\n}",
+      "wrapper_suffix": "\nmain() { var a[3]=[1,2,3]; printf(\"%d\",sum(a,3)); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-12/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-12/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              444 bytes\nData size:               16 bytes\nStack/heap size:      16384 bytes; estimated max. use=15 cells (60 bytes)\nTotal requirements:   16940 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-12/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "6"
+      }
+    },
+    {
+      "name": "short-13",
+      "classification": "fragment",
+      "wrapped_source_sha256": "c21a5d4be91d6f7762e7bf98e8f79826be509aaa42fec9bafbe41b7a2aae6fce",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new name[32] = \"Ada\"\n\nfor (new i = 0; name[i] != EOS; i++)\n    name[i] = toupper(name[i])",
+      "wrapper_suffix": "\nprintf(\"%d,%d,%s\",name[0],name[1],name);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-13/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-13/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-13/wrapped.p(2) : warning 229: mixing packed and unpacked array indexing or array assignment\n\nHeader size:            124 bytes\nCode size:              480 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=41 cells (164 bytes)\nTotal requirements:   17000 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-13/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1097097472,0,Ada"
+      }
+    },
+    {
+      "name": "short-14",
+      "classification": "fragment",
+      "wrapped_source_sha256": "419e8f1272a11faa8580082c10a5cd55dc51801ab9fe5bc31c07ba6564c1c5fa",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new unpacked[5] = \"test\"\nnew packed[5 char] = !\"test\"\n\npacked{0} = 'T'\nunpacked[0] = 'T'",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",unpacked[0],packed{0});\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-14/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-14/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-14/wrapped.p(2) : warning 229: mixing packed and unpacked array indexing or array assignment\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-14/wrapped.p(3) : error 001: expected token: \"]\", but found \"char\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-14/wrapped.p(3) : error 017: undefined symbol \"char\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-14/wrapped.p(3) : error 029: invalid expression, assumed zero\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-14/wrapped.p(3) : fatal error 107: too many error messages on one line\n\nCompilation aborted.\n4 Errors.\n"
+      }
+    },
+    {
+      "name": "short-15",
+      "classification": "fragment",
+      "wrapped_source_sha256": "4775dbc40dd9151aba1573a560bfa3a0260d609b84886a4a0ef37f799963dab2",
+      "wrapper_prefix": "",
+      "original_snippet": "enum player_data\n{\n    p_health,\n    p_score,\n    p_name[24]\n}\n\nnew player[player_data]",
+      "wrapper_suffix": "\nmain() printf(\"%d\",sizeof player);",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-15/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-15/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-15/wrapped.p(1) : error 010: invalid function or declaration\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-15/wrapped.p(8) : error 017: undefined symbol \"player_data\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-15/wrapped.p(9) : warning 224: indeterminate array size in \"sizeof\" expression (symbol \"\")\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-15/wrapped.p(9) : warning 203: symbol is never used: \"player\"\n\n2 Errors.\n"
+      }
+    },
+    {
+      "name": "short-16",
+      "classification": "fragment",
+      "wrapped_source_sha256": "6d2ba66ac75d2186c84a50c8e601e939183e548c1776e5e5eb50c8f33da3403d",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new bool:open = true\n\nif (open)\n    print \"open\"\n\nnew state:mode = state:1",
+      "wrapper_suffix": "\nprintf(\"%d\",mode);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-16/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-16/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-16/wrapped.p(7) : error 001: expected token: \"[identifier]\", but found \"state\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-16/wrapped.p(8) : error 017: undefined symbol \"mode\"\n\n2 Errors.\n"
+      }
+    },
+    {
+      "name": "short-17",
+      "classification": "fragment",
+      "wrapped_source_sha256": "fded419d03b62787a72d3094ed59e0bb65b701c3989ab387f45f6aac4e68877a",
+      "wrapper_prefix": "",
+      "original_snippet": "operator+(Fixed:left, Fixed:right)\n{\n    return Fixed:((_:left + _:right))\n}",
+      "wrapper_suffix": "\nmain() { var Fixed:a=Fixed:1,Fixed:b=Fixed:2; var Fixed:c=a+b; printf(\"%d\",_:c); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-17/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-17/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-17/wrapped.p(4) : warning 213: tag mismatch\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-17/wrapped.p(5) : warning 213: tag mismatch\n\nHeader size:             96 bytes\nCode size:              260 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=11 cells (44 bytes)\nTotal requirements:   16744 bytes\n\n2 Warnings.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-17/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "3"
+      }
+    },
+    {
+      "name": "short-18",
+      "classification": "fragment",
+      "wrapped_source_sha256": "e96e949758adcbd26fb60fcaebed0cfad7b12e96e08e4ed84dbe6e6d33be24ef",
+      "wrapper_prefix": "",
+      "original_snippet": "public on_event(value) <idle>\n{\n    state (value) active\n}\n\npublic on_event(value) <active>\n{\n    state idle\n}",
+      "wrapper_suffix": "\nmain() { state idle; on_event(1); printf(\"%d,\",state active); on_event(0); printf(\"%d\",state idle); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-18/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-18/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-18/wrapped.p(1) : warning 235: public function lacks forward declaration (symbol \"on_event\")\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-18/wrapped.p(6) : warning 235: public function lacks forward declaration (symbol \"on_event\")\n\nHeader size:            112 bytes\nCode size:              452 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=9 cells (36 bytes)\nTotal requirements:   16960 bytes\n\n2 Warnings.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-18/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1,1"
+      }
+    },
+    {
+      "name": "short-19",
+      "classification": "fragment",
+      "wrapped_source_sha256": "52881b2eb20295c98d9000ebe9d899cea11385a9226c77c6fa021a7c30dc0d86",
+      "wrapper_prefix": "",
+      "original_snippet": "#if defined DEBUG\n    #assert cellbits >= 16\n#endif\n\n#define SQUARE(%1) ((%1) * (%1))\n#include <core>",
+      "wrapper_suffix": "\nmain() printf(\"%d\",SQUARE(5));",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-19/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-19/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              108 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=8 cells (32 bytes)\nTotal requirements:   16592 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-19/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "25"
+      }
+    },
+    {
+      "name": "short-20",
+      "classification": "fragment",
+      "wrapped_source_sha256": "d0b140d1e0844dc137b4f5894a6dcd9843257e9ec04cebe8728a41a9186087dc",
+      "wrapper_prefix": "check(index) { var values[3];\n",
+      "original_snippet": "assert 0 <= index < sizeof values\n\nif (index >= sizeof values)\n    return 0",
+      "wrapper_suffix": "\nreturn 1;\n}\nmain() printf(\"%d\",check(1));",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-20/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-20/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-20/wrapped.p(2) : warning 217: loose indentation\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-20/wrapped.p(1) : warning 203: symbol is never used: \"values\"\n\nHeader size:             96 bytes\nCode size:              356 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16840 bytes\n\n2 Warnings.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-20/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "1"
+      }
+    },
+    {
+      "name": "short-21",
+      "classification": "fragment",
+      "wrapped_source_sha256": "6b9c02b698d1e65c21b8111480d8020986ce343e7be8036136105792c4669fbd",
+      "wrapper_prefix": "",
+      "original_snippet": "enum score_data\n{\n    sc_name[24],\n    sc_points\n}\n\nnew scores[10][score_data]\n\nadd_points(index, amount)\n{\n    assert 0 <= index < sizeof scores\n    scores[index][sc_points] += amount\n}",
+      "wrapper_suffix": "\nmain() { add_points(1,5); printf(\"%d\",scores[1][sc_points]); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-21/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-21/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-21/wrapped.p(1) : error 010: invalid function or declaration\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-21/wrapped.p(7) : error 017: undefined symbol \"score_data\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-21/wrapped.p(9) : error 009: invalid array size (negative, zero or out of bounds)\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-21/wrapped.p(12) : error 017: undefined symbol \"sc_points\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/short-21/wrapped.p(14) : error 017: undefined symbol \"sc_points\"\n\n5 Errors.\n"
+      }
+    },
+    {
+      "name": "detailed-03",
+      "classification": "fragment",
+      "wrapped_source_sha256": "977d7e6fd39e9414f24bbb009ff44ba382651fc69017755526d9303d1163aeb5",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new score = 42\nnew bonus = 8\nscore = score + bonus",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",score,bonus);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-03/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-03/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              200 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=10 cells (40 bytes)\nTotal requirements:   16688 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-03/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "50,8"
+      }
+    },
+    {
+      "name": "detailed-04",
+      "classification": "fragment",
+      "wrapped_source_sha256": "07f432a0a86dd473506051dc1d44d4534bdd6b5c831419eaaabf12bfca533543",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "const MaxLives = 3\nnew lives = MaxLives\nlives--",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",MaxLives,lives);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-04/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-04/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              192 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=10 cells (40 bytes)\nTotal requirements:   16680 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-04/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "3,2"
+      }
+    },
+    {
+      "name": "detailed-05",
+      "classification": "fragment",
+      "wrapped_source_sha256": "24b596e8ee8008dacbbd5be51dfb924e6744131a230e3d3222f06dd7dae6ef0c",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new bool:ready = true\nnew count = 0\n\nif (ready)\n    count = 1",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",ready,count);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-05/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-05/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              200 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=10 cells (40 bytes)\nTotal requirements:   16688 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-05/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "1,1"
+      }
+    },
+    {
+      "name": "detailed-06",
+      "classification": "fragment",
+      "wrapped_source_sha256": "5f6cef2551be2ea8b0a3cc4cdbfc3f572dd6489abf3ddb494bb803d9e4622f3a",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new value = 5\nnew equal = value == 5\nvalue = 9",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",value,equal);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-06/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-06/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              192 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=10 cells (40 bytes)\nTotal requirements:   16680 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-06/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "9,1"
+      }
+    },
+    {
+      "name": "detailed-07",
+      "classification": "fragment",
+      "wrapped_source_sha256": "1c68ee1049647a8d499507ea86665d72fbb8674ddb5048a55efeb1be632938d3",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new q = 7 / 3\nnew r = 7 % 3\nnew neg = -7 / 3",
+      "wrapper_suffix": "\nprintf(\"%d,%d,%d\",q,r,neg);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-07/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-07/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              200 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16692 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-07/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "2,1,-3"
+      }
+    },
+    {
+      "name": "detailed-08",
+      "classification": "fragment",
+      "wrapped_source_sha256": "1e2b989c2e26ff757df3034d22a202f4c09f028e13f65f325fdf6ae24f5d94fd",
+      "wrapper_prefix": "",
+      "original_snippet": "larger(a, b)\n{\n    if (a > b)\n        return a\n    return b\n}\n\nnew best = larger(4, 9)",
+      "wrapper_suffix": "\nmain() printf(\"%d\",best);",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-08/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-08/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-08/wrapped.p(8 -- 9) : error 008: must be a constant expression; assumed zero\n\n1 Error.\n"
+      }
+    },
+    {
+      "name": "detailed-09",
+      "classification": "fragment",
+      "wrapped_source_sha256": "5927b20401c44aaf98c5660d12e54066ea662aad2ee0e5823b97d8dd9a37a53e",
+      "wrapper_prefix": "",
+      "original_snippet": "swap(&left, &right)\n{\n    new temp = left\n    left = right\n    right = temp\n}",
+      "wrapper_suffix": "\nmain() { var a=4,b=9; swap(a,b); printf(\"%d,%d\",a,b); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-09/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-09/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              300 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16788 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-09/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "9,4"
+      }
+    },
+    {
+      "name": "detailed-10",
+      "classification": "fragment",
+      "wrapped_source_sha256": "c2c5aae0780d05e92db356c8b111f1ee5a30311071ade54e1da4a7e549c464ae",
+      "wrapper_prefix": "main() { var health=1; var bool:alive=false;\n",
+      "original_snippet": "if (health <= 0)\n{\n    alive = false\n}\nelse\n{\n    alive = true\n}",
+      "wrapper_suffix": "\nprintf(\"%d\",alive);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-10/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-10/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-10/wrapped.p(2) : warning 217: loose indentation\n\nHeader size:             96 bytes\nCode size:              240 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=9 cells (36 bytes)\nTotal requirements:   16724 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-10/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1"
+      }
+    },
+    {
+      "name": "detailed-11",
+      "classification": "fragment",
+      "wrapped_source_sha256": "f0473eee4b06f6b17d7178858a8baedec45958c626865bc2e2a6ae34e7dfc31f",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new total = 0\nfor (new i = 0; i < 4; i++)\n    total += i",
+      "wrapper_suffix": "\nprintf(\"%d\",total);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-11/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-11/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              284 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=8 cells (32 bytes)\nTotal requirements:   16768 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-11/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "6"
+      }
+    },
+    {
+      "name": "detailed-12",
+      "classification": "fragment",
+      "wrapped_source_sha256": "70bfd42459ddc5c034483177f95017d01df38852c9e3be9c4fd5b6c43fd22dff",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new n = 3\nwhile (n > 0)\n    n--\n\ndo\n    n++\nwhile (n < 1)",
+      "wrapper_suffix": "\nprintf(\"%d\",n);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-12/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-12/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              296 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=8 cells (32 bytes)\nTotal requirements:   16780 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-12/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1"
+      }
+    },
+    {
+      "name": "detailed-13",
+      "classification": "fragment",
+      "wrapped_source_sha256": "591c6ddf381013b75f58622b33d1ae6872305f2c785c731b1bba7025fe96e712",
+      "wrapper_prefix": "main() { var kind=2,result;\n",
+      "original_snippet": "switch (kind)\n{\n    case 0: result = 10\n    case 1..3: result = 20\n    default: result = 0\n}",
+      "wrapper_suffix": "\nprintf(\"%d\",result);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-13/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-13/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-13/wrapped.p(2) : warning 217: loose indentation\n\nHeader size:             96 bytes\nCode size:              292 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=9 cells (36 bytes)\nTotal requirements:   16776 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-13/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "20"
+      }
+    },
+    {
+      "name": "detailed-14",
+      "classification": "fragment",
+      "wrapped_source_sha256": "364ee46411d243ce73bba95605fbb6936322b40b035d39381c7a4fc0f6f4f5b5",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new scores[4] = { 10, 20, 30, 40 }\nnew first = scores[0]\nnew last = scores[3]",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",first,last);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-14/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-14/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-14/wrapped.p(2) : warning 229: mixing packed and unpacked array indexing or array assignment\n\nHeader size:             96 bytes\nCode size:              240 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=14 cells (56 bytes)\nTotal requirements:   16728 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-14/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "169090600,0"
+      }
+    },
+    {
+      "name": "detailed-15",
+      "classification": "fragment",
+      "wrapped_source_sha256": "fa3ec0e7a0bcd10bc4e2244e3afd9ebed203039c8a07b85bb6ad422f1b0bd70f",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new values[4] = { 2, 4, 6, 8 }\nnew count = sizeof values\nnew last = values[count - 1]",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",count,last);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-15/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-15/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-15/wrapped.p(2) : warning 229: mixing packed and unpacked array indexing or array assignment\n\nHeader size:             96 bytes\nCode size:              280 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=14 cells (56 bytes)\nTotal requirements:   16768 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-15/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "4,0"
+      }
+    },
+    {
+      "name": "detailed-16",
+      "classification": "fragment",
+      "wrapped_source_sha256": "03cd296aa06851e618d533b7e0bb4afa5dee1c9e60b4e8be824566a31e88496a",
+      "wrapper_prefix": "",
+      "original_snippet": "sum(const values[], count)\n{\n    new total = 0\n    for (new i = 0; i < count; i++)\n        total += values[i]\n    return total\n}",
+      "wrapper_suffix": "\nmain() { var a[3]=[1,2,3]; printf(\"%d\",sum(a,3)); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-16/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-16/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              444 bytes\nData size:               16 bytes\nStack/heap size:      16384 bytes; estimated max. use=15 cells (60 bytes)\nTotal requirements:   16940 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-16/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "6"
+      }
+    },
+    {
+      "name": "detailed-17",
+      "classification": "fragment",
+      "wrapped_source_sha256": "f7466f8d03ec31d0dc53420992dc3bde38d2bbf1b7a121771399fd5d42a60382",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new name[32] = \"Ada\"\nnew first = name[0]\nnew end = name[3]",
+      "wrapper_suffix": "\nprintf(\"%d,%d\",first,end);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-17/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-17/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-17/wrapped.p(2) : warning 229: mixing packed and unpacked array indexing or array assignment\n\nHeader size:             96 bytes\nCode size:              240 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=42 cells (168 bytes)\nTotal requirements:   16728 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-17/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1097097472,0"
+      }
+    },
+    {
+      "name": "detailed-18",
+      "classification": "fragment",
+      "wrapped_source_sha256": "b82f0538e9c6ba16036bf33d6774a4fe9f8a6893a3267e96dce80693f779891e",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new word[5] = \"test\"\n\nword[4] == EOS",
+      "wrapper_suffix": "\nprintf(\"%d\",word[4]);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-18/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-18/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-18/wrapped.p(2) : warning 229: mixing packed and unpacked array indexing or array assignment\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-18/wrapped.p(4 -- 5) : warning 215: expression has no effect\n\nHeader size:             96 bytes\nCode size:              204 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16688 bytes\n\n2 Warnings.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-18/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "0"
+      }
+    },
+    {
+      "name": "detailed-19",
+      "classification": "fragment",
+      "wrapped_source_sha256": "3191d8b73b613d77637918301826bda69f20c58b366bf5341afcde8252fcff37",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new text[8] = \"cat\"\nfor (new i = 0; text[i] != EOS; i++)\n    text[i] = text[i] + 1",
+      "wrapper_suffix": "\nprintf(\"%d,%d,%s\",text[0],text[1],text);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-19/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-19/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-19/wrapped.p(2) : warning 229: mixing packed and unpacked array indexing or array assignment\n\nHeader size:             96 bytes\nCode size:              460 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=17 cells (68 bytes)\nTotal requirements:   16952 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-19/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1667331073,0,cat\u0001"
+      }
+    },
+    {
+      "name": "detailed-20",
+      "classification": "fragment",
+      "wrapped_source_sha256": "ff0f245758e8fae9d38bbe85107ecc9d157a6022af35b201c69fffd439c13d98",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new destination[4]\ndestination[0] = 'A'\ndestination[1] = 'B'\ndestination[2] = EOS",
+      "wrapper_suffix": "\nprintf(\"%d,%d,%d\",destination[0],destination[1],destination[2]);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-20/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-20/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              296 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=13 cells (52 bytes)\nTotal requirements:   16788 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-20/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "65,66,0"
+      }
+    },
+    {
+      "name": "detailed-21",
+      "classification": "fragment",
+      "wrapped_source_sha256": "1f9026b6a084b0756c8e262be8cc3a4c1ceb5751d8ae315c1f778a01a8708aa0",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "new packed[5 char] = !\"test\"\npacked{0} = 'T'",
+      "wrapper_suffix": "\nprintf(\"%d\",packed{0});\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-21/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-21/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-21/wrapped.p(2) : error 001: expected token: \"]\", but found \"char\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-21/wrapped.p(2) : error 017: undefined symbol \"char\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-21/wrapped.p(2) : error 029: invalid expression, assumed zero\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-21/wrapped.p(2) : fatal error 107: too many error messages on one line\n\nCompilation aborted.\n4 Errors.\n"
+      }
+    },
+    {
+      "name": "detailed-22",
+      "classification": "fragment",
+      "wrapped_source_sha256": "fab56febb825c6c015fcc5a62535d34144639190d27bbbec0b1775c60e603c81",
+      "wrapper_prefix": "",
+      "original_snippet": "enum player_data\n{\n    p_health,\n    p_score,\n    p_name[24]\n}\nnew player[player_data]",
+      "wrapper_suffix": "\nmain() printf(\"%d\",sizeof player);",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-22/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-22/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-22/wrapped.p(1) : error 010: invalid function or declaration\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-22/wrapped.p(7) : error 017: undefined symbol \"player_data\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-22/wrapped.p(8) : warning 224: indeterminate array size in \"sizeof\" expression (symbol \"\")\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-22/wrapped.p(8) : warning 203: symbol is never used: \"player\"\n\n2 Errors.\n"
+      }
+    },
+    {
+      "name": "detailed-23",
+      "classification": "fragment",
+      "wrapped_source_sha256": "cc28feed2a30829c02b4e1921d3af5d5585233115e048b38d85d8666c6ba3092",
+      "wrapper_prefix": "main() {\n",
+      "original_snippet": "enum rectangle { left, top, right, bottom }\nnew box[rectangle]\nbox[left] = 10",
+      "wrapper_suffix": "\nprintf(\"%d\",box[left]);\n}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-23/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-23/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-23/wrapped.p(2) : error 017: undefined symbol \"enum\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-23/wrapped.p(2) : error 017: undefined symbol \"rectangle\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-23/wrapped.p(2) : error 017: undefined symbol \"left\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-23/wrapped.p(2) : fatal error 107: too many error messages on one line\n\nCompilation aborted.\n4 Errors.\n"
+      }
+    },
+    {
+      "name": "detailed-24",
+      "classification": "fragment",
+      "wrapped_source_sha256": "fded419d03b62787a72d3094ed59e0bb65b701c3989ab387f45f6aac4e68877a",
+      "wrapper_prefix": "",
+      "original_snippet": "operator+(Fixed:left, Fixed:right)\n{\n    return Fixed:((_:left + _:right))\n}",
+      "wrapper_suffix": "\nmain() { var Fixed:a=Fixed:1,Fixed:b=Fixed:2; var Fixed:c=a+b; printf(\"%d\",_:c); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-24/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-24/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-24/wrapped.p(4) : warning 213: tag mismatch\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-24/wrapped.p(5) : warning 213: tag mismatch\n\nHeader size:             96 bytes\nCode size:              260 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=11 cells (44 bytes)\nTotal requirements:   16744 bytes\n\n2 Warnings.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-24/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "3"
+      }
+    },
+    {
+      "name": "detailed-25",
+      "classification": "fragment",
+      "wrapped_source_sha256": "9bbdc31ea175f2e0bd0e863b51a7a7bd1cecbcfc18d9dfe476c4a6bac3cbc518",
+      "wrapper_prefix": "",
+      "original_snippet": "on_event(value) <idle>\n{\n    state (value) active\n}\n\non_event(value) <active>\n{\n    state idle\n}",
+      "wrapper_suffix": "\nmain() { state idle; on_event(1); printf(\"%d,\",state active); on_event(0); printf(\"%d\",state idle); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-25/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-25/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-25/wrapped.p(6) : warning 203: symbol is never used: \"value\"\n\nHeader size:             96 bytes\nCode size:              452 bytes\nData size:               12 bytes\nStack/heap size:      16384 bytes; estimated max. use=9 cells (36 bytes)\nTotal requirements:   16944 bytes\n\n1 Warning.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-25/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "1,1"
+      }
+    },
+    {
+      "name": "detailed-26",
+      "classification": "fragment",
+      "wrapped_source_sha256": "768aa8d49b6a6bee5a6bbd11e44d8422444239c11763744f6cc17217f2502bd2",
+      "wrapper_prefix": "",
+      "original_snippet": "#if defined DEBUG\n    #assert cellbits >= 16\n#endif",
+      "wrapper_suffix": "\nmain() {}",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-26/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-26/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             64 bytes\nCode size:               28 bytes\nData size:                0 bytes\nStack/heap size:      16384 bytes; estimated max. use=4 cells (16 bytes)\nTotal requirements:   16476 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-26/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": ""
+      }
+    },
+    {
+      "name": "detailed-27",
+      "classification": "fragment",
+      "wrapped_source_sha256": "9cc116661412f9c42c5b880bca3a8244e08ce3a10d488c3b1d8502f4800d262b",
+      "wrapper_prefix": "",
+      "original_snippet": "#define SQUARE(%1) ((%1) * (%1))\nnew area = SQUARE(5)",
+      "wrapper_suffix": "\nmain() printf(\"%d\",area);",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-27/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-27/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:               84 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=7 cells (28 bytes)\nTotal requirements:   16572 bytes\nCompleted successfully\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-27/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "25"
+      }
+    },
+    {
+      "name": "detailed-28",
+      "classification": "fragment",
+      "wrapped_source_sha256": "d0b140d1e0844dc137b4f5894a6dcd9843257e9ec04cebe8728a41a9186087dc",
+      "wrapper_prefix": "check(index) { var values[3];\n",
+      "original_snippet": "assert 0 <= index < sizeof values\n\nif (index >= sizeof values)\n    return 0",
+      "wrapper_suffix": "\nreturn 1;\n}\nmain() printf(\"%d\",check(1));",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-28/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-28/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-28/wrapped.p(2) : warning 217: loose indentation\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-28/wrapped.p(1) : warning 203: symbol is never used: \"values\"\n\nHeader size:             96 bytes\nCode size:              356 bytes\nData size:                4 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16840 bytes\n\n2 Warnings.\n"
+      },
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-28/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1"
+      }
+    },
+    {
+      "name": "detailed-29",
+      "classification": "fragment",
+      "wrapped_source_sha256": "02378f76c76ffe6784f1fd1fb7fc1be47a574196e441dec7ab3c760d5aadffae",
+      "wrapper_prefix": "",
+      "original_snippet": "enum score_data { sc_points }\nnew scores[3][score_data]\n\nadd_points(index, amount)\n{\n    scores[index][sc_points] += amount\n}",
+      "wrapper_suffix": "\nmain() { add_points(1,5); printf(\"%d\",scores[1][sc_points]); }",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-29/wrapped.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-29/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-29/wrapped.p(1) : error 010: invalid function or declaration\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-29/wrapped.p(2) : error 017: undefined symbol \"score_data\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-29/wrapped.p(4) : error 009: invalid array size (negative, zero or out of bounds)\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-29/wrapped.p(6) : error 017: undefined symbol \"sc_points\"\n/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/audit/detailed-29/wrapped.p(8) : error 017: undefined symbol \"sc_points\"\n\n5 Errors.\n"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "exercise": 1,
+      "debug": 0,
+      "optimization": 0,
+      "source_sha256": "2140689bba4a9c09e444ba352ccc53c26fc43890e937200481c71bd49c86e354",
+      "expected_output": "-3,2,-3,-2,|2,-3,-3|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-01.p",
+          "-C32",
+          "-d0",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "-3,2,-3,-2,|2,-3,-3|"
+      }
+    },
+    {
+      "exercise": 1,
+      "debug": 0,
+      "optimization": 1,
+      "source_sha256": "2140689bba4a9c09e444ba352ccc53c26fc43890e937200481c71bd49c86e354",
+      "expected_output": "-3,2,-3,-2,|2,-3,-3|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-01.p",
+          "-C32",
+          "-d0",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.011,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "-3,2,-3,-2,|2,-3,-3|"
+      }
+    },
+    {
+      "exercise": 1,
+      "debug": 0,
+      "optimization": 2,
+      "source_sha256": "2140689bba4a9c09e444ba352ccc53c26fc43890e937200481c71bd49c86e354",
+      "expected_output": "-3,2,-3,-2,|2,-3,-3|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-01.p",
+          "-C32",
+          "-d0",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.011,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "-3,2,-3,-2,|2,-3,-3|"
+      }
+    },
+    {
+      "exercise": 1,
+      "debug": 0,
+      "optimization": 3,
+      "source_sha256": "2140689bba4a9c09e444ba352ccc53c26fc43890e937200481c71bd49c86e354",
+      "expected_output": "-3,2,-3,-2,|2,-3,-3|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-01.p",
+          "-C32",
+          "-d0",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.013,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.009,
+        "output": "-3,2,-3,-2,|2,-3,-3|"
+      }
+    },
+    {
+      "exercise": 1,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "2140689bba4a9c09e444ba352ccc53c26fc43890e937200481c71bd49c86e354",
+      "expected_output": "-3,2,-3,-2,|2,-3,-3|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-01.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.013,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              764 bytes\nData size:               28 bytes\nStack/heap size:      16384 bytes; estimated max. use=21 cells (84 bytes)\nTotal requirements:   17272 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "-3,2,-3,-2,|2,-3,-3|"
+      }
+    },
+    {
+      "exercise": 1,
+      "debug": 2,
+      "optimization": 1,
+      "source_sha256": "2140689bba4a9c09e444ba352ccc53c26fc43890e937200481c71bd49c86e354",
+      "expected_output": "-3,2,-3,-2,|2,-3,-3|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-01.p",
+          "-C32",
+          "-d2",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.014,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              728 bytes\nData size:               28 bytes\nStack/heap size:      16384 bytes; estimated max. use=21 cells (84 bytes)\nTotal requirements:   17236 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.008,
+        "output": "-3,2,-3,-2,|2,-3,-3|"
+      }
+    },
+    {
+      "exercise": 1,
+      "debug": 2,
+      "optimization": 2,
+      "source_sha256": "2140689bba4a9c09e444ba352ccc53c26fc43890e937200481c71bd49c86e354",
+      "expected_output": "-3,2,-3,-2,|2,-3,-3|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-01.p",
+          "-C32",
+          "-d2",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.025,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              560 bytes\nData size:               28 bytes\nStack/heap size:      16384 bytes; estimated max. use=21 cells (84 bytes)\nTotal requirements:   17068 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.013,
+        "output": "-3,2,-3,-2,|2,-3,-3|"
+      }
+    },
+    {
+      "exercise": 1,
+      "debug": 2,
+      "optimization": 3,
+      "source_sha256": "2140689bba4a9c09e444ba352ccc53c26fc43890e937200481c71bd49c86e354",
+      "expected_output": "-3,2,-3,-2,|2,-3,-3|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-01.p",
+          "-C32",
+          "-d2",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.011,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              448 bytes\nData size:               28 bytes\nStack/heap size:      16384 bytes; estimated max. use=21 cells (84 bytes)\nTotal requirements:   16956 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/01-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "-3,2,-3,-2,|2,-3,-3|"
+      }
+    },
+    {
+      "exercise": 2,
+      "debug": 0,
+      "optimization": 0,
+      "source_sha256": "f77a95f175aedfa00ae8ae9a59404c5a9242ed72970af7a703e02dbace208466",
+      "expected_output": "0,1,0,65,66,0,2,84,116,0|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-02.p",
+          "-C32",
+          "-d0",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "0,1,0,65,66,0,2,84,116,0|"
+      }
+    },
+    {
+      "exercise": 2,
+      "debug": 0,
+      "optimization": 1,
+      "source_sha256": "f77a95f175aedfa00ae8ae9a59404c5a9242ed72970af7a703e02dbace208466",
+      "expected_output": "0,1,0,65,66,0,2,84,116,0|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-02.p",
+          "-C32",
+          "-d0",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.011,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "0,1,0,65,66,0,2,84,116,0|"
+      }
+    },
+    {
+      "exercise": 2,
+      "debug": 0,
+      "optimization": 2,
+      "source_sha256": "f77a95f175aedfa00ae8ae9a59404c5a9242ed72970af7a703e02dbace208466",
+      "expected_output": "0,1,0,65,66,0,2,84,116,0|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-02.p",
+          "-C32",
+          "-d0",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.011,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "0,1,0,65,66,0,2,84,116,0|"
+      }
+    },
+    {
+      "exercise": 2,
+      "debug": 0,
+      "optimization": 3,
+      "source_sha256": "f77a95f175aedfa00ae8ae9a59404c5a9242ed72970af7a703e02dbace208466",
+      "expected_output": "0,1,0,65,66,0,2,84,116,0|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-02.p",
+          "-C32",
+          "-d0",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.018,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "0,1,0,65,66,0,2,84,116,0|"
+      }
+    },
+    {
+      "exercise": 2,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "f77a95f175aedfa00ae8ae9a59404c5a9242ed72970af7a703e02dbace208466",
+      "expected_output": "0,1,0,65,66,0,2,84,116,0|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-02.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.008,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:             1104 bytes\nData size:               32 bytes\nStack/heap size:      16384 bytes; estimated max. use=30 cells (120 bytes)\nTotal requirements:   17616 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "0,1,0,65,66,0,2,84,116,0|"
+      }
+    },
+    {
+      "exercise": 2,
+      "debug": 2,
+      "optimization": 1,
+      "source_sha256": "f77a95f175aedfa00ae8ae9a59404c5a9242ed72970af7a703e02dbace208466",
+      "expected_output": "0,1,0,65,66,0,2,84,116,0|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-02.p",
+          "-C32",
+          "-d2",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.013,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:             1072 bytes\nData size:               32 bytes\nStack/heap size:      16384 bytes; estimated max. use=30 cells (120 bytes)\nTotal requirements:   17584 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.017,
+        "output": "0,1,0,65,66,0,2,84,116,0|"
+      }
+    },
+    {
+      "exercise": 2,
+      "debug": 2,
+      "optimization": 2,
+      "source_sha256": "f77a95f175aedfa00ae8ae9a59404c5a9242ed72970af7a703e02dbace208466",
+      "expected_output": "0,1,0,65,66,0,2,84,116,0|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-02.p",
+          "-C32",
+          "-d2",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.021,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              876 bytes\nData size:               32 bytes\nStack/heap size:      16384 bytes; estimated max. use=30 cells (120 bytes)\nTotal requirements:   17388 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "0,1,0,65,66,0,2,84,116,0|"
+      }
+    },
+    {
+      "exercise": 2,
+      "debug": 2,
+      "optimization": 3,
+      "source_sha256": "f77a95f175aedfa00ae8ae9a59404c5a9242ed72970af7a703e02dbace208466",
+      "expected_output": "0,1,0,65,66,0,2,84,116,0|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-02.p",
+          "-C32",
+          "-d2",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.022,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              640 bytes\nData size:               32 bytes\nStack/heap size:      16384 bytes; estimated max. use=30 cells (120 bytes)\nTotal requirements:   17152 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/02-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "0,1,0,65,66,0,2,84,116,0|"
+      }
+    },
+    {
+      "exercise": 3,
+      "debug": 0,
+      "optimization": 0,
+      "source_sha256": "a4c44f1b10f864947196018eed7755e6b7e93a68fa094503d88031f622df7309",
+      "expected_output": "37,37|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-03.p",
+          "-C32",
+          "-d0",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "37,37|"
+      }
+    },
+    {
+      "exercise": 3,
+      "debug": 0,
+      "optimization": 1,
+      "source_sha256": "a4c44f1b10f864947196018eed7755e6b7e93a68fa094503d88031f622df7309",
+      "expected_output": "37,37|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-03.p",
+          "-C32",
+          "-d0",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "37,37|"
+      }
+    },
+    {
+      "exercise": 3,
+      "debug": 0,
+      "optimization": 2,
+      "source_sha256": "a4c44f1b10f864947196018eed7755e6b7e93a68fa094503d88031f622df7309",
+      "expected_output": "37,37|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-03.p",
+          "-C32",
+          "-d0",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "37,37|"
+      }
+    },
+    {
+      "exercise": 3,
+      "debug": 0,
+      "optimization": 3,
+      "source_sha256": "a4c44f1b10f864947196018eed7755e6b7e93a68fa094503d88031f622df7309",
+      "expected_output": "37,37|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-03.p",
+          "-C32",
+          "-d0",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.01,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "37,37|"
+      }
+    },
+    {
+      "exercise": 3,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "a4c44f1b10f864947196018eed7755e6b7e93a68fa094503d88031f622df7309",
+      "expected_output": "37,37|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-03.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.009,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              480 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16968 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "37,37|"
+      }
+    },
+    {
+      "exercise": 3,
+      "debug": 2,
+      "optimization": 1,
+      "source_sha256": "a4c44f1b10f864947196018eed7755e6b7e93a68fa094503d88031f622df7309",
+      "expected_output": "37,37|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-03.p",
+          "-C32",
+          "-d2",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.01,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              464 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16952 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "37,37|"
+      }
+    },
+    {
+      "exercise": 3,
+      "debug": 2,
+      "optimization": 2,
+      "source_sha256": "a4c44f1b10f864947196018eed7755e6b7e93a68fa094503d88031f622df7309",
+      "expected_output": "37,37|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-03.p",
+          "-C32",
+          "-d2",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.009,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              380 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16868 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "37,37|"
+      }
+    },
+    {
+      "exercise": 3,
+      "debug": 2,
+      "optimization": 3,
+      "source_sha256": "a4c44f1b10f864947196018eed7755e6b7e93a68fa094503d88031f622df7309",
+      "expected_output": "37,37|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-03.p",
+          "-C32",
+          "-d2",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.011,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              284 bytes\nData size:                8 bytes\nStack/heap size:      16384 bytes; estimated max. use=12 cells (48 bytes)\nTotal requirements:   16772 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/03-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.008,
+        "output": "37,37|"
+      }
+    },
+    {
+      "exercise": 4,
+      "debug": 0,
+      "optimization": 0,
+      "source_sha256": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
+      "expected_output": "12341,1,2|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-04.p",
+          "-C32",
+          "-d0",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.013,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "12341,1,2|"
+      }
+    },
+    {
+      "exercise": 4,
+      "debug": 0,
+      "optimization": 1,
+      "source_sha256": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
+      "expected_output": "12341,1,2|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-04.p",
+          "-C32",
+          "-d0",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "12341,1,2|"
+      }
+    },
+    {
+      "exercise": 4,
+      "debug": 0,
+      "optimization": 2,
+      "source_sha256": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
+      "expected_output": "12341,1,2|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-04.p",
+          "-C32",
+          "-d0",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.012,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "12341,1,2|"
+      }
+    },
+    {
+      "exercise": 4,
+      "debug": 0,
+      "optimization": 3,
+      "source_sha256": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
+      "expected_output": "12341,1,2|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-04.p",
+          "-C32",
+          "-d0",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.011,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "12341,1,2|"
+      }
+    },
+    {
+      "exercise": 4,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
+      "expected_output": "12341,1,2|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-04.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              808 bytes\nData size:               28 bytes\nStack/heap size:      16384 bytes; estimated max. use=15 cells (60 bytes)\nTotal requirements:   17316 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "12341,1,2|"
+      }
+    },
+    {
+      "exercise": 4,
+      "debug": 2,
+      "optimization": 1,
+      "source_sha256": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
+      "expected_output": "12341,1,2|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-04.p",
+          "-C32",
+          "-d2",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              808 bytes\nData size:               28 bytes\nStack/heap size:      16384 bytes; estimated max. use=15 cells (60 bytes)\nTotal requirements:   17316 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "12341,1,2|"
+      }
+    },
+    {
+      "exercise": 4,
+      "debug": 2,
+      "optimization": 2,
+      "source_sha256": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
+      "expected_output": "12341,1,2|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-04.p",
+          "-C32",
+          "-d2",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.009,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              704 bytes\nData size:               28 bytes\nStack/heap size:      16384 bytes; estimated max. use=15 cells (60 bytes)\nTotal requirements:   17212 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "12341,1,2|"
+      }
+    },
+    {
+      "exercise": 4,
+      "debug": 2,
+      "optimization": 3,
+      "source_sha256": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
+      "expected_output": "12341,1,2|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-04.p",
+          "-C32",
+          "-d2",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              568 bytes\nData size:               28 bytes\nStack/heap size:      16384 bytes; estimated max. use=15 cells (60 bytes)\nTotal requirements:   17076 bytes\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/04-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "12341,1,2|"
+      }
+    },
+    {
+      "exercise": 5,
+      "debug": 0,
+      "optimization": 0,
+      "source_sha256": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
+      "expected_output": "1,0,5,5,3,24|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p",
+          "-C32",
+          "-d0",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d0-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1,0,5,5,3,24|"
+      }
+    },
+    {
+      "exercise": 5,
+      "debug": 0,
+      "optimization": 1,
+      "source_sha256": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
+      "expected_output": "1,0,5,5,3,24|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p",
+          "-C32",
+          "-d0",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.014,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d0-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "1,0,5,5,3,24|"
+      }
+    },
+    {
+      "exercise": 5,
+      "debug": 0,
+      "optimization": 2,
+      "source_sha256": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
+      "expected_output": "1,0,5,5,3,24|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p",
+          "-C32",
+          "-d0",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.01,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d0-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "1,0,5,5,3,24|"
+      }
+    },
+    {
+      "exercise": 5,
+      "debug": 0,
+      "optimization": 3,
+      "source_sha256": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
+      "expected_output": "1,0,5,5,3,24|",
+      "expected_diagnostics": [],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p",
+          "-C32",
+          "-d0",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.009,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nCompleted successfully\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d0-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "1,0,5,5,3,24|"
+      }
+    },
+    {
+      "exercise": 5,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
+      "expected_output": "1,0,5,5,3,24|",
+      "expected_diagnostics": [
+        237
+      ],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p(5) : warning 237: recursive function \"factorial\"\n\nHeader size:             96 bytes\nCode size:              736 bytes\nData size:               24 bytes\nStack/heap size:      16384 bytes; estimated max. use: unknown, due to recursion\nTotal requirements:   17240 bytes\n\n1 Warning.\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d2-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1,0,5,5,3,24|"
+      }
+    },
+    {
+      "exercise": 5,
+      "debug": 2,
+      "optimization": 1,
+      "source_sha256": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
+      "expected_output": "1,0,5,5,3,24|",
+      "expected_diagnostics": [
+        237
+      ],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p",
+          "-C32",
+          "-d2",
+          "-O1",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p(5) : warning 237: recursive function \"factorial\"\n\nHeader size:             96 bytes\nCode size:              704 bytes\nData size:               24 bytes\nStack/heap size:      16384 bytes; estimated max. use: unknown, due to recursion\nTotal requirements:   17208 bytes\n\n1 Warning.\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d2-O1/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "1,0,5,5,3,24|"
+      }
+    },
+    {
+      "exercise": 5,
+      "debug": 2,
+      "optimization": 2,
+      "source_sha256": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
+      "expected_output": "1,0,5,5,3,24|",
+      "expected_diagnostics": [
+        237
+      ],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p",
+          "-C32",
+          "-d2",
+          "-O2",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.01,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p(5) : warning 237: recursive function \"factorial\"\n\nHeader size:             96 bytes\nCode size:              584 bytes\nData size:               24 bytes\nStack/heap size:      16384 bytes; estimated max. use: unknown, due to recursion\nTotal requirements:   17088 bytes\n\n1 Warning.\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d2-O2/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1,0,5,5,3,24|"
+      }
+    },
+    {
+      "exercise": 5,
+      "debug": 2,
+      "optimization": 3,
+      "source_sha256": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
+      "expected_output": "1,0,5,5,3,24|",
+      "expected_diagnostics": [
+        237
+      ],
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p",
+          "-C32",
+          "-d2",
+          "-O3",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.009,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\n/home/crowg/Documents/GitHub/AmxxModding/research/pawn/prior/exercise-05.p(5) : warning 237: recursive function \"factorial\"\n\nHeader size:             96 bytes\nCode size:              428 bytes\nData size:               24 bytes\nStack/heap size:      16384 bytes; estimated max. use: unknown, due to recursion\nTotal requirements:   16932 bytes\n\n1 Warning.\n"
+      },
+      "passed": true,
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawnrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/examples/exercises/05-d2-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "1,0,5,5,3,24|"
+      }
+    }
+  ],
+  "summary": {
+    "audited_snippets": 47,
+    "standalone_prior_programs": 1,
+    "prior_compile_successes": 38,
+    "exercises_passed": 40,
+    "exercise_profiles": 40
+  }
+}

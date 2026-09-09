@@ -1,0 +1,23 @@
+{
+  "note": "Pre-correction snapshots for user-requested setup/gate audit; not passing examples.",
+  "cases": [
+    {
+      "case": "states",
+      "path": "research/pawn/cases/states.p",
+      "source_before": "#include <lab>\nforward @entry();\nvar entered;\n@entry() <machine:idle> { entered += 1; }\n@entry() <machine:active> { entered += 10; }\nvalue() <machine:idle> { return 1; }\nvalue() <machine:active> { return 2; }\nvalue() <> { return -1; }\nmain()\n{\n    state machine:idle;\n    check(value(), 1); check(entered, 1);\n    state machine:active;\n    check(value(), 2); check(entered, 11);\n    state (identity(0)) machine:idle;\n    check(value(), 2);\n    state machine:idle;\n    check(entered, 12);\n    return 0;\n}\n",
+      "sha256_before": "ae8be39c949c6937dea7e91b4f60f76c84be52944759e3f0de75459c32622ceb"
+    },
+    {
+      "case": "constants",
+      "path": "research/pawn/cases/constants.p",
+      "source_before": "#include <lab>\nconst Mode { Idle = 2, Running, Stopped = 7, Finished }\nmain()\n{\n    check(_:Idle, 2); check(_:Running, 3); check(_:Stopped, 7); check(_:Finished, 8);\n    check(defined Running, true);\n    check(defined absent_constant, false);\n    check(cellbits, 32); check(charbits, 8);\n    check(sizeof Idle, 1);\n    return 0;\n}\n",
+      "sha256_before": "eafb4e6474ac9357143bc358c6534cf075efa27018800c987030b8a67f6c87a1"
+    },
+    {
+      "case": "symbolic_fields",
+      "path": "research/pawn/cases/symbolic_fields.p",
+      "source_before": "#include <lab>\nmain()\n{\n    var record[.points, .lives, .name{12}];\n    record.points = 42;\n    record[.lives] = 3;\n    record.name = \"Ada\";\n    check(record[.points], 42);\n    check(record.lives, 3);\n    check(record.name{0}, 'A');\n    check(record.name{3}, 0);\n    check(sizeof record.name, 3);\n    return 0;\n}\n",
+      "sha256_before": "4cec2e5d145dc41d055bd9ca7453fd1589ac173ae134b70a936079b11fc2ee8c"
+    }
+  ]
+}

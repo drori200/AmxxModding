@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "purpose": "Reviewed dispositions will be added only after evidence exists. Source-to-case mappings alone do not close inventory items.",
+  "items": [],
+  "unresolved_questions_required_by_amxx": [
+    "Complete host/native address and lifetime contracts, including symbolic debugging and argument edge cases.",
+    "Complete lexical, declaration, tag, preprocessor and state obligations identified in the guide inventory.",
+    "Bound all original-suite profile failures and complete independent advancement review."
+  ]
+}

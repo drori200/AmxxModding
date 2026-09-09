@@ -1,0 +1,26 @@
+{
+  "original_task": "01a07d33-0d5d-7033-9263-724ae01687fc",
+  "original_workspace": "/home/crowg/Documents/Codex/2026-09-07/explore-x20",
+  "files": [
+    {
+      "path": "/home/crowg/Documents/Codex/2026-09-07/explore-x20/.pptx-build/pawn-course/build-detailed-course.mjs",
+      "sha256": "b0332dc06e6f6d44aa59d567234ebb90faf11527da70c4500f87aa460f9f190e",
+      "preserved_in_place": true
+    },
+    {
+      "path": "/home/crowg/Documents/Codex/2026-09-07/explore-x20/.pptx-build/pawn-course/build-pawn-course.mjs",
+      "sha256": "4fb4881ee588dbeb8973f4fdeefad53d5287b5b1d3e8ce820f93c4a4c1270c64",
+      "preserved_in_place": true
+    },
+    {
+      "path": "/home/crowg/Documents/Codex/2026-09-07/explore-x20/output/pawn-zero-to-hero-course.pptx",
+      "sha256": "4db4aba3c2f06dd664ee5041500d890f06d4ff3a55301bf661c13816293d0cef",
+      "preserved_in_place": true
+    },
+    {
+      "path": "/home/crowg/Documents/Codex/2026-09-07/explore-x20/output/pawn-zero-to-hero-detailed-course.pptx",
+      "sha256": "c779d618c27dde7ff87645281f05508b2548a72849fdafe714497804b6115943",
+      "preserved_in_place": true
+    }
+  ]
+}
