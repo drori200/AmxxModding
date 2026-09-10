@@ -7,8 +7,8 @@ import json
 import time
 from pathlib import Path
 
-from toolchains import (ROOT, CACHE, EVIDENCE, COMPILER_CONFIG, digest, tree_digest,
-                        verify_sources, toolchain_lock, write_json)
+from toolchains import (ROOT, CACHE, EVIDENCE, COMPILER_CONFIG, CANONICAL_COMPILER, digest, tree_digest,
+                        verify_sources, toolchain_lock, write_json, compiler_selection)
 from pawn_lab import profiles, execution_inputs_hash, selected_profiles, validate_record, snapshot
 from pawn_examples import validate_report as validate_examples
 import upstream_pawn
@@ -41,7 +41,7 @@ def validate_upstream_evidence(report):
     failures = []
     inputs = report.get("inputs", {})
     for role, executable in (("compiler", "pawncc"), ("runner", "pawnrun")):
-        current = CACHE / f"build32/{executable}"
+        current = CANONICAL_COMPILER if role == "compiler" else CACHE / f"build32/{executable}"
         recorded = Path(inputs.get(role, "/missing"))
         if (not recorded.is_file() or digest(recorded) != inputs.get(role + "_sha256") or
                 digest(current) != inputs.get(role + "_sha256")):
@@ -129,6 +129,8 @@ def evaluate_unchecked():
         if not path.is_file() or digest(path) != source["sha256"]:
             failures.append(f"Source archive/document absent or changed: {source['id']}")
     tools = load("research/evidence/toolchains.json", failures)
+    if tools.get("compiler_selection") != compiler_selection():
+        failures.append("Compiler selection must retain CompuPhase's default internal width and explicit emitted widths")
     for bits in (16, 32, 64):
         config = tools.get("stable", {}).get(str(bits), {})
         source = ROOT / config.get("source", ".cache/research/missing")

@@ -22,7 +22,7 @@ import pawn_examples
 import pawn_gate
 import pawn_lab
 import toolchains
-from toolchains import ROOT, CACHE, EVIDENCE, COMPILER_CONFIG, digest, write_json
+from toolchains import ROOT, CACHE, EVIDENCE, COMPILER_CONFIG, CANONICAL_COMPILER, digest, write_json
 
 
 def process(output='', rc=0):
@@ -133,8 +133,8 @@ class InstrumentControls(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir=CACHE) as folder:
             folder = Path(folder)
             cc = folder / 'pawncc'
-            shutil.copy2(CACHE / 'build32/pawncc', cc)
-            self.assertEqual(digest(cc), digest(CACHE / 'build32/pawncc'))
+            shutil.copy2(CANONICAL_COMPILER, cc)
+            self.assertEqual(digest(cc), digest(CANONICAL_COMPILER))
             (folder / 'pawn.cfg').write_text('UNEXPECTED=1\n')
             source = folder / 'config_probe.p'
             source.write_text('#if defined UNEXPECTED\n#error ambient configuration was read\n#endif\nmain() { return 42; }\n')

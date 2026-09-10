@@ -1,6 +1,6 @@
 {
   "purpose": "Research instrument acceptance/rejection controls; not language proficiency evidence",
-  "harness_sha256": "a405b78f22d573a5e7487c39dda12b123b2de8f5a7d9c90122ecc887d6cf7669",
+  "harness_sha256": "80c2b96113645ddb27a91a27475816a08ac7703999ed98e29c0858686ef286cd",
   "actual_inputs": {
     ".cache/research/build16/labrun": "07b27ea64f729d165a896ed9d44135e0adb84ad639f140403ba671bf9be92db8",
     ".cache/research/build16/pawncc": "acae9d51df268023ec139adba296ae8f967619ee0d696067acc85c27456434b9",
@@ -197,7 +197,7 @@
     ".cache/research/toolchains/pawn-stable/xml/pawndoc.css": "de31a5a559098148bcb5d31c8293dfc77c65eab2d6efdde91d6791ca4559ff15",
     ".cache/research/toolchains/pawn-stable/xml/pawndoc.xsl": "e6299cbeddb6b323ed7b06dd5cf73fe4e0f5df8593f51bff696420bac494ad4e",
     "research/evidence/sources.json": "2fba1f1f4e60110ba12dcd4fbe64474999eeda28a0b19c67dcdda638e032c119",
-    "research/evidence/toolchains.json": "4326e67451831542f8aab44babef303cc713e4039c932c015352aa24e77d66cf",
+    "research/evidence/toolchains.json": "21fd783d64a8b1aa80d907aa0c3156453ce9edd60351dc16326240c845cd4cac",
     "research/pawn/cases/array_aliasing.p": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
     "research/pawn/cases/assertion.p": "dc7ff2c803a1154665c2a4f08cafdcd3ce7b21948b7081cf16ce4370dc65d809",
     "research/pawn/cases/boundaries.p": "beac0df8ca6eb6782746c1b869d1d4aea8db7d48c8ba259f1e093a0a0944303a",
@@ -247,18 +247,19 @@
     "research/pawn/prior/exercise-04.p": "29514ac7f19df4c947e72957e7c72bebd1ae8136a52dc1b30a2c4a3bb5cbf807",
     "research/pawn/prior/exercise-05.p": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
     "research/tools/amxx_lab.py": "00e375700cb5e4b8cd04f5bd247c6d5d458092e73a0e1ad245b4d8f6b1325b88",
-    "research/tools/pawn_defects.py": "865fa221978f6d27c3630739ec03d51d424d77b11b54217db691fd61b0b3cb7f",
-    "research/tools/pawn_examples.py": "43803b07b75ecd4100cfa28a050c30a152b3bb7ebe2a06e460e0b42394caff26",
-    "research/tools/pawn_gate.py": "024107e827b5946a195755c1d7fd4d06e4830515b340fa56c42366555df67c1e",
-    "research/tools/pawn_lab.py": "f712c68867b1f169b0518a38fcc947e7c240b4c6efcfcbbcc157db7843496555",
-    "research/tools/test_pawn_audit.py": "a405b78f22d573a5e7487c39dda12b123b2de8f5a7d9c90122ecc887d6cf7669",
-    "research/tools/toolchains.py": "3ae5c94e100461a83884a1a52a7c0ccbad6aa095810bceb6e39a97bb624bdb86",
+    "research/tools/pawn_compiler_config.py": "24b260c47e81c7100c7d2e366f622ffdc4ec72e17695f2579f492e5f7a145dcd",
+    "research/tools/pawn_defects.py": "a2dce379c10b97b7d40d1956444c8cba30603d26f7193e32ff54e02cea0398af",
+    "research/tools/pawn_examples.py": "40681ad40301f24d28935f3d19c3ae2e7b7a9f45abe2fc47c5e900e22a6a78fe",
+    "research/tools/pawn_gate.py": "6099cbf71713455f523b5bf4a1cfcea426ed541436f1fd68432dd250b33e3bbf",
+    "research/tools/pawn_lab.py": "67c839074cdf432903efe05f4dbc84e4331853cc81dd3d36d1263456eae24cb4",
+    "research/tools/test_pawn_audit.py": "80c2b96113645ddb27a91a27475816a08ac7703999ed98e29c0858686ef286cd",
+    "research/tools/toolchains.py": "770f786de2aa64d93ff111c7536a3897c35e8843dfa0a692042a160ab789f2e9",
     "research/tools/upstream_pawn.py": "9bb7e76a39ab87c74d0ac35cf2ca5242f1d6329a43f05a34c64629a71e8a08ae"
   },
   "tests_run": 16,
   "failures": 0,
   "errors": 0,
   "passed": true,
-  "seconds": 0.17378779299906455,
-  "log": "test_amxx_guard_cannot_validate_during_exclusive_setup (__main__.InstrumentControls.test_amxx_guard_cannot_validate_during_exclusive_setup) ... ok\ntest_archive_extra_and_changed_file_are_rejected_without_overwrite (__main__.InstrumentControls.test_archive_extra_and_changed_file_are_rejected_without_overwrite) ... ok\ntest_archive_path_cannot_redirect_source_verification (__main__.InstrumentControls.test_archive_path_cannot_redirect_source_verification) ... ok\ntest_duplicate_footer_wrong_result_and_timeout_rejected (__main__.InstrumentControls.test_duplicate_footer_wrong_result_and_timeout_rejected) ... ok\ntest_examples_duplicate_matrix_and_stale_inputs_rejected (__main__.InstrumentControls.test_examples_duplicate_matrix_and_stale_inputs_rejected) ... ok\ntest_exercise_prediction_and_timeout_are_not_pass_flags (__main__.InstrumentControls.test_exercise_prediction_and_timeout_are_not_pass_flags) ... ok\ntest_expected_diagnostic_is_not_a_crash (__main__.InstrumentControls.test_expected_diagnostic_is_not_a_crash) ... ok\ntest_explicit_config_ignores_ambient_compiler_config (__main__.InstrumentControls.test_explicit_config_ignores_ambient_compiler_config) ... ok\ntest_invalid_memory_and_duplicate_selection (__main__.InstrumentControls.test_invalid_memory_and_duplicate_selection) ... ok\ntest_malformed_gate_evidence_returns_fail (__main__.InstrumentControls.test_malformed_gate_evidence_returns_fail) ... ok\ntest_raw_log_is_bound_to_observation (__main__.InstrumentControls.test_raw_log_is_bound_to_observation) ... ok\ntest_recorded_pass_cannot_override_failing_current_gate (__main__.InstrumentControls.test_recorded_pass_cannot_override_failing_current_gate) ... ok\ntest_runtime_error_must_be_from_execution (__main__.InstrumentControls.test_runtime_error_must_be_from_execution) ... ok\ntest_setup_lock_excludes_build_while_test_holds_read_lock (__main__.InstrumentControls.test_setup_lock_excludes_build_while_test_holds_read_lock) ... ok\ntest_source_manifest_cannot_substitute_a_fork (__main__.InstrumentControls.test_source_manifest_cannot_substitute_a_fork) ... ok\ntest_warning_only_cannot_satisfy_error (__main__.InstrumentControls.test_warning_only_cannot_satisfy_error) ... ok\n\n----------------------------------------------------------------------\nRan 16 tests in 0.135s\n\nOK\n"
+  "seconds": 0.15803099499999007,
+  "log": "test_amxx_guard_cannot_validate_during_exclusive_setup (__main__.InstrumentControls.test_amxx_guard_cannot_validate_during_exclusive_setup) ... ok\ntest_archive_extra_and_changed_file_are_rejected_without_overwrite (__main__.InstrumentControls.test_archive_extra_and_changed_file_are_rejected_without_overwrite) ... ok\ntest_archive_path_cannot_redirect_source_verification (__main__.InstrumentControls.test_archive_path_cannot_redirect_source_verification) ... ok\ntest_duplicate_footer_wrong_result_and_timeout_rejected (__main__.InstrumentControls.test_duplicate_footer_wrong_result_and_timeout_rejected) ... ok\ntest_examples_duplicate_matrix_and_stale_inputs_rejected (__main__.InstrumentControls.test_examples_duplicate_matrix_and_stale_inputs_rejected) ... ok\ntest_exercise_prediction_and_timeout_are_not_pass_flags (__main__.InstrumentControls.test_exercise_prediction_and_timeout_are_not_pass_flags) ... ok\ntest_expected_diagnostic_is_not_a_crash (__main__.InstrumentControls.test_expected_diagnostic_is_not_a_crash) ... ok\ntest_explicit_config_ignores_ambient_compiler_config (__main__.InstrumentControls.test_explicit_config_ignores_ambient_compiler_config) ... ok\ntest_invalid_memory_and_duplicate_selection (__main__.InstrumentControls.test_invalid_memory_and_duplicate_selection) ... ok\ntest_malformed_gate_evidence_returns_fail (__main__.InstrumentControls.test_malformed_gate_evidence_returns_fail) ... ok\ntest_raw_log_is_bound_to_observation (__main__.InstrumentControls.test_raw_log_is_bound_to_observation) ... ok\ntest_recorded_pass_cannot_override_failing_current_gate (__main__.InstrumentControls.test_recorded_pass_cannot_override_failing_current_gate) ... ok\ntest_runtime_error_must_be_from_execution (__main__.InstrumentControls.test_runtime_error_must_be_from_execution) ... ok\ntest_setup_lock_excludes_build_while_test_holds_read_lock (__main__.InstrumentControls.test_setup_lock_excludes_build_while_test_holds_read_lock) ... ok\ntest_source_manifest_cannot_substitute_a_fork (__main__.InstrumentControls.test_source_manifest_cannot_substitute_a_fork) ... ok\ntest_warning_only_cannot_satisfy_error (__main__.InstrumentControls.test_warning_only_cannot_satisfy_error) ... ok\n\n----------------------------------------------------------------------\nRan 16 tests in 0.119s\n\nOK\n"
 }

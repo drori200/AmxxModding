@@ -12,7 +12,7 @@ import signal
 import subprocess
 import time
 
-from toolchains import (ROOT, CACHE, EVIDENCE, COMPILER_CONFIG, digest, tree_digest,
+from toolchains import (ROOT, CACHE, EVIDENCE, COMPILER_CONFIG, CANONICAL_COMPILER, digest, tree_digest,
                         runtime_inputs, toolchain_lock, verify_sources, write_json)
 
 
@@ -144,7 +144,7 @@ def selected_profiles(manifest):
 
 
 def compile_command(case, bits, debug, opt, amx):
-    return [str(CACHE / f"build{bits}/pawncc"), str(ROOT / f"research/pawn/cases/{case['id']}.p"),
+    return [str(CANONICAL_COMPILER), str(ROOT / f"research/pawn/cases/{case['id']}.p"),
             f"-T{COMPILER_CONFIG}", f"-C{bits}", f"-d{debug}", f"-O{opt}", "-S1024", "-p",
             f"-i{ROOT / 'research/pawn/include'}", f"-i{CACHE / 'toolchains/pawn-stable/include'}", f"-o{amx}"]
 

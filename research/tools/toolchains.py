@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CACHE = ROOT / ".cache/research"
 EVIDENCE = ROOT / "research/evidence"
 COMPILER_CONFIG = ROOT / "research/pawn/empty.cfg"
+CANONICAL_COMPILER = CACHE / "build64/pawncc"
 OFFICIAL_STABLE_URL = "https://www.compuphase.com/pawn/pawn-4.1.7487.zip"
 OFFICIAL_STABLE_SHA256 = "05cf630baef59912a9ffaf2745652187038d8d5be1a3aab870d13ea0bd31c7bc"
 
@@ -46,6 +47,13 @@ def write_json(path, value):
     temporary = path.with_name(path.name + f".{os.getpid()}.part")
     temporary.write_text(json.dumps(value, indent=2) + "\n")
     temporary.replace(path)
+
+
+def compiler_selection():
+    return {"path": str(CANONICAL_COMPILER.relative_to(ROOT)), "sha256": digest(CANONICAL_COMPILER),
+            "internal_cell_bits": 64, "emitted_cell_bits": [16, 32, 64],
+            "source_basis": "Unmodified compiler/sc.h:43-45 defaults the compiler's maximum cell type to 64 bits; -C selects bytecode width",
+            "narrow_internal_builds": "Retained configuration experiments; not the canonical baseline compiler"}
 
 
 def zip_tree(archive_path, destination, extract_missing=False):
@@ -220,6 +228,7 @@ def main():
         manifest = json.loads((EVIDENCE / "toolchains.json").read_text())
         for bits in (16, 32, 64):
             manifest["hosts"][str(bits)] = build_lab_host(CACHE / "toolchains/pawn-stable", bits)
+        manifest["compiler_selection"] = compiler_selection()
         write_json(EVIDENCE / "toolchains.json", manifest)
         return
     acquire()
@@ -237,6 +246,7 @@ def main():
         manifest["stable"][str(bits)] = build(stable, CACHE / f"build{bits}", bits, cmake, compiler_only=bits == 16)
     for bits in (16, 32, 64):
         manifest["hosts"][str(bits)] = build_lab_host(stable, bits)
+    manifest["compiler_selection"] = compiler_selection()
     if args.current:
         current = CACHE / "toolchains/pawn-current/pawn"
         try:

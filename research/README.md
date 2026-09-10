@@ -43,7 +43,7 @@ python3 -B research/tools/pawn_examples.py
 python3 -B research/tools/pawn_defects.py
 python3 -B research/tools/upstream_pawn.py \
   --source .cache/research/toolchains/pawntest \
-  --compiler .cache/research/build32/pawncc \
+  --compiler .cache/research/build64/pawncc \
   --runner .cache/research/build32/pawnrun \
   --include .cache/research/toolchains/pawn-stable/include \
   --output research/evidence/pawn-upstream-results.json

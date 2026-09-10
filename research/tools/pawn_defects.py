@@ -7,15 +7,19 @@ upstream release, a production recommendation, or a general correctness claim.
 """
 import json
 import subprocess
+import time
 from pathlib import Path
 
-from toolchains import ROOT, CACHE, EVIDENCE, digest
+from toolchains import (ROOT, CACHE, EVIDENCE, CANONICAL_COMPILER, COMPILER_CONFIG, digest,
+                        runtime_inputs, verify_sources, toolchain_lock, write_json)
 from pawn_lab import execute
 
 
 def main():
+    verify_sources()
+    before = runtime_inputs()
     source = CACHE / "toolchains/pawn-stable"
-    work = CACHE / "defect-probes"
+    work = CACHE / "defect-probes" / str(time.time_ns())
     work.mkdir(parents=True, exist_ok=True)
     original = (source / "amx/amx.c").read_text()
     repairs = {
@@ -32,7 +36,7 @@ def main():
         patched = patched.replace(old, new)
     repaired_source = work / "amx-cell-stores.c"
     repaired_source.write_text(patched)
-    report = {"schema": 1, "upstream_amx_sha256": digest(source / "amx/amx.c"),
+    report = {"schema": 2, "inputs_before": before, "upstream_amx_sha256": digest(source / "amx/amx.c"),
               "local_repair_sha256": digest(repaired_source), "repairs": repairs,
               "repair_scope": "local diagnostic comparison only; upstream remains unchanged", "builds": [], "probes": []}
     for bits in (16, 64):
@@ -53,19 +57,23 @@ def main():
         amx = directory / "program.amx"
         amx.unlink(missing_ok=True)
         script = ROOT / "research/pawn/defects" / (name + ".p")
-        compiled = execute([CACHE / f"build{bits}/pawncc", script, f"-C{bits}", "-d2", f"-O{optimize}",
+        compiled = execute([CANONICAL_COMPILER, script, f"-T{COMPILER_CONFIG}", f"-C{bits}", "-d2", f"-O{optimize}",
                             "-p", "-S1024", f"-i{ROOT / 'research/pawn/include'}", f"-o{amx}"], directory / "compile")
         probe = {"id": name, "cell_bits": bits, "optimization": optimize,
-                 "source_sha256": digest(script), "compile": compiled}
+                 "source_sha256": digest(script), "compile": compiled, "compiler_sha256": digest(CANONICAL_COMPILER)}
         if not compiled["returncode"] and amx.exists():
+            probe["bytecode_sha256"] = digest(amx)
             probe["unmodified_vm"] = execute([CACHE / f"build{bits}/labrun", amx], directory / "upstream")
             if bits in (16, 64):
                 probe["locally_repaired_vm"] = execute([work / f"labrun-fixed{bits}", amx], directory / "local-repair")
         report["probes"].append(probe)
         print(name, compiled["returncode"], probe.get("unmodified_vm", {}).get("output", "").strip(),
               "LOCAL:", probe.get("locally_repaired_vm", {}).get("output", "").strip())
-    (EVIDENCE / "pawn-defect-probes.json").write_text(json.dumps(report, indent=2) + "\n")
+    report["inputs_unchanged"] = before == runtime_inputs()
+    write_json(work / "results.json", report)
+    write_json(EVIDENCE / "pawn-defect-probes.json", report)
 
 
 if __name__ == "__main__":
-    main()
+    with toolchain_lock():
+        main()

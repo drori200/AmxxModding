@@ -1,5 +1,5 @@
 {
-  "schema": 2,
+  "purpose": "Compare selected compiler-internal widths while holding emitted cells fixed.\n\nThe canonical compiler defaults its internal cell type to 64 bits (sc.h:43-45).\nThat type is distinct from -C, the emitted bytecode cell width. This comparison\nchecks whether the lab's explicit narrower internal types caused retained errors.\nIt never changes a production compiler or substitutes a patched compiler.\n",
   "inputs_before": {
     ".cache/research/build16/labrun": "07b27ea64f729d165a896ed9d44135e0adb84ad639f140403ba671bf9be92db8",
     ".cache/research/build16/pawncc": "acae9d51df268023ec139adba296ae8f967619ee0d696067acc85c27456434b9",
@@ -196,7 +196,7 @@
     ".cache/research/toolchains/pawn-stable/xml/pawndoc.css": "de31a5a559098148bcb5d31c8293dfc77c65eab2d6efdde91d6791ca4559ff15",
     ".cache/research/toolchains/pawn-stable/xml/pawndoc.xsl": "e6299cbeddb6b323ed7b06dd5cf73fe4e0f5df8593f51bff696420bac494ad4e",
     "research/evidence/sources.json": "2fba1f1f4e60110ba12dcd4fbe64474999eeda28a0b19c67dcdda638e032c119",
-    "research/evidence/toolchains.json": "21fd783d64a8b1aa80d907aa0c3156453ce9edd60351dc16326240c845cd4cac",
+    "research/evidence/toolchains.json": "4326e67451831542f8aab44babef303cc713e4039c932c015352aa24e77d66cf",
     "research/pawn/cases/array_aliasing.p": "698e00c3e6b1c773752b79cbf46119c1f290d36cf0c1a49602f2fb42ae5832f8",
     "research/pawn/cases/assertion.p": "dc7ff2c803a1154665c2a4f08cafdcd3ce7b21948b7081cf16ce4370dc65d809",
     "research/pawn/cases/boundaries.p": "beac0df8ca6eb6782746c1b869d1d4aea8db7d48c8ba259f1e093a0a0944303a",
@@ -247,133 +247,46 @@
     "research/pawn/prior/exercise-05.p": "cf414c4539846d7cd5694d9e940a35bbe181dc1dcb67c5f09f62687cef2d28d1",
     "research/tools/amxx_lab.py": "00e375700cb5e4b8cd04f5bd247c6d5d458092e73a0e1ad245b4d8f6b1325b88",
     "research/tools/pawn_compiler_config.py": "24b260c47e81c7100c7d2e366f622ffdc4ec72e17695f2579f492e5f7a145dcd",
-    "research/tools/pawn_defects.py": "a2dce379c10b97b7d40d1956444c8cba30603d26f7193e32ff54e02cea0398af",
-    "research/tools/pawn_examples.py": "40681ad40301f24d28935f3d19c3ae2e7b7a9f45abe2fc47c5e900e22a6a78fe",
-    "research/tools/pawn_gate.py": "6099cbf71713455f523b5bf4a1cfcea426ed541436f1fd68432dd250b33e3bbf",
-    "research/tools/pawn_lab.py": "67c839074cdf432903efe05f4dbc84e4331853cc81dd3d36d1263456eae24cb4",
-    "research/tools/test_pawn_audit.py": "80c2b96113645ddb27a91a27475816a08ac7703999ed98e29c0858686ef286cd",
-    "research/tools/toolchains.py": "770f786de2aa64d93ff111c7536a3897c35e8843dfa0a692042a160ab789f2e9",
+    "research/tools/pawn_defects.py": "865fa221978f6d27c3630739ec03d51d424d77b11b54217db691fd61b0b3cb7f",
+    "research/tools/pawn_examples.py": "43803b07b75ecd4100cfa28a050c30a152b3bb7ebe2a06e460e0b42394caff26",
+    "research/tools/pawn_gate.py": "024107e827b5946a195755c1d7fd4d06e4830515b340fa56c42366555df67c1e",
+    "research/tools/pawn_lab.py": "f712c68867b1f169b0518a38fcc947e7c240b4c6efcfcbbcc157db7843496555",
+    "research/tools/test_pawn_audit.py": "a405b78f22d573a5e7487c39dda12b123b2de8f5a7d9c90122ecc887d6cf7669",
+    "research/tools/toolchains.py": "3ae5c94e100461a83884a1a52a7c0ccbad6aa095810bceb6e39a97bb624bdb86",
     "research/tools/upstream_pawn.py": "9bb7e76a39ab87c74d0ac35cf2ca5242f1d6329a43f05a34c64629a71e8a08ae"
   },
-  "upstream_amx_sha256": "ed90f2709ac20dbd34c40c222465fa38f6c8a09a84813b7ea50b345e2fcc7ee4",
-  "local_repair_sha256": "af70e832ea80ed8f9ee3d6ca0c1eed15c8164b2910758c06d90696032c1f298f",
-  "repairs": {
-    "_W32(data,i,pri);": "_W(data,i,pri);",
-    "_W32(data,stk,pri);": "_W(data,stk,pri);",
-    "_W32(data,stk,alt);": "_W(data,stk,alt);",
-    "_W32(data,offs,val);": "_W(data,offs,val);",
-    "_W32(data,frm+offs,val);": "_W(data,frm+offs,val);"
-  },
-  "repair_scope": "local diagnostic comparison only; upstream remains unchanged",
-  "builds": [
+  "inputs_unchanged": true,
+  "compiler_default_source": "pawn-stable.zip:compiler/sc.h:43-45",
+  "results": [
     {
-      "command": [
-        "cc",
-        "-std=gnu99",
-        "-O0",
-        "-g",
-        "-DPAWN_CELL_SIZE=16",
-        "-DAMX_NODYNALOAD",
-        "-DAMX_DONT_RELOCATE",
-        "-DHAVE_STDINT_H",
-        "-D_GNU_SOURCE",
-        "-I/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/amx",
-        "-I/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/linux",
-        "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/host/labrun.c",
-        "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/amx-cell-stores.c",
-        "-o",
-        "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/labrun-fixed16"
-      ],
-      "returncode": 0,
-      "timeout": false,
-      "seconds": 0.425,
-      "output": "",
-      "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/build16/process-output.txt",
-      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "output_limit_reached": false,
-      "environment": {
-        "LC_ALL": "C",
-        "AMXLIB": ".",
-        "LD_LIBRARY_PATH": "."
-      }
-    },
-    {
-      "command": [
-        "cc",
-        "-std=gnu99",
-        "-O0",
-        "-g",
-        "-DPAWN_CELL_SIZE=64",
-        "-DAMX_NODYNALOAD",
-        "-DAMX_DONT_RELOCATE",
-        "-DHAVE_STDINT_H",
-        "-D_GNU_SOURCE",
-        "-I/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/amx",
-        "-I/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/linux",
-        "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/host/labrun.c",
-        "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/amx-cell-stores.c",
-        "-o",
-        "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/labrun-fixed64"
-      ],
-      "returncode": 0,
-      "timeout": false,
-      "seconds": 0.418,
-      "output": "",
-      "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/build64/process-output.txt",
-      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "output_limit_reached": false,
-      "environment": {
-        "LC_ALL": "C",
-        "AMXLIB": ".",
-        "LD_LIBRARY_PATH": "."
-      }
-    }
-  ],
-  "probes": [
-    {
-      "id": "cell16_fill",
-      "cell_bits": 16,
+      "case": "signed_arithmetic",
+      "compiler_internal_cell_bits": 16,
+      "emitted_cell_bits": 16,
+      "vm_cell_bits": 16,
+      "debug": 2,
       "optimization": 0,
-      "source_sha256": "0447558303f7d3a6178a48a9ee85e7f26fb1ac2bea55b85cb8311b061c53f332",
+      "source_sha256": "5135de7316afeb71c03c4a63f37e441bb0c84edef54d16475d1d66a97154e8aa",
+      "compiler_sha256": "acae9d51df268023ec139adba296ae8f967619ee0d696067acc85c27456434b9",
       "compile": {
         "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
-          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/defects/cell16_fill.p",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/signed_arithmetic.p",
           "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
           "-C16",
           "-d2",
           "-O0",
-          "-p",
           "-S1024",
+          "-p",
           "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
-          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_fill/program.amx"
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal16-C16-O0/program.amx"
         ],
         "returncode": 0,
         "timeout": false,
         "seconds": 0.006,
-        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             94 bytes\nCode size:              162 bytes\nData size:                0 bytes\nStack/heap size:       2048 bytes; estimated max. use=9 cells (18 bytes)\nTotal requirements:    2304 bytes\nCompleted successfully\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_fill/compile/process-output.txt",
-        "output_sha256": "e0a94e1908396d9e99a1356aec401f4740ecdb624865b5a4079cd2186d5db6fc",
-        "output_limit_reached": false,
-        "environment": {
-          "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
-        }
-      },
-      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
-      "bytecode_sha256": "5b5b2458396d2c2f22128db7f739a871e8305bf06c44a7f06b5bd17313b7e5fb",
-      "unmodified_vm": {
-        "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_fill/program.amx"
-        ],
-        "returncode": 1,
-        "timeout": false,
-        "seconds": 0.004,
-        "output": "check 3: actual=0 expected=1234\nlab: bits=16 checks=3 failures=1 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_fill/upstream/process-output.txt",
-        "output_sha256": "5fd096e8f6a1ee0dbf1584c58f3e012d268fbedad1189d899bad837b5b39efc3",
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             94 bytes\nCode size:              704 bytes\nData size:               46 bytes\nStack/heap size:       2048 bytes; estimated max. use=37 cells (74 bytes)\nTotal requirements:    2892 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal16-C16-O0/compile/process-output.txt",
+        "output_sha256": "2bb9524c739fc3fef9b0c1adedc2fe0e497af56d0214a77fd49e264d9c0dc676",
         "output_limit_reached": false,
         "environment": {
           "LC_ALL": "C",
@@ -381,69 +294,19 @@
           "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
         }
       },
-      "locally_repaired_vm": {
-        "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/labrun-fixed16",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_fill/program.amx"
-        ],
-        "returncode": 0,
-        "timeout": false,
-        "seconds": 0.003,
-        "output": "lab: bits=16 checks=3 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_fill/local-repair/process-output.txt",
-        "output_sha256": "5df8ca8c3c687b9c104cd022ba3307122bb8abd32abfd80e802bd220caba717b",
-        "output_limit_reached": false,
-        "environment": {
-          "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140"
-        }
-      }
-    },
-    {
-      "id": "cell16_swap",
-      "cell_bits": 16,
-      "optimization": 0,
-      "source_sha256": "3c4e11fe9db744212e32a2b16bf605906c016ca744dc8a7acd47e46d097c41dc",
-      "compile": {
-        "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
-          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/defects/cell16_swap.p",
-          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
-          "-C16",
-          "-d2",
-          "-O0",
-          "-p",
-          "-S1024",
-          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
-          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_swap/program.amx"
-        ],
-        "returncode": 0,
-        "timeout": false,
-        "seconds": 0.006,
-        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             94 bytes\nCode size:               90 bytes\nData size:                0 bytes\nStack/heap size:       2048 bytes; estimated max. use=6 cells (12 bytes)\nTotal requirements:    2232 bytes\nCompleted successfully\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_swap/compile/process-output.txt",
-        "output_sha256": "60eeceb278329c4a9d0f4a3c2a33d8ab1af56d90c1e8085831c122b20524f104",
-        "output_limit_reached": false,
-        "environment": {
-          "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
-        }
-      },
-      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
-      "bytecode_sha256": "0da48f5f868d0c20c423f5a8c2a8a80ad42c681c54e84a564a6e158199a6817c",
-      "unmodified_vm": {
+      "compile_errors": [],
+      "bytecode_sha256": "4770b938cb32514dca86f011e58988a8b60bbe695827244ac7841b777a94e6fd",
+      "runtime": {
         "command": [
           "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_swap/program.amx"
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal16-C16-O0/program.amx"
         ],
-        "returncode": 1,
+        "returncode": 2,
         "timeout": false,
         "seconds": 0.004,
-        "output": "check 1: actual=1 expected=0\nlab: bits=16 checks=1 failures=1 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_swap/upstream/process-output.txt",
-        "output_sha256": "562a50b30a91632cc4041170ed00306ac2abf1c7468d65f4ee0b895d884f4065",
+        "output": "lab: bits=16 checks=0 failures=0 result=0 error=11 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal16-C16-O0/runtime/process-output.txt",
+        "output_sha256": "893c9dbfbd90ecf573a6c6c81180292a12055ecc8bfecf6d40e542e645bab161",
         "output_limit_reached": false,
         "environment": {
           "LC_ALL": "C",
@@ -451,119 +314,40 @@
           "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
         }
       },
-      "locally_repaired_vm": {
-        "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/labrun-fixed16",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_swap/program.amx"
-        ],
-        "returncode": 0,
-        "timeout": false,
-        "seconds": 0.003,
-        "output": "lab: bits=16 checks=1 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell16_swap/local-repair/process-output.txt",
-        "output_sha256": "11762093adf62d0e3deba576e11a48c1577706b7fb9bf67761dfd3f89e1c7626",
-        "output_limit_reached": false,
-        "environment": {
-          "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140"
-        }
-      }
+      "runtime_errors": [
+        "runtime observation differs from explicit expectation",
+        "unexpected host exit status"
+      ]
     },
     {
-      "id": "cell64_fill",
-      "cell_bits": 64,
+      "case": "signed_arithmetic",
+      "compiler_internal_cell_bits": 64,
+      "emitted_cell_bits": 16,
+      "vm_cell_bits": 16,
+      "debug": 2,
       "optimization": 0,
-      "source_sha256": "8e22a7d62c9e3ce078ad4f67efee3bc9ca0e382677367e7c9281d1d5305b9e47",
+      "source_sha256": "5135de7316afeb71c03c4a63f37e441bb0c84edef54d16475d1d66a97154e8aa",
+      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
       "compile": {
         "command": [
           "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
-          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/defects/cell64_fill.p",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/signed_arithmetic.p",
           "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
-          "-C64",
+          "-C16",
           "-d2",
           "-O0",
-          "-p",
           "-S1024",
-          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
-          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_fill/program.amx"
-        ],
-        "returncode": 0,
-        "timeout": false,
-        "seconds": 0.006,
-        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             80 bytes\nCode size:              416 bytes\nData size:                0 bytes\nStack/heap size:       8192 bytes; estimated max. use=8 cells (64 bytes)\nTotal requirements:    8688 bytes\nCompleted successfully\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_fill/compile/process-output.txt",
-        "output_sha256": "54d9c388ce7b553b6564a466d24c37f3a650ddc3ee96ff1ddc8d83daba00fc90",
-        "output_limit_reached": false,
-        "environment": {
-          "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
-        }
-      },
-      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
-      "bytecode_sha256": "8261bcf4776879ae9e63f2ada7c587b1732b521caa04fa3ed4857df87163f8da",
-      "unmodified_vm": {
-        "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/labrun",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_fill/program.amx"
-        ],
-        "returncode": 1,
-        "timeout": false,
-        "seconds": 0.004,
-        "output": "check 1: actual=1 expected=4294967297\ncheck 2: actual=1 expected=4294967297\nlab: bits=64 checks=2 failures=2 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_fill/upstream/process-output.txt",
-        "output_sha256": "369b6da421f97aafbcdc3e77f88b47ca3a0cbfb3d2c36347f0708e665fc83443",
-        "output_limit_reached": false,
-        "environment": {
-          "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
-        }
-      },
-      "locally_repaired_vm": {
-        "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/labrun-fixed64",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_fill/program.amx"
-        ],
-        "returncode": 0,
-        "timeout": false,
-        "seconds": 0.003,
-        "output": "lab: bits=64 checks=2 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_fill/local-repair/process-output.txt",
-        "output_sha256": "fc1d0a307ffc6f736912ed2cc1f8f50b49c15e2c06e5d9b7c36ccf99ef03872f",
-        "output_limit_reached": false,
-        "environment": {
-          "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140"
-        }
-      }
-    },
-    {
-      "id": "cell64_store",
-      "cell_bits": 64,
-      "optimization": 1,
-      "source_sha256": "aa569ec345f8daa3a7782fd0418076cc50c06e2715be4f586433c4a9f2f69a10",
-      "compile": {
-        "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
-          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/defects/cell64_store.p",
-          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
-          "-C64",
-          "-d2",
-          "-O1",
           "-p",
-          "-S1024",
           "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
-          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_store/program.amx"
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal64-C16-O0/program.amx"
         ],
         "returncode": 0,
         "timeout": false,
         "seconds": 0.005,
-        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              352 bytes\nData size:                0 bytes\nStack/heap size:       8192 bytes; estimated max. use=7 cells (56 bytes)\nTotal requirements:    8640 bytes\nCompleted successfully\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_store/compile/process-output.txt",
-        "output_sha256": "2b591a22008e8e324ae3b0b58c6f88b41a6720ec69fe0955c4bc2995e65ea9ca",
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             94 bytes\nCode size:              704 bytes\nData size:               46 bytes\nStack/heap size:       2048 bytes; estimated max. use=37 cells (74 bytes)\nTotal requirements:    2892 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal64-C16-O0/compile/process-output.txt",
+        "output_sha256": "2bb9524c739fc3fef9b0c1adedc2fe0e497af56d0214a77fd49e264d9c0dc676",
         "output_limit_reached": false,
         "environment": {
           "LC_ALL": "C",
@@ -571,69 +355,121 @@
           "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
         }
       },
-      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
-      "bytecode_sha256": "9c62f07bea3be9809136a2ac722b8a1d11910b16a7ed0bb2f4a4b5980cc3ff61",
-      "unmodified_vm": {
+      "compile_errors": [],
+      "bytecode_sha256": "d02d5dc013a1a4e66dd12bbe0f9276a68649f65d4793905f6791925f421251cd",
+      "runtime": {
         "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/labrun",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_store/program.amx"
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal64-C16-O0/program.amx"
         ],
-        "returncode": 0,
+        "returncode": 2,
         "timeout": false,
-        "seconds": 0.004,
-        "output": "lab: bits=64 checks=1 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_store/upstream/process-output.txt",
-        "output_sha256": "87f9af75ba940ab8c0e88311224e9a538e9b8f8c06f840a8e7fb587b7d2ca6b0",
+        "seconds": 0.006,
+        "output": "lab: bits=16 checks=0 failures=0 result=0 error=11 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal64-C16-O0/runtime/process-output.txt",
+        "output_sha256": "893c9dbfbd90ecf573a6c6c81180292a12055ecc8bfecf6d40e542e645bab161",
         "output_limit_reached": false,
         "environment": {
           "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
         }
       },
-      "locally_repaired_vm": {
+      "runtime_errors": [
+        "runtime observation differs from explicit expectation",
+        "unexpected host exit status"
+      ]
+    },
+    {
+      "case": "strings",
+      "compiler_internal_cell_bits": 16,
+      "emitted_cell_bits": 16,
+      "vm_cell_bits": 16,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "e8270b9d4d5e07b555299f209f3360aa09a949563a7358b1b857cf6ed2a66180",
+      "compiler_sha256": "acae9d51df268023ec139adba296ae8f967619ee0d696067acc85c27456434b9",
+      "compile": {
         "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/labrun-fixed64",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_store/program.amx"
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/strings.p",
+          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
+          "-C16",
+          "-d2",
+          "-O0",
+          "-S1024",
+          "-p",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/strings-internal16-C16-O0/program.amx"
         ],
         "returncode": 0,
         "timeout": false,
         "seconds": 0.003,
-        "output": "lab: bits=64 checks=1 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/cell64_store/local-repair/process-output.txt",
-        "output_sha256": "87f9af75ba940ab8c0e88311224e9a538e9b8f8c06f840a8e7fb587b7d2ca6b0",
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             76 bytes\nCode size:              434 bytes\nData size:               10 bytes\nStack/heap size:       2048 bytes; estimated max. use=16 cells (32 bytes)\nTotal requirements:    2568 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/strings-internal16-C16-O0/compile/process-output.txt",
+        "output_sha256": "19fe2ad6a0d5838c1bb7c697e107f06393c3255ba0ccea87f72f8ef5ddeeff62",
         "output_limit_reached": false,
         "environment": {
           "LC_ALL": "C",
-          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140",
-          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140"
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
         }
-      }
+      },
+      "compile_errors": [],
+      "bytecode_sha256": "c7f41797e189e8b520a99569d62acba11ec7f3b46d24a48559485d862c07f037",
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/strings-internal16-C16-O0/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "check 1: actual=0 expected=97\nlab: bits=16 checks=9 failures=1 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/strings-internal16-C16-O0/runtime/process-output.txt",
+        "output_sha256": "6ab84fc45829dba2a869c5efdaa9593bc4f1371b7fce8b46daa2147200ddf1fd",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
+        }
+      },
+      "runtime_errors": [
+        "runtime observation differs from explicit expectation",
+        "unexpected host exit status"
+      ]
     },
     {
-      "id": "optimizer32_shift",
-      "cell_bits": 32,
-      "optimization": 3,
-      "source_sha256": "d835f8398359e87d70f12db23f34d4a3d38fd883d9b83c8859c48c285ee97111",
+      "case": "strings",
+      "compiler_internal_cell_bits": 64,
+      "emitted_cell_bits": 16,
+      "vm_cell_bits": 16,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "e8270b9d4d5e07b555299f209f3360aa09a949563a7358b1b857cf6ed2a66180",
+      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
       "compile": {
         "command": [
           "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
-          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/defects/optimizer32_shift.p",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/strings.p",
           "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
-          "-C32",
+          "-C16",
           "-d2",
-          "-O3",
-          "-p",
+          "-O0",
           "-S1024",
+          "-p",
           "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
-          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/optimizer32_shift/program.amx"
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/strings-internal64-C16-O0/program.amx"
         ],
         "returncode": 0,
         "timeout": false,
-        "seconds": 0.006,
-        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:               72 bytes\nData size:                0 bytes\nStack/heap size:       4096 bytes; estimated max. use=6 cells (24 bytes)\nTotal requirements:    4264 bytes\nCompleted successfully\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/optimizer32_shift/compile/process-output.txt",
-        "output_sha256": "7ed55844124deaa453f72eda0da2245858cbb1fc2fc9489561464bc1ddc775a6",
+        "seconds": 0.008,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             76 bytes\nCode size:              434 bytes\nData size:               10 bytes\nStack/heap size:       2048 bytes; estimated max. use=16 cells (32 bytes)\nTotal requirements:    2568 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/strings-internal64-C16-O0/compile/process-output.txt",
+        "output_sha256": "19fe2ad6a0d5838c1bb7c697e107f06393c3255ba0ccea87f72f8ef5ddeeff62",
         "output_limit_reached": false,
         "environment": {
           "LC_ALL": "C",
@@ -641,51 +477,223 @@
           "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
         }
       },
-      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
-      "bytecode_sha256": "1a65f550d436649c3f053bb1196c84579c4fb711fb4f41e66e891608722fcee7",
-      "unmodified_vm": {
+      "compile_errors": [],
+      "bytecode_sha256": "3266f017425331380891ecaf3dbfc042681ddd5eca4c09a4f26dfefa8e64b871",
+      "runtime": {
         "command": [
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/labrun",
-          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/optimizer32_shift/program.amx"
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/strings-internal64-C16-O0/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "check 1: actual=0 expected=97\nlab: bits=16 checks=9 failures=1 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/strings-internal64-C16-O0/runtime/process-output.txt",
+        "output_sha256": "6ab84fc45829dba2a869c5efdaa9593bc4f1371b7fce8b46daa2147200ddf1fd",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
+        }
+      },
+      "runtime_errors": [
+        "runtime observation differs from explicit expectation",
+        "unexpected host exit status"
+      ]
+    },
+    {
+      "case": "evaluation",
+      "compiler_internal_cell_bits": 16,
+      "emitted_cell_bits": 16,
+      "vm_cell_bits": 16,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "b1ede9bd4b5d07435766cdd46b048020ebab4c51b5385ba6ea948535db5d3b63",
+      "compiler_sha256": "acae9d51df268023ec139adba296ae8f967619ee0d696067acc85c27456434b9",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/evaluation.p",
+          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
+          "-C16",
+          "-d2",
+          "-O0",
+          "-S1024",
+          "-p",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/evaluation-internal16-C16-O0/program.amx"
         ],
         "returncode": 0,
         "timeout": false,
-        "seconds": 0.004,
-        "output": "lab: bits=32 checks=1 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/optimizer32_shift/upstream/process-output.txt",
-        "output_sha256": "5191dff70a7f12e4c89bb6da023dbda88237641e6b1c0d667478de5d8182ca39",
+        "seconds": 0.008,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             94 bytes\nCode size:              598 bytes\nData size:                2 bytes\nStack/heap size:       2048 bytes; estimated max. use=10 cells (20 bytes)\nTotal requirements:    2742 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/evaluation-internal16-C16-O0/compile/process-output.txt",
+        "output_sha256": "a7a7b28004b18660f0e6245cfbf6fb10ed0c9cc7ef808fa33395012d24842f22",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
+        }
+      },
+      "compile_errors": [],
+      "bytecode_sha256": "7f841a64431cf444c5b53c6ef615a2f723ed05719106b2490f8fd00a7f7554b4",
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/evaluation-internal16-C16-O0/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.003,
+        "output": "check 8: actual=1 expected=0\nlab: bits=16 checks=9 failures=1 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/evaluation-internal16-C16-O0/runtime/process-output.txt",
+        "output_sha256": "e073ab7a48d6188bef716b88719928f2974fea66db2fefd92f8ba86c9fd9aaa0",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
+        }
+      },
+      "runtime_errors": [
+        "runtime observation differs from explicit expectation",
+        "unexpected host exit status"
+      ]
+    },
+    {
+      "case": "evaluation",
+      "compiler_internal_cell_bits": 64,
+      "emitted_cell_bits": 16,
+      "vm_cell_bits": 16,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "b1ede9bd4b5d07435766cdd46b048020ebab4c51b5385ba6ea948535db5d3b63",
+      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/evaluation.p",
+          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
+          "-C16",
+          "-d2",
+          "-O0",
+          "-S1024",
+          "-p",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/evaluation-internal64-C16-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             94 bytes\nCode size:              598 bytes\nData size:                2 bytes\nStack/heap size:       2048 bytes; estimated max. use=10 cells (20 bytes)\nTotal requirements:    2742 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/evaluation-internal64-C16-O0/compile/process-output.txt",
+        "output_sha256": "a7a7b28004b18660f0e6245cfbf6fb10ed0c9cc7ef808fa33395012d24842f22",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
+        }
+      },
+      "compile_errors": [],
+      "bytecode_sha256": "709f2fa7a56da31e31bc3e59be1c40c0f47d7ca27ad7c243c8cce006848b1928",
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/evaluation-internal64-C16-O0/program.amx"
+        ],
+        "returncode": 1,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "check 8: actual=1 expected=0\nlab: bits=16 checks=9 failures=1 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/evaluation-internal64-C16-O0/runtime/process-output.txt",
+        "output_sha256": "e073ab7a48d6188bef716b88719928f2974fea66db2fefd92f8ba86c9fd9aaa0",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
+        }
+      },
+      "runtime_errors": [
+        "runtime observation differs from explicit expectation",
+        "unexpected host exit status"
+      ]
+    },
+    {
+      "case": "boundaries",
+      "compiler_internal_cell_bits": 32,
+      "emitted_cell_bits": 32,
+      "vm_cell_bits": 32,
+      "debug": 2,
+      "optimization": 3,
+      "source_sha256": "beac0df8ca6eb6782746c1b869d1d4aea8db7d48c8ba259f1e093a0a0944303a",
+      "compiler_sha256": "0627f3ebb3c8859207d38f4b179155a07cc0fa6ec5e564ed3e95e57a431a7b36",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/boundaries.p",
+          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
+          "-C32",
+          "-d2",
+          "-O3",
+          "-S1024",
+          "-p",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/boundaries-internal32-C32-O3/program.amx"
+        ],
+        "returncode": -6,
+        "timeout": false,
+        "seconds": 0.116,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\npawncc: /home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/compiler/sc7.c:524: matchsequence: Assertion `(varptr[0]=='0' || varptr[0]=='f') && (varptr[1]=='0' || varptr[1]=='f')' failed.\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/boundaries-internal32-C32-O3/compile/process-output.txt",
+        "output_sha256": "0602d75713751aebc9a021a30e19f3246aa9f8328ce6e4e6ad431f2765848079",
         "output_limit_reached": false,
         "environment": {
           "LC_ALL": "C",
           "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32",
           "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32"
         }
-      }
+      },
+      "compile_errors": [
+        "process crashed or exit status missing",
+        "unexpected compiler exit status"
+      ]
     },
     {
-      "id": "optimizer64_expression",
-      "cell_bits": 64,
+      "case": "boundaries",
+      "compiler_internal_cell_bits": 64,
+      "emitted_cell_bits": 32,
+      "vm_cell_bits": 32,
+      "debug": 2,
       "optimization": 3,
-      "source_sha256": "f4d50a6b149ba84ec923dcf8fa42a28254be3fb18615b9590757b6a56f2d14fc",
+      "source_sha256": "beac0df8ca6eb6782746c1b869d1d4aea8db7d48c8ba259f1e093a0a0944303a",
+      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
       "compile": {
         "command": [
           "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
-          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/defects/optimizer64_expression.p",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/boundaries.p",
           "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
-          "-C64",
+          "-C32",
           "-d2",
           "-O3",
-          "-p",
           "-S1024",
+          "-p",
           "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
-          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/optimizer64_expression/program.amx"
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/boundaries-internal64-C32-O3/program.amx"
         ],
-        "returncode": -6,
+        "returncode": 0,
         "timeout": false,
-        "seconds": 0.065,
-        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\npawncc: /home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/compiler/sc7.c:809: stgopt: Assertion `match_length>=repl_length' failed.\n",
-        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/defect-probes/1789023004109461140/optimizer64_expression/compile/process-output.txt",
-        "output_sha256": "cbb5981758595db171f92824a2d842d4dcf9c0a9ebe9828e92dd80a282ffc63b",
+        "seconds": 0.009,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:              500 bytes\nData size:                0 bytes\nStack/heap size:       4096 bytes; estimated max. use=8 cells (32 bytes)\nTotal requirements:    4692 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/boundaries-internal64-C32-O3/compile/process-output.txt",
+        "output_sha256": "75f4da1fad7c2c4f94edb53607eca6f9067e8ce3792023d014e817746e93dc8a",
         "output_limit_reached": false,
         "environment": {
           "LC_ALL": "C",
@@ -693,8 +701,259 @@
           "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
         }
       },
-      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b"
+      "compile_errors": [],
+      "bytecode_sha256": "aba381cd0f9f79f733a474399db3691db51be0374ba94c3f5a0eb8fef48d7278",
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/boundaries-internal64-C32-O3/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "lab: bits=32 checks=9 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/boundaries-internal64-C32-O3/runtime/process-output.txt",
+        "output_sha256": "d4f95fe7c18c69dad7fb3723c51fd10d402778b002e691c5674731e06324c577",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32"
+        }
+      },
+      "runtime_errors": []
+    },
+    {
+      "case": "signed_arithmetic",
+      "compiler_internal_cell_bits": 32,
+      "emitted_cell_bits": 32,
+      "vm_cell_bits": 32,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "5135de7316afeb71c03c4a63f37e441bb0c84edef54d16475d1d66a97154e8aa",
+      "compiler_sha256": "0627f3ebb3c8859207d38f4b179155a07cc0fa6ec5e564ed3e95e57a431a7b36",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/signed_arithmetic.p",
+          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-S1024",
+          "-p",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal32-C32-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:             1408 bytes\nData size:               92 bytes\nStack/heap size:       4096 bytes; estimated max. use=37 cells (148 bytes)\nTotal requirements:    5692 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal32-C32-O0/compile/process-output.txt",
+        "output_sha256": "1a16bb486b9c03400f4132f46e8e57b9ceec90a7453895d15661a603e1c1c1ba",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32"
+        }
+      },
+      "compile_errors": [],
+      "bytecode_sha256": "4f480fb2013cdbeeefe64544a5eeb4ea4105083ef7b2ca0df9d606a5e1c4ff81",
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal32-C32-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "lab: bits=32 checks=29 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal32-C32-O0/runtime/process-output.txt",
+        "output_sha256": "c8f1d5f6c63b8b27d0655245418c879c363b6811225a2f428bb016d250fd7bca",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32"
+        }
+      },
+      "runtime_errors": []
+    },
+    {
+      "case": "signed_arithmetic",
+      "compiler_internal_cell_bits": 64,
+      "emitted_cell_bits": 32,
+      "vm_cell_bits": 32,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "5135de7316afeb71c03c4a63f37e441bb0c84edef54d16475d1d66a97154e8aa",
+      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/signed_arithmetic.p",
+          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
+          "-C32",
+          "-d2",
+          "-O0",
+          "-S1024",
+          "-p",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal64-C32-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             96 bytes\nCode size:             1408 bytes\nData size:               92 bytes\nStack/heap size:       4096 bytes; estimated max. use=37 cells (148 bytes)\nTotal requirements:    5692 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal64-C32-O0/compile/process-output.txt",
+        "output_sha256": "1a16bb486b9c03400f4132f46e8e57b9ceec90a7453895d15661a603e1c1c1ba",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
+        }
+      },
+      "compile_errors": [],
+      "bytecode_sha256": "826a94e28c28cdd63a76bc8fe4ec07a6ca9ebe71420b415701f15240e05db118",
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal64-C32-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "lab: bits=32 checks=29 failures=0 result=0 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/signed_arithmetic-internal64-C32-O0/runtime/process-output.txt",
+        "output_sha256": "c8f1d5f6c63b8b27d0655245418c879c363b6811225a2f428bb016d250fd7bca",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32"
+        }
+      },
+      "runtime_errors": []
+    },
+    {
+      "case": "minimal",
+      "compiler_internal_cell_bits": 16,
+      "emitted_cell_bits": 16,
+      "vm_cell_bits": 16,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "2e8ecc969eb8d3204fc11297a7fe81077b712595a482cf6cfc7f9579a18a6eb4",
+      "compiler_sha256": "acae9d51df268023ec139adba296ae8f967619ee0d696067acc85c27456434b9",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/minimal.p",
+          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
+          "-C16",
+          "-d2",
+          "-O0",
+          "-S1024",
+          "-p",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/minimal-internal16-C16-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.004,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             62 bytes\nCode size:               16 bytes\nData size:                0 bytes\nStack/heap size:       2048 bytes; estimated max. use=3 cells (6 bytes)\nTotal requirements:    2126 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/minimal-internal16-C16-O0/compile/process-output.txt",
+        "output_sha256": "4a3e10a7475903ac51003556447509f1946d1f2b1d72bd7220339192b5b2b856",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
+        }
+      },
+      "compile_errors": [],
+      "bytecode_sha256": "bb109502c6e8516a01949108dcfec0615afcf4cc2f2efdf7ac99c274e0fb47b8",
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/minimal-internal16-C16-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.007,
+        "output": "lab: bits=16 checks=0 failures=0 result=42 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/minimal-internal16-C16-O0/runtime/process-output.txt",
+        "output_sha256": "c23de5ded85ed4b1a668c8dfde47c337a20d918c663c49784db5af83b3cf9bf0",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
+        }
+      },
+      "runtime_errors": []
+    },
+    {
+      "case": "minimal",
+      "compiler_internal_cell_bits": 64,
+      "emitted_cell_bits": 16,
+      "vm_cell_bits": 16,
+      "debug": 2,
+      "optimization": 0,
+      "source_sha256": "2e8ecc969eb8d3204fc11297a7fe81077b712595a482cf6cfc7f9579a18a6eb4",
+      "compiler_sha256": "e9a7900887be4b01ea66e15a809ff0c3726f1b49e8a0ab29047f56d38f3e392b",
+      "compile": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/pawncc",
+          "/home/crowg/Documents/GitHub/AmxxModding/research/pawn/cases/minimal.p",
+          "-T/home/crowg/Documents/GitHub/AmxxModding/research/pawn/empty.cfg",
+          "-C16",
+          "-d2",
+          "-O0",
+          "-S1024",
+          "-p",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/research/pawn/include",
+          "-i/home/crowg/Documents/GitHub/AmxxModding/.cache/research/toolchains/pawn-stable/include",
+          "-o/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/minimal-internal64-C16-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.006,
+        "output": "Pawn compiler 4.1.7483                  Copyright (c) 1997-2025, CompuPhase\n\nHeader size:             62 bytes\nCode size:               16 bytes\nData size:                0 bytes\nStack/heap size:       2048 bytes; estimated max. use=3 cells (6 bytes)\nTotal requirements:    2126 bytes\nCompleted successfully\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/minimal-internal64-C16-O0/compile/process-output.txt",
+        "output_sha256": "4a3e10a7475903ac51003556447509f1946d1f2b1d72bd7220339192b5b2b856",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64"
+        }
+      },
+      "compile_errors": [],
+      "bytecode_sha256": "76f01a9fb91efe43ace3b5e15fc511c3cde240b972c9c5151158cd121aa376fe",
+      "runtime": {
+        "command": [
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun",
+          "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/minimal-internal64-C16-O0/program.amx"
+        ],
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 0.005,
+        "output": "lab: bits=16 checks=0 failures=0 result=42 error=0 sleeps=0\nphase: init=0 register=0 exec_entered=1 stage=exec\n",
+        "output_path": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/compiler-config-audit/1789022788405748655/minimal-internal64-C16-O0/runtime/process-output.txt",
+        "output_sha256": "c23de5ded85ed4b1a668c8dfde47c337a20d918c663c49784db5af83b3cf9bf0",
+        "output_limit_reached": false,
+        "environment": {
+          "LC_ALL": "C",
+          "AMXLIB": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16",
+          "LD_LIBRARY_PATH": "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16"
+        }
+      },
+      "runtime_errors": []
     }
-  ],
-  "inputs_unchanged": true
+  ]
 }

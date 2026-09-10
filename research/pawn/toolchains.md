@@ -17,6 +17,15 @@ archive byte for byte. In particular, some array examples retain older syntax.
 
 ## Configurations actually built
 
+The compiler's internal maximum cell type and its bytecode target are separate.
+`compiler/sc.h:43-45` defaults the internal type to 64 bits. The selected canonical
+compiler is now `.cache/research/build64/pawncc`, preserving that default; explicit
+`-C16`, `-C32` or `-C64` selects output for the matching VM. The earlier internal
+16/32-bit compiler builds remain configuration experiments. A 32-bit optimizer
+failure disappeared with the default internal type, so it is not a defect claim
+against the default compiler. See the [setup audit](setup-audit.md) and
+[controlled comparison](../evidence/pawn-compiler-config-comparison.json).
+
 | Configuration | Compiler target | VM | Scope |
 | --- | --- | --- | --- |
 | Baseline | `-C32` | 32-bit cells, portable C interpreter | Original and official regression cases |
@@ -65,6 +74,7 @@ same three bytecode fixtures then pass. The unmodified archive remains intact.
 This is a bounded causal experiment, not a generally validated replacement VM.
 
 Optimization-level-3 compiler failures and packed-immediate errors are separate
-issues. Tests and logs retain both triggering and non-triggering probes. Neither
+issues that must identify both compiler-internal and emitted cell widths. Earlier
+32-bit-internal failures do not establish failures under the default 64-bit-internal compiler. Tests and logs retain both triggering and non-triggering probes. Neither
 the language's nominal width support nor the compiler's option list is proof of
 working portability across all configurations.

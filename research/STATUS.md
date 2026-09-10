@@ -1,9 +1,26 @@
 # Research status
 
-1. **In progress:** audit canonical PAWN sources, establish versioned toolchains, execute tests, and review the advancement gate.
-2. **Locked:** AMXX/API and community integration research. Requires a current passing PAWN gate.
-3. **Pending:** cited PDF synthesis, visual verification, and production isolation checks.
+The active goal remains the complete PAWN-first reference, executable lab, cited
+and visually verified PDF, then AMXX/ReAPI/community research and isolated server
+validation. The coding agent is a later step after the user verifies the product.
 
-The earlier task is evidence to audit, not an authority. A successful compiler run or a confidence statement is not proof of universal mastery. See the eventual evidence ledger for the exact scope of every verified claim.
+1. **Current: PAWN gate and setup audit.** Official compiler origin was rechecked
+   against a fresh CompuPhase download. Test-harness acceptance holes and fixture
+   errors were corrected. The compiler now retains CompuPhase's default internal
+   64-bit cell type while emitting explicit 16/32/64-bit bytecode for matching VMs.
+2. **PAWN advancement remains FAIL.** Topic coverage, bounded defect dispositions
+   and the final independent advancement review remain incomplete. The test counts
+   do not authorize advancement. See [setup audit](pawn/setup-audit.md) and the
+   [current gate](evidence/pawn-gate.json).
+3. **AMXX research and server execution are locked.** The AMXX command checks the
+   current PAWN gate before any work. Existing production tooling is separate.
+4. **Pending deliverables:** expanded navigable reference, full claim/source/test
+   ledger, completed lab coverage, AMXX phase after gate approval, final cited PDF
+   and rendered-page verification, final production isolation check.
 
-The research planning tool is unavailable in this environment. This file records the current phase instead.
+Prior artifacts are preserved. Earlier evidence under
+`pawn-pre-default-compiler-*.json` records the superseded compiler-internal
+configuration; it is not relabeled as evidence for the corrected selection.
+
+The preceding production check verified 26 project and 24 kit plugins. No live
+server runtime success is claimed. This audit has not deployed anything.

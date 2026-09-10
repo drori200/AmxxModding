@@ -12,12 +12,12 @@ import time
 import re
 from pathlib import Path
 from pawn_lab import execute, process_errors
-from toolchains import (ROOT, CACHE, EVIDENCE, COMPILER_CONFIG, digest,
+from toolchains import (ROOT, CACHE, EVIDENCE, COMPILER_CONFIG, CANONICAL_COMPILER, digest,
                         runtime_inputs, toolchain_lock, verify_sources, write_json)
 
 
 def compile_command(script, debug, opt, amx):
-    return [str(CACHE / "build32/pawncc"), str(script), f"-T{COMPILER_CONFIG}", "-C32",
+    return [str(CANONICAL_COMPILER), str(script), f"-T{COMPILER_CONFIG}", "-C32",
             f"-d{debug}", f"-O{opt}", f"-i{CACHE / 'toolchains/pawn-stable/include'}", f"-o{amx}"]
 
 
@@ -115,7 +115,7 @@ def main():
     before = snapshot()
     workspace = CACHE / "examples" / str(time.time_ns())
     prior = ROOT / "research/pawn/prior"
-    cc, vm = CACHE / "build32/pawncc", CACHE / "build32/pawnrun"
+    cc, vm = CANONICAL_COMPILER, CACHE / "build32/pawnrun"
     include = CACHE / "toolchains/pawn-stable/include"
     records = json.loads((prior / "prior-examples-audit.json").read_text())
     predictions = json.loads((prior / "independent-exercise-predictions.json").read_text())
