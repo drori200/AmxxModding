@@ -17,47 +17,39 @@ this guide was prepared. The commands below stop if tracked or untracked
 non-ignored changes need attention; review and preserve such changes before
 retrying. Do not discard them just to make export succeed.
 
-Run the whole block in a terminal on the laptop. It runs in a subshell so its
-error-handling options do not change your interactive shell.
+Run the versioned export script from a terminal on the laptop:
 
 ```bash
-(
-set -eu
 cd /home/crowg/Documents/GitHub/AmxxModding
-
-if [ -n "$(git status --porcelain)" ]; then
-  printf '%s\n' 'Save and review the uncommitted work before exporting.' >&2
-  exit 1
-fi
-if [ "$(git branch --show-current)" != "codex/pawn-foundation-checkpoint" ]; then
-  printf '%s\n' 'Use the codex/pawn-foundation-checkpoint branch for this export.' >&2
-  exit 1
-fi
-
-export_dir="$HOME/Documents/AmxxModding-PC-transfer"
-mkdir -p "$export_dir"
-
-git rev-parse HEAD > "$export_dir/SOURCE_COMMIT.txt"
-git bundle create "$export_dir/history.bundle" --all
-git bundle verify "$export_dir/history.bundle"
-
-tar -czf "$export_dir/research-cache.tar.gz" .cache/research
-tar -czf "$export_dir/production-cache.tar.gz" .compiler .thirdparty node_modules dist
-
-tar -C /home/crowg/Documents/Codex/2026-09-07/explore-x20 +  -czf "$export_dir/original-artifacts.tar.gz" +  .pptx-build/pawn-course/build-detailed-course.mjs +  .pptx-build/pawn-course/build-pawn-course.mjs +  output/pawn-zero-to-hero-course.pptx +  output/pawn-zero-to-hero-detailed-course.pptx
-
-cp research/PC_TRANSFER.md "$export_dir/START_HERE.md"
-cd "$export_dir"
-sha256sum history.bundle research-cache.tar.gz production-cache.tar.gz +  original-artifacts.tar.gz SOURCE_COMMIT.txt START_HERE.md > SHA256SUMS
-sha256sum -c SHA256SUMS
-printf '\nTransfer this entire folder: %s\n' "$export_dir"
-)
+bash tools/export-for-qwen.sh
 ```
 
-Every checksum should report `OK`. If any command fails, fix the cause and rerun
-the export before using its output; files left by a failed attempt are not a
-complete verified export. Reusing this export directory replaces its named
-snapshot files. Keep an older export elsewhere if you want to retain it.
+It creates a new timestamped folder under `~/Documents/` and prints its full
+path. It refuses to overwrite an existing export. To select a different new
+folder, pass its path as the script's only argument.
+
+The console and `export.log` show the repository, branch, commit, disk space,
+required input paths, sizes, each archive stage, and the exact shell-quoted
+arguments sent to Git and tar. A failure reports the stage, exit status, shell
+line/command, and log location. It does not dump credentials or environment
+variables. The large research archive prints periodic GNU tar write checkpoints;
+compression can still take time between progress lines.
+
+Success requires all six payload checksums to report `OK`, followed by a
+`[SUCCESS]` message and an `EXPORT_COMPLETE.txt` file. If anything fails, retain
+`export.log` and rerun into a new folder after addressing the error. Do not use
+an incomplete folder for the PC restore.
+
+### Correction to the first version of this guide
+
+The earlier inline commands incorrectly contained literal `+` arguments in
+three places: original-artifact tar, checksum generation, and Git clone. This
+caused `tar: +: Cannot stat` despite successful bundle verification. These were
+errors in the saved guide, not missing user files. Bash syntax checking alone
+did not catch them because `+` is a syntactically valid filename argument.
+The exporter now uses a checked-in script and a Bash array for artifact paths;
+the restore command below is one complete line. Copy shell commands from the
+file view, not a Git diff containing added-line markers.
 
 The laptop's research cache was about 838 MB before compression when inspected.
 The production folders were much smaller. Allow a few GB of free space for
@@ -72,19 +64,20 @@ documents. A bundle supports offline cloning; it cannot itself receive pushes.
 
 Choose either route:
 
-- **USB:** copy the entire `AmxxModding-PC-transfer` folder to a USB drive,
+- **USB:** copy the entire timestamped export folder printed by the script to a USB drive,
   safely eject it, then copy it onto the PC.
 - **Personal cloud storage:** upload the entire folder from the laptop. Wait for
   upload completion, then download all its files onto the PC. Keep it private;
   do not create a public sharing link.
 
-Place the received folder at:
+On the PC, rename the received timestamped folder to `AmxxModding-PC-transfer`
+and place it at:
 
 ```text
 $HOME/Documents/AmxxModding-PC-transfer
 ```
 
-It must contain these seven files:
+It must contain these nine files:
 
 ```text
 history.bundle
@@ -94,6 +87,8 @@ original-artifacts.tar.gz
 SOURCE_COMMIT.txt
 START_HERE.md
 SHA256SUMS
+export.log
+EXPORT_COMPLETE.txt
 ```
 
 Use the file manager's upload/download/copy action. Do not paste the terminal
@@ -130,6 +125,7 @@ project_dir="$HOME/Documents/GitHub/AmxxModding"
 originals_dir="$HOME/Documents/AmxxModding-original-artifacts"
 
 cd "$transfer_dir"
+test -f EXPORT_COMPLETE.txt
 sha256sum -c SHA256SUMS
 
 if [ -e "$project_dir" ] || [ -e "$originals_dir" ]; then
@@ -138,7 +134,7 @@ if [ -e "$project_dir" ] || [ -e "$originals_dir" ]; then
 fi
 
 mkdir -p "$HOME/Documents/GitHub"
-git clone --branch codex/pawn-foundation-checkpoint +  "$transfer_dir/history.bundle" "$project_dir"
+git clone --branch codex/pawn-foundation-checkpoint "$transfer_dir/history.bundle" "$project_dir"
 
 cd "$project_dir"
 test "$(git rev-parse HEAD)" = "$(cat "$transfer_dir/SOURCE_COMMIT.txt")"
@@ -272,7 +268,11 @@ the other machine needs that exact evidence. A code pull does not transfer it.
 ## Scope and verification of this guide
 
 The source branch/worktree, required archive folders, and original-artifact
-manifest were inspected while preparing these instructions. Shell examples were
-syntax-checked. The transfer and restoration are user actions described here;
-they have not been performed on the PC by Codex, and Qwen has not been benchmarked
+manifest were inspected while preparing these instructions. The first version
+was only syntax-checked, which missed valid but unintended `+` arguments.
+The replacement script has passed a functional fixture export with spaces in
+paths, six checksum checks, exact tar-member checks, and offline Git clone/commit
+verification. Negative checks confirmed that existing output, missing artifacts,
+and a dirty checkout fail without a completion marker or discarded user changes.
+The actual destination PC has not been accessed, and Qwen has not been benchmarked
 or installed as part of this guide.

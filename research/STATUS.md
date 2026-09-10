@@ -14,6 +14,10 @@ usage thresholds and mandatory commit/push checkpoints, are in [OBJECTIVE.md](OB
 Current milestone: completed the local-model handoff and the requested
 [laptop-to-PC transfer guide](PC_TRANSFER.md), including offline Git restore,
 cache/original-artifact transfer, checksums, and the first Qwen prompt.
+The initial guide contained unintended literal `+` arguments in three shell
+commands. These caused the user's tar failure and were not caught by syntax-only
+checks. They have been corrected; `tools/export-for-qwen.sh` now provides explicit
+argument/stage logging, preflight checks, and a fresh output folder for each run.
 [LOCAL_MODEL_START.md](LOCAL_MODEL_START.md) supplies a short starting prompt;
 [LOCAL_MODEL_HANDOFF.md](LOCAL_MODEL_HANDOFF.md) contains the detailed objective,
 history, corrections, evidence map, reproduction commands, and remaining work.
@@ -22,6 +26,10 @@ documentation checkpoint does not resume the substantial research matrix.
 
 ## Verified changes and evidence
 
+- Exporter functional fixture checks passed: paths containing spaces, six payload
+  checksums, exact original-archive members, offline clone/commit identity, refusal
+  to overwrite output, and useful failures for missing originals/dirty worktree.
+  Real-project export validation is the next bounded check before closing this fix.
 - Transfer-guide prerequisites were inspected on the laptop: the source branch
   was clean, all four production-cache directories and the research cache exist,
   and the original-artifact manifest lists the four files to transfer. The guide
