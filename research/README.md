@@ -11,6 +11,8 @@ toolchain remains separate.
 
 ## Navigation
 
+- [Start here for a local Qwen agent](LOCAL_MODEL_START.md)
+- [Detailed project handoff and continuation instructions](LOCAL_MODEL_HANDOFF.md)
 - [Current scope and remaining work](STATUS.md)
 - [Toolchains and provenance](pawn/toolchains.md)
 - [Setup and gate audit](pawn/setup-audit.md)

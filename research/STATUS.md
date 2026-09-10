@@ -11,13 +11,23 @@ production behavior. After the user verifies that product, build and evaluate th
 CS 1.6 coding agent on unseen tasks. The full approved instructions, including
 usage thresholds and mandatory commit/push checkpoints, are in [OBJECTIVE.md](OBJECTIVE.md).
 
-Current milestone: the PAWN foundation audit and compiler-selection checkpoint
-has been published to GitHub; save this resumption record and pause substantive
-research at the usage threshold. **The PAWN advancement gate remains FAIL; AMXX
-research is locked.** No language suites were repeated during this synchronization.
+Current milestone: completed the user-requested local-model handoff.
+[LOCAL_MODEL_START.md](LOCAL_MODEL_START.md) supplies a short starting prompt;
+[LOCAL_MODEL_HANDOFF.md](LOCAL_MODEL_HANDOFF.md) contains the detailed objective,
+history, corrections, evidence map, reproduction commands, and remaining work.
+**The PAWN advancement gate remains FAIL; AMXX research is locked.** This
+documentation checkpoint does not resume the substantial research matrix.
 
 ## Verified changes and evidence
 
+- The local-model handoff was checked against current source/configuration and
+  retained reports. Original-profile counts were derived from individual records,
+  and the four original teaching/build artifact hashes still match their manifest.
+  A gate evaluation without `--record` still reports the five blockers below.
+  All 43 checked local links resolve and all 11 shell examples pass Bash syntax
+  checks; report counts and the five source fingerprints match the handoff.
+  No full language suite, production build, local-model benchmark, server test,
+  or independent advancement review was performed for it.
 - Fresh download from the official CompuPhase HTTPS endpoint matched the pinned
   SHA-256; all 164 extracted source files match the archive. See
   [origin recheck](evidence/pawn-compiler-origin-recheck.json) and
@@ -65,8 +75,9 @@ its gate can pass; historical JSON alone is insufficient.
 5. AMXX phase, final report/PDF, final production checks and the user-verified
    coding agent remain pending. Preserve this full scope.
 
-**Next concrete action:** investigate the C16 signed-arithmetic
-failure using the preserved bytecode and an explicitly separate diagnostic VM.
+**Next concrete action:** after reading the local-model starting prompt and
+revalidating capacity/environment, investigate the C16 signed-arithmetic failure
+using the preserved bytecode and an explicitly separate diagnostic VM.
 Acceptance requires an evidence-backed explanation or a minimized unresolved
 reproducer, not merely a passing modified interpreter.
 
@@ -92,9 +103,12 @@ Revalidate handles on the next resumption; all earlier process IDs are historica
 
 ## Usage and synchronization
 
-At the **2026-09-10 resumption**, the account tool reported 89% used in the
-five-hour window and 14% in the weekly window. After publishing and verifying the
-existing checkpoint, it reported **92% five-hour / 14% weekly**. Reported resets:
+During the earlier **2026-09-10 resumption**, account usage went from 89% to
+92% in the five-hour window, with 14% weekly usage, while synchronizing the
+checkpoint. At **2026-09-10 07:54:43 UTC**, during the explicitly requested
+documentation handoff, it reported **100% five-hour / 16% weekly** and an
+available credit balance. No purchase or reset redemption was requested.
+Reported resets:
 2026-09-10 11:53:53 UTC (14:53:53 Israel) and 2026-09-17 06:53:53 UTC,
 respectively. These are account-tool readings, not per-task billing measurements
 or an independent audit of the user's earlier reset. Cumulative goal tokens are
@@ -114,6 +128,9 @@ approved execution outside the sandbox under the current environment policy.
 `git ls-remote --exit-code origin refs/heads/codex/pawn-foundation-checkpoint`
 returned `b45b6a484da59218ee84f44fc06ead62d58ae8e5`, matching the local checkpoint.
 The branch now tracks `origin/codex/pawn-foundation-checkpoint`.
+The subsequent status checkpoint
+`0c7a8792f9aaaf59dde4f66ab914db189a5a4623` was also pushed and independently
+matched with `git ls-remote`. These are historical verified publication anchors.
 
 Earlier synchronization failures are retained here as resolved history:
 
@@ -124,13 +141,13 @@ Earlier synchronization failures are retained here as resolved history:
 - Neither earlier attempt published a checkpoint; the successful CLI push and
   explicit remote-hash check above are the publication evidence.
 
-Commit and push this status update as the final handoff, and verify its remote
-tip against `git rev-parse HEAD`. The final response must report that new commit
+Commit and push the new local-model documents, navigation, and this status update,
+and verify the remote tip against `git rev-parse HEAD`. The final response must report that new commit
 and its verified push status; a status file cannot contain its own commit hash.
 
 **Capacity pause:** do not start another substantial task at the current usage.
 On resumption, check live account limits before continuing the C16 investigation
 specified above. A reset timestamp alone does not prove capacity was restored.
-The full research objective remains active and incomplete. This goal turn made
-concrete progress by resolving authentication and publishing the existing evidence;
-it is not a wait on a live research process or a claim that the PAWN gate passed.
+The full research objective remains active and incomplete. This documentation
+task produces a portable, evidence-backed continuation guide; it does not claim
+that PAWN advancement or the final coding-agent deliverable is complete.
