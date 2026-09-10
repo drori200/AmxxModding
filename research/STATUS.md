@@ -29,11 +29,18 @@ documentation checkpoint does not resume the substantial research matrix.
 - Exporter functional fixture checks passed: paths containing spaces, six payload
   checksums, exact original-archive members, offline clone/commit identity, refusal
   to overwrite output, and useful failures for missing originals/dirty worktree.
-  Real-project export validation is the next bounded check before closing this fix.
+  Real-project export also passed: six checksums, three readable tar streams,
+  all four original artifact hashes, and offline clone/commit identity.
+  A forced tar error reported the exact stage, exit 2, shell line and log path.
+  Evidence: `research/evidence/export-debug-validation.json` and
+  `research/evidence/export-debug-run.txt`. The exported snapshot is commit
+  `9f8a325869d563123a8f2a71b3ae64bfe86fba23`; the evidence receipt is a later
+  checkpoint, so rerun the script to transfer the newest commit.
 - Transfer-guide prerequisites were inspected on the laptop: the source branch
   was clean, all four production-cache directories and the research cache exist,
   and the original-artifact manifest lists the four files to transfer. The guide
-  is syntax-checked; no export upload or PC restore has been performed by Codex.
+  now uses the functionally checked exporter. No upload or actual destination-PC
+  restore has been performed by Codex.
   The machines do not need a shared network. Laptop paths and cached executables
   remain historical until validated in the PC environment.
 - The local-model handoff was checked against current source/configuration and
@@ -157,7 +164,7 @@ Earlier synchronization failures are retained here as resolved history:
 - Neither earlier attempt published a checkpoint; the successful CLI push and
   explicit remote-hash check above are the publication evidence.
 
-Commit and push the transfer guide, navigation, and this status update,
+Commit and push the export validation receipt, corrected guide, and this status update,
 and verify the remote tip against `git rev-parse HEAD`. The final response must report that new commit
 and its verified push status; a status file cannot contain its own commit hash.
 

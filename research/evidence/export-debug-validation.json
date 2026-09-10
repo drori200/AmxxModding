@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-09-10T08:28:19Z",
+  "export_input_commit": "9f8a325869d563123a8f2a71b3ae64bfe86fba23",
+  "exporter_sha256": "33e692badb16f959cae652d70b6deaafacbc7c30895d21b4884657b930e2602c",
+  "real_export_directory": "/tmp/AmxxModding-PC-transfer-verified-20260910",
+  "real_export_exit": 0,
+  "six_checksums_passed": true,
+  "tar_streams_readable": [
+    "research-cache.tar.gz",
+    "production-cache.tar.gz",
+    "original-artifacts.tar.gz"
+  ],
+  "archive_sha256": {
+    "research-cache.tar.gz": "4a2d7784b4a176366da48091663bef6cd89884366ea38917aded0fef2934ca41",
+    "production-cache.tar.gz": "d8e14c8c4d76e114fa1363fb282d03801f1d64a2fa816e77f2685854fe3d5e9a",
+    "original-artifacts.tar.gz": "c2bc731465a3421e447a64009b9ce38437f56ee34082df8c62a5825724121159"
+  },
+  "original_artifact_count": 4,
+  "original_artifact_hashes_match_manifest": true,
+  "offline_bundle_clone_matches_export_commit": true,
+  "fixture_checks": [
+    "full fixture export with paths containing spaces",
+    "six payload checksums",
+    "exact original tar members; no plus arguments",
+    "offline bundle clone and matching HEAD",
+    "existing output rejected without modification",
+    "missing artifact logged and no completion marker",
+    "dirty worktree logged and preserved",
+    "forced tar failure reports research-cache stage, exit 2, line and log path; no completion marker"
+  ],
+  "raw_log": {
+    "path": "research/evidence/export-debug-run.txt",
+    "sha256": "223318d73c7e1ec1ce03417a7b73f6efb2dced890258a6596ceb50276e17d871"
+  },
+  "scope": "Exporter and local offline bundle verification; no destination-PC execution or PAWN advancement claim."
+}

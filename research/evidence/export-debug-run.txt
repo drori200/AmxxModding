@@ -1,0 +1,90 @@
+[INFO] started=2026-09-10T08:26:34Z
+[INFO] repository=/home/crowg/Documents/GitHub/AmxxModding
+[INFO] export=/tmp/AmxxModding-PC-transfer-verified-20260910
+[INFO] log=/tmp/AmxxModding-PC-transfer-verified-20260910/export.log
+/usr/bin/git
+/usr/bin/tar
+/usr/bin/sha256sum
+/home/crowg/.pyenv/shims/python3
+/usr/bin/du
+/usr/bin/df
+/usr/bin/date
+
+[2026-09-10T08:26:34Z] RUN git --version
+git version 2.55.0
+
+[2026-09-10T08:26:34Z] RUN tar --version
+tar (GNU tar) 1.35
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by John Gilmore and Jay Fenlason.
+
+[2026-09-10T08:26:34Z] RUN df -h -- /tmp/AmxxModding-PC-transfer-verified-20260910
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           3.8G   87M  3.7G   3% /tmp
+[INFO] branch=codex/pawn-foundation-checkpoint
+[INFO] commit=9f8a325869d563123a8f2a71b3ae64bfe86fba23
+[INPUT] /home/crowg/Documents/GitHub/AmxxModding/.cache/research
+[INPUT] /home/crowg/Documents/GitHub/AmxxModding/.compiler
+[INPUT] /home/crowg/Documents/GitHub/AmxxModding/.thirdparty
+[INPUT] /home/crowg/Documents/GitHub/AmxxModding/node_modules
+[INPUT] /home/crowg/Documents/GitHub/AmxxModding/dist
+[INPUT] /home/crowg/Documents/GitHub/AmxxModding/research/PC_TRANSFER.md
+
+[2026-09-10T08:26:34Z] RUN du -sh -- .cache/research .compiler .thirdparty node_modules dist
+838M	.cache/research
+1.6M	.compiler
+11M	.thirdparty
+9.8M	node_modules
+4.0M	dist
+[INPUT] /home/crowg/Documents/Codex/2026-09-07/explore-x20/.pptx-build/pawn-course/build-detailed-course.mjs
+[INPUT] /home/crowg/Documents/Codex/2026-09-07/explore-x20/.pptx-build/pawn-course/build-pawn-course.mjs
+[INPUT] /home/crowg/Documents/Codex/2026-09-07/explore-x20/output/pawn-zero-to-hero-course.pptx
+[INPUT] /home/crowg/Documents/Codex/2026-09-07/explore-x20/output/pawn-zero-to-hero-detailed-course.pptx
+
+[2026-09-10T08:26:34Z] RUN git bundle create /tmp/AmxxModding-PC-transfer-verified-20260910/history.bundle --all
+
+[2026-09-10T08:26:35Z] RUN git bundle verify /tmp/AmxxModding-PC-transfer-verified-20260910/history.bundle
+/tmp/AmxxModding-PC-transfer-verified-20260910/history.bundle is okay
+The bundle contains these 10 refs:
+e0ca1fc572df44a0532b80c66d9263414d2b7121 refs/codex/turn-diffs/captures/1789000482692/26160033-96f0-42cf-ba92-6bfc2221ef1d/base
+9cceca51d205c936b4a26bcdb9c31068b34b7118 refs/codex/turn-diffs/captures/1789027336259/40773368-11aa-4eb6-98d5-7834496ee828/base
+ae7cde5ac633bf1c85b066d8814f2cc848fb83c0 refs/codex/turn-diffs/captures/1789028365909/9f57650d-a685-481f-bb11-154571bb7764/base
+ae7cde5ac633bf1c85b066d8814f2cc848fb83c0 refs/codex/turn-diffs/checkpoints/61e7629a6331c24244dd7095012d41c4f0498213d4b13204e83e361864dc1cfa/0ef137d425334b73c47c2e9d9e68c0a1db323676d12d15483d12ec3fc22383e3/1789028191386/ff9af97b-f9e9-4a5f-84ae-62b18161eb6b
+9f8a325869d563123a8f2a71b3ae64bfe86fba23 refs/heads/codex/pawn-foundation-checkpoint
+ae7f42a9f44ddbd6919f1d057e8e189d86b3b6e2 refs/heads/master
+ae7f42a9f44ddbd6919f1d057e8e189d86b3b6e2 refs/remotes/origin/HEAD
+73ca6cbbc1218d602fe3fd5ab776de586644247a refs/remotes/origin/codex/pawn-foundation-checkpoint
+ae7f42a9f44ddbd6919f1d057e8e189d86b3b6e2 refs/remotes/origin/master
+9f8a325869d563123a8f2a71b3ae64bfe86fba23 HEAD
+The bundle records a complete history.
+The bundle uses this hash algorithm: sha1
+
+[2026-09-10T08:26:35Z] RUN tar --checkpoint=10000 --checkpoint-action=echo -czf /tmp/AmxxModding-PC-transfer-verified-20260910/research-cache.tar.gz -- .cache/research
+tar: Write checkpoint 10000
+tar: Write checkpoint 20000
+tar: Write checkpoint 30000
+tar: Write checkpoint 40000
+tar: Write checkpoint 50000
+
+[2026-09-10T08:26:53Z] RUN tar -czf /tmp/AmxxModding-PC-transfer-verified-20260910/production-cache.tar.gz -- .compiler .thirdparty node_modules dist
+
+[2026-09-10T08:26:54Z] RUN tar -C /home/crowg/Documents/Codex/2026-09-07/explore-x20 -czf /tmp/AmxxModding-PC-transfer-verified-20260910/original-artifacts.tar.gz -- .pptx-build/pawn-course/build-detailed-course.mjs .pptx-build/pawn-course/build-pawn-course.mjs output/pawn-zero-to-hero-course.pptx output/pawn-zero-to-hero-detailed-course.pptx
+
+[2026-09-10T08:26:54Z] RUN cp -- research/PC_TRANSFER.md /tmp/AmxxModding-PC-transfer-verified-20260910/START_HERE.md
+
+[INFO] Hashing payload files into SHA256SUMS
+
+[2026-09-10T08:26:54Z] RUN sha256sum -c SHA256SUMS
+history.bundle: OK
+research-cache.tar.gz: OK
+production-cache.tar.gz: OK
+original-artifacts.tar.gz: OK
+SOURCE_COMMIT.txt: OK
+START_HERE.md: OK
+
+[SUCCESS] Transfer this entire folder: /tmp/AmxxModding-PC-transfer-verified-20260910
+[SUCCESS] Diagnostic log: /tmp/AmxxModding-PC-transfer-verified-20260910/export.log

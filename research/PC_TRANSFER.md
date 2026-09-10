@@ -50,6 +50,8 @@ did not catch them because `+` is a syntactically valid filename argument.
 The exporter now uses a checked-in script and a Bash array for artifact paths;
 the restore command below is one complete line. Copy shell commands from the
 file view, not a Git diff containing added-line markers.
+The bundle's `sha1` message identifies Git's object-hash format; it is not the
+tar error. Transfer payload checksums use SHA-256 separately.
 
 The laptop's research cache was about 838 MB before compression when inspected.
 The production folders were much smaller. Allow a few GB of free space for
@@ -274,5 +276,12 @@ The replacement script has passed a functional fixture export with spaces in
 paths, six checksum checks, exact tar-member checks, and offline Git clone/commit
 verification. Negative checks confirmed that existing output, missing artifacts,
 and a dirty checkout fail without a completion marker or discarded user changes.
+The real project export also completed: all six payload checksums passed, all
+three tar streams were readable, all four original artifacts matched their
+manifest hashes, and an offline clone matched the exported commit. A forced tar
+failure verified the stage/exit/line diagnostics. See
+[validation evidence](evidence/export-debug-validation.json) and the
+[real export log](evidence/export-debug-run.txt). This checks the exported
+snapshot identified in that record; rerun the script to export later commits.
 The actual destination PC has not been accessed, and Qwen has not been benchmarked
 or installed as part of this guide.
