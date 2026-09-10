@@ -11,7 +11,9 @@ production behavior. After the user verifies that product, build and evaluate th
 CS 1.6 coding agent on unseen tasks. The full approved instructions, including
 usage thresholds and mandatory commit/push checkpoints, are in [OBJECTIVE.md](OBJECTIVE.md).
 
-Current milestone: completed the user-requested local-model handoff.
+Current milestone: completed the local-model handoff and the requested
+[laptop-to-PC transfer guide](PC_TRANSFER.md), including offline Git restore,
+cache/original-artifact transfer, checksums, and the first Qwen prompt.
 [LOCAL_MODEL_START.md](LOCAL_MODEL_START.md) supplies a short starting prompt;
 [LOCAL_MODEL_HANDOFF.md](LOCAL_MODEL_HANDOFF.md) contains the detailed objective,
 history, corrections, evidence map, reproduction commands, and remaining work.
@@ -20,6 +22,12 @@ documentation checkpoint does not resume the substantial research matrix.
 
 ## Verified changes and evidence
 
+- Transfer-guide prerequisites were inspected on the laptop: the source branch
+  was clean, all four production-cache directories and the research cache exist,
+  and the original-artifact manifest lists the four files to transfer. The guide
+  is syntax-checked; no export upload or PC restore has been performed by Codex.
+  The machines do not need a shared network. Laptop paths and cached executables
+  remain historical until validated in the PC environment.
 - The local-model handoff was checked against current source/configuration and
   retained reports. Original-profile counts were derived from individual records,
   and the four original teaching/build artifact hashes still match their manifest.
@@ -141,7 +149,7 @@ Earlier synchronization failures are retained here as resolved history:
 - Neither earlier attempt published a checkpoint; the successful CLI push and
   explicit remote-hash check above are the publication evidence.
 
-Commit and push the new local-model documents, navigation, and this status update,
+Commit and push the transfer guide, navigation, and this status update,
 and verify the remote tip against `git rev-parse HEAD`. The final response must report that new commit
 and its verified push status; a status file cannot contain its own commit hash.
 
