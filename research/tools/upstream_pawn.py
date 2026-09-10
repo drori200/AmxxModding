@@ -38,6 +38,8 @@ import subprocess
 import sys
 import time
 
+from toolchains import COMPILER_CONFIG, toolchain_lock, verify_sources, write_json
+
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = ROOT / 'research/pawn/upstream-expectations.json'
 DIAGNOSTIC = re.compile(r'(?m)^([^\n]*?)\b(fatal error|error|warning)\s+(\d{3}):([^\n]*)')
@@ -243,6 +245,19 @@ def parse_cases(spec: str, valid: set[int]) -> set[int]:
     return selected
 
 
+def compile_command(compiler, step, debug, optimization, include, binary):
+    """Authoritative command derivation shared with the evidence validator."""
+    dropped = {a['argument'] for a in step.get('adaptations', []) if a['kind'] == 'omit_removed_argument'}
+    compile_args = [x for x in step['compile'] if not x.startswith('-d') and x not in dropped]
+    if optimization is not None:
+        compile_args = [x for x in compile_args if not x.startswith('-O')]
+        optimize = [f'-O{optimization}']
+    else:
+        optimize = [] if any(x.startswith('-O') for x in compile_args) else ['-O2']
+    return [str(compiler), *compile_args, f'-T{COMPILER_CONFIG}', '-C32', f'-d{debug}',
+            *optimize, f'-i{include}', f'-o{binary}']
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--source', type=Path, required=True)
@@ -269,6 +284,7 @@ def main() -> int:
     if args.fortify:
         parser.error('FORTIFY is not integrated: a flag cannot prove active leak instrumentation. '
                      'Run without --fortify to retain cases63/97 as explicitly unsupported.')
+    verify_sources()
     manifest = json.loads(args.manifest.read_text())
     selected = parse_cases(args.cases, {c['id'] for c in manifest['cases']})
     expected_hashes = manifest['suite']['original_files']
@@ -292,11 +308,12 @@ def main() -> int:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     env = dict(os.environ)
     env.update({'LC_ALL': 'C', 'AMXLIB': str(args.runner.parent)})
-    env['LD_LIBRARY_PATH'] = str(args.runner.parent) + os.pathsep + env.get('LD_LIBRARY_PATH', '')
+    env['LD_LIBRARY_PATH'] = str(args.runner.parent)
     report = {
         'schema_version': 1, 'generated_utc': run_id,
         'suite': manifest['suite'],
-        'inputs': {'adapter_sha256': sha256(Path(__file__)), 'manifest_sha256': sha256(args.manifest),
+        'inputs': {'config_sha256': sha256(COMPILER_CONFIG), 'include': str(args.include),
+                   'source': str(args.source), 'adapter_sha256': sha256(Path(__file__)), 'manifest_sha256': sha256(args.manifest),
                    'compiler': str(args.compiler), 'compiler_sha256': sha256(args.compiler),
                    'runner': str(args.runner), 'runner_sha256': sha256(args.runner),
                    'headers_sha256': tree_hashes(args.include),
@@ -329,16 +346,8 @@ def main() -> int:
             binary = directory / 'result.amx'
             original = step['compile']
             adaptations = step.get('adaptations', [])
-            dropped = {a['argument'] for a in adaptations if a['kind'] == 'omit_removed_argument'}
-            compile_args = [x for x in original if not x.startswith('-d') and x not in dropped]
-            if args.optimization is not None:
-                compile_args = [x for x in compile_args if not x.startswith('-O')]
-                optimize = [f'-O{args.optimization}']
-            else:
-                optimize = [] if any(x.startswith('-O') for x in compile_args) else ['-O2']
-            command = [str(args.compiler), *compile_args, '-C32',
-                       '-d2' if args.profile == 'checked' else '-d0', *optimize,
-                       f'-i{args.include}', f'-o{binary}']
+            command = compile_command(args.compiler, step, 2 if args.profile == 'checked' else 0,
+                                      args.optimization, args.include, binary)
             compile_result = run_process(command, directory, directory / 'compile.log',
                                          args.timeout, args.memory_mb, env)
             issues = validate_compile(compile_result, step['expect'], binary)
@@ -435,11 +444,14 @@ def main() -> int:
               + (': ' + '; '.join(result['reasons']) if result['reasons'] else ''), flush=True)
         report['summary'] = dict(Counter(r['status'] for r in report['results']))
         report['complete'] = False
-        args.output.write_text(json.dumps(report, indent=2) + '\n')
+        write_json(args.output, report)
     report['complete'] = len(report['results']) == len(selected)
     report['source_integrity_after'] = tree_hashes(args.source) == actual_hashes
     report['toolchain_integrity_after'] = (
-        args.compiler.is_file() and args.runner.is_file()
+        sha256(COMPILER_CONFIG) == report['inputs']['config_sha256']
+        and sha256(Path(__file__)) == report['inputs']['adapter_sha256']
+        and sha256(args.manifest) == report['inputs']['manifest_sha256']
+        and args.compiler.is_file() and args.runner.is_file()
         and sha256(args.compiler) == report['inputs']['compiler_sha256']
         and sha256(args.runner) == report['inputs']['runner_sha256']
         and tree_hashes(args.include) == report['inputs']['headers_sha256']
@@ -449,7 +461,7 @@ def main() -> int:
                                        and report['toolchain_integrity_after']
                                        and all(r['status'] in ['verified', 'expected_failure']
                                                for r in report['results']))
-    args.output.write_text(json.dumps(report, indent=2) + '\n')
+    write_json(args.output, report)
     print(json.dumps({'summary': report['summary'], 'report': str(args.output),
                       'all_requested_verified': report['all_requested_verified']}))
     if (not report['source_integrity_after'] or not report['toolchain_integrity_after']
@@ -459,4 +471,5 @@ def main() -> int:
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    with toolchain_lock():
+        sys.exit(main())

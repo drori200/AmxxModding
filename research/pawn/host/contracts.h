@@ -37,7 +37,7 @@ static void host_contracts(AMX *amx)
     host_check(amx_NumPublics(amx, &count) == 0 && count == 5, "five public functions");
     host_check(amx_NumPubVars(amx, &count) == 0 && count == 1, "one public variable");
     host_check(amx_FindPublic(amx, "absent", &index) == AMX_ERR_NOTFOUND, "missing public");
-    host_check(amx_FindPubVar(amx, "exposed", &pubvar) == 0 && *pubvar == 7, "public variable lookup");
+    host_check(amx_FindPubVar(amx, "exposed", &pubvar) == 0 && pubvar && *pubvar == 7, "public variable lookup");
     if (pubvar) *pubvar = 19;
     host_check(amx_SetUserData(amx, AMX_USERTAG('L','a','b','1'), &marker) == 0, "set host user data");
     host_check(amx_GetUserData(amx, AMX_USERTAG('L','a','b','1'), &retrieved) == 0 && retrieved == &marker,
@@ -56,8 +56,10 @@ static void host_contracts(AMX *amx)
     const cell original[] = {1, 2, 3};
     index = find_public(amx, "@mutate");
     host_check(amx_Push(amx, 3) == 0, "push array count");
-    host_check(amx_PushArray(amx, &address, original, 3) == 0, "copy host array to VM heap");
-    if (address) {
+    error = amx_PushArray(amx, &address, original, 3);
+    host_check(error == 0 && address != NULL, "copy host array to VM heap");
+    if (error != 0 || address == NULL) goto done;
+    {
         // Unlike most AMX APIs, VerifyAddress returns a Boolean, not an error code.
         host_check(amx_VerifyAddress(amx, address) != 0 && amx_VerifyAddress(amx, address + 2) != 0,
                    "verify allocated array endpoints");
@@ -70,8 +72,10 @@ static void host_contracts(AMX *amx)
 
     index = find_public(amx, "@greet");
     address = NULL;
-    host_check(amx_PushString(amx, &address, "abc", 0, 0) == 0, "push unpacked host string");
-    if (address) {
+    error = amx_PushString(amx, &address, "abc", 0, 0);
+    host_check(error == 0 && address != NULL, "push unpacked host string");
+    if (error != 0 || address == NULL) goto done;
+    {
         host_check(amx_Exec(amx, &result, index) == 0 && result == 'b', "string argument mutation");
         host_check(amx_StrLen(address, &length) == 0 && length == 3, "string length excludes terminator");
         host_check(amx_GetString(buffer, address, 0, sizeof buffer) == 0 && strcmp(buffer, "Zbc") == 0,
@@ -80,16 +84,20 @@ static void host_contracts(AMX *amx)
     }
     index = find_public(amx, "@packed_first");
     address = NULL;
-    host_check(amx_PushString(amx, &address, "abc", 1, 0) == 0, "push packed host string");
-    if (address) {
+    error = amx_PushString(amx, &address, "abc", 1, 0);
+    host_check(error == 0 && address != NULL, "push packed host string");
+    if (error != 0 || address == NULL) goto done;
+    {
         host_check(amx_Exec(amx, &result, index) == 0 && result == 'a', "read packed character");
         host_check(amx_GetString(buffer, address, 0, sizeof buffer) == 0 && strcmp(buffer, "abc") == 0,
                    "unpack host string");
         host_check(amx_Release(amx, address) == 0 && amx->hea == heap, "release packed string");
     }
     address = NULL;
-    host_check(amx_Allot(amx, 4, &address) == 0, "allot string capacity in cells");
-    if (address) {
+    error = amx_Allot(amx, 4, &address);
+    host_check(error == 0 && address != NULL, "allot string capacity in cells");
+    if (error != 0 || address == NULL) goto done;
+    {
         host_check(amx_SetString(address, "abcde", 0, 0, 4) == 0, "bounded string transfer");
         host_check(address[0] == 'a' && address[2] == 'c' && address[3] == 0, "truncation preserves termination");
         host_check(amx_Release(amx, address) == 0 && amx->hea == heap, "release allotted string");
@@ -104,5 +112,6 @@ static void host_contracts(AMX *amx)
     host_check(amx_Push(amx, 2) == 0 && amx_Push(amx, 3) == 0, "arguments after error");
     host_check(amx_Exec(amx, &result, index) == 0 && result == 32, "subsequent public call after native error");
     host_check(pubvar && *pubvar == 19, "public variable retained across calls");
+done:
     printf("host: checks=%u failures=%u debug_breaks=%u\n", host_checks, host_failures, debug_breaks);
 }

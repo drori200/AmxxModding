@@ -147,3 +147,8 @@ vite.config.ts.timestamp-*
 .thirdparty/
 compiled/
 *.amxx
+
+# Isolated research outputs
+*.amx
+__pycache__/
+*.py[cod]

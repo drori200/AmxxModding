@@ -49,7 +49,8 @@ int main(int argc, char **argv)
     FILE *file;
     unsigned char *memory;
     cell result = 0;
-    int error;
+    int error, init_error, register_error = -1, exec_entered = 0;
+    const char *stage = "init";
     unsigned sleeps = 0;
     const AMX_NATIVE_INFO natives[] = {
         {"check", check}, {"identity", identity}, {"native_error", native_error}, {NULL, NULL}
@@ -76,13 +77,22 @@ int main(int argc, char **argv)
     }
     fclose(file);
     memset(&amx, 0, sizeof amx);
-    error = amx_Init(&amx, memory);
-    if (!error) error = amx_Register(&amx, natives, -1);
-    if (!error) error = amx_Exec(&amx, &result, AMX_EXEC_MAIN);
+    error = init_error = amx_Init(&amx, memory);
+    if (!error) {
+        stage = "register";
+        error = register_error = amx_Register(&amx, natives, -1);
+    }
+    if (!error) {
+        stage = "exec";
+        exec_entered = 1;
+        error = amx_Exec(&amx, &result, AMX_EXEC_MAIN);
+    }
     while (error == AMX_ERR_SLEEP && sleeps++ < 8)
         error = amx_Exec(&amx, &result, AMX_EXEC_CONT);
     printf("lab: bits=%d checks=%u failures=%u result=%lld error=%d sleeps=%u\n",
            PAWN_CELL_SIZE, checks, failures, (long long)result, error, sleeps);
+    printf("phase: init=%d register=%d exec_entered=%d stage=%s\n",
+           init_error, register_error, exec_entered, stage);
     if (!error && argc == 3) host_contracts(&amx);
     amx_Cleanup(&amx);
     free(memory);

@@ -179,12 +179,28 @@
         "-o",
         "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build16/labrun"
       ],
-      "sha256": "803ba0c39f16060df1b3fb2a8e86c4dd5654debf0a05ba8f148ac6ffdc1c3458",
+      "sha256": "07b27ea64f729d165a896ed9d44135e0adb84ad639f140403ba671bf9be92db8",
       "cell_bits": 16,
       "sources_sha256": {
-        "research/pawn/host/labrun.c": "bf33b4b87559fb6c6d71af74c88a54bde64546b9bbdf3cbd7a2e7c525854e99b",
-        "research/pawn/host/contracts.h": "691d64e48d78758c0fc85c5b9ba761d119dcc2741012a21409f0abeaa2d18aed",
-        ".cache/research/toolchains/pawn-stable/amx/amx.c": "ed90f2709ac20dbd34c40c222465fa38f6c8a09a84813b7ea50b345e2fcc7ee4"
+        "research/pawn/host/labrun.c": "e1d8c37c0d4afbd7567f7a777e97a15be283e69b131bef34cec5987fbb1cdfcc",
+        "research/pawn/host/contracts.h": "eca610cd2f8542bf73e3f2066b60a6d391e81b419ac8e554c3d41ac6f56d6475",
+        ".cache/research/toolchains/pawn-stable/amx/amx.c": "ed90f2709ac20dbd34c40c222465fa38f6c8a09a84813b7ea50b345e2fcc7ee4",
+        ".cache/research/toolchains/pawn-stable/amx/amx.h": "51c023ebe81cada3d77630e09dd556ec6f029fa3fddeb66eea15a8d6e4bdb515",
+        ".cache/research/toolchains/pawn-stable/amx/amxaux.h": "9b9afc9af50289359da2020e506d7d6911245b9da6eeaf9985cbe342532dcb1e",
+        ".cache/research/toolchains/pawn-stable/amx/amxcons.h": "0d73301186b22d737cb60102a7ac6314104bc133efdd3966aa34ba0be5cb6a75",
+        ".cache/research/toolchains/pawn-stable/amx/amxdbg.h": "64487699984bb65a9abdb9b3cc5b11afb2bc8cfe642fecd3926ea5e7ffcf0f07",
+        ".cache/research/toolchains/pawn-stable/amx/amxgc.h": "cc9094cf24ab18f70ba8f61fcfea75b96284748e4cd2103ebff470973867a7e8",
+        ".cache/research/toolchains/pawn-stable/amx/amxpool.h": "6c9573e10779cecb2bec2a23246c3336f7a99fc297fe36e60f07dff6b4ecd572",
+        ".cache/research/toolchains/pawn-stable/amx/fpattern.h": "702f4427236ffc3a6a018f464775bea2a63ca7d971a4b675eb54e2c9302f97ac",
+        ".cache/research/toolchains/pawn-stable/amx/keeloq.h": "b93f76fa442e2ba9095dce82b8207369269663c771f1a95bd703480f29647c84",
+        ".cache/research/toolchains/pawn-stable/amx/minGlue.h": "9d07bf0f7ff660d9af67ab6f03658a07fd4f878635808163eec90e5570213e49",
+        ".cache/research/toolchains/pawn-stable/amx/minIni.h": "8587a04ec7683448009c57e8def3d7117e70e157defcc8439cb6502a127ace74",
+        ".cache/research/toolchains/pawn-stable/amx/osdefs.h": "061668c42fa5e1531836faf04ddc86ee7e29eec240b9f58306e7333297f90ba7",
+        ".cache/research/toolchains/pawn-stable/amx/termwin.h": "23860b93d0c0ae94b5274151f74d092018919d0584eb0a877193959087589b67",
+        ".cache/research/toolchains/pawn-stable/amx/term_ga.h": "d842166b8ded6f8d0908e80b188021640cddf9c3ac8c51cbcb0d8a5cf3c9d35a",
+        ".cache/research/toolchains/pawn-stable/linux/binreloc.h": "569b082b1c88e95f5279e981b3f94299abd25bcb528cdd406117bba1ece607ba",
+        ".cache/research/toolchains/pawn-stable/linux/getch.h": "e29c0728c54901cea8347b1de181569ce963ae2d30225fb9ae51ac36bd5aa434",
+        ".cache/research/toolchains/pawn-stable/linux/sclinux.h": "496a2cb5499fe389c1fecc283de0c27389e1e83755c574aedf32b6fcaec6fd2b"
       },
       "configuration": "C interpreter; no dynamic loading; no JIT; no optional libraries; no relocation"
     },
@@ -206,12 +222,28 @@
         "-o",
         "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build32/labrun"
       ],
-      "sha256": "aff176791c5e0c7c1ce6b3e28969a43a019c8ac530f7bd1afc83363d06d82ddc",
+      "sha256": "d5de24efad7ee9d22419a06c89d4cb21df78166207705d318c23dd8215deda89",
       "cell_bits": 32,
       "sources_sha256": {
-        "research/pawn/host/labrun.c": "bf33b4b87559fb6c6d71af74c88a54bde64546b9bbdf3cbd7a2e7c525854e99b",
-        "research/pawn/host/contracts.h": "691d64e48d78758c0fc85c5b9ba761d119dcc2741012a21409f0abeaa2d18aed",
-        ".cache/research/toolchains/pawn-stable/amx/amx.c": "ed90f2709ac20dbd34c40c222465fa38f6c8a09a84813b7ea50b345e2fcc7ee4"
+        "research/pawn/host/labrun.c": "e1d8c37c0d4afbd7567f7a777e97a15be283e69b131bef34cec5987fbb1cdfcc",
+        "research/pawn/host/contracts.h": "eca610cd2f8542bf73e3f2066b60a6d391e81b419ac8e554c3d41ac6f56d6475",
+        ".cache/research/toolchains/pawn-stable/amx/amx.c": "ed90f2709ac20dbd34c40c222465fa38f6c8a09a84813b7ea50b345e2fcc7ee4",
+        ".cache/research/toolchains/pawn-stable/amx/amx.h": "51c023ebe81cada3d77630e09dd556ec6f029fa3fddeb66eea15a8d6e4bdb515",
+        ".cache/research/toolchains/pawn-stable/amx/amxaux.h": "9b9afc9af50289359da2020e506d7d6911245b9da6eeaf9985cbe342532dcb1e",
+        ".cache/research/toolchains/pawn-stable/amx/amxcons.h": "0d73301186b22d737cb60102a7ac6314104bc133efdd3966aa34ba0be5cb6a75",
+        ".cache/research/toolchains/pawn-stable/amx/amxdbg.h": "64487699984bb65a9abdb9b3cc5b11afb2bc8cfe642fecd3926ea5e7ffcf0f07",
+        ".cache/research/toolchains/pawn-stable/amx/amxgc.h": "cc9094cf24ab18f70ba8f61fcfea75b96284748e4cd2103ebff470973867a7e8",
+        ".cache/research/toolchains/pawn-stable/amx/amxpool.h": "6c9573e10779cecb2bec2a23246c3336f7a99fc297fe36e60f07dff6b4ecd572",
+        ".cache/research/toolchains/pawn-stable/amx/fpattern.h": "702f4427236ffc3a6a018f464775bea2a63ca7d971a4b675eb54e2c9302f97ac",
+        ".cache/research/toolchains/pawn-stable/amx/keeloq.h": "b93f76fa442e2ba9095dce82b8207369269663c771f1a95bd703480f29647c84",
+        ".cache/research/toolchains/pawn-stable/amx/minGlue.h": "9d07bf0f7ff660d9af67ab6f03658a07fd4f878635808163eec90e5570213e49",
+        ".cache/research/toolchains/pawn-stable/amx/minIni.h": "8587a04ec7683448009c57e8def3d7117e70e157defcc8439cb6502a127ace74",
+        ".cache/research/toolchains/pawn-stable/amx/osdefs.h": "061668c42fa5e1531836faf04ddc86ee7e29eec240b9f58306e7333297f90ba7",
+        ".cache/research/toolchains/pawn-stable/amx/termwin.h": "23860b93d0c0ae94b5274151f74d092018919d0584eb0a877193959087589b67",
+        ".cache/research/toolchains/pawn-stable/amx/term_ga.h": "d842166b8ded6f8d0908e80b188021640cddf9c3ac8c51cbcb0d8a5cf3c9d35a",
+        ".cache/research/toolchains/pawn-stable/linux/binreloc.h": "569b082b1c88e95f5279e981b3f94299abd25bcb528cdd406117bba1ece607ba",
+        ".cache/research/toolchains/pawn-stable/linux/getch.h": "e29c0728c54901cea8347b1de181569ce963ae2d30225fb9ae51ac36bd5aa434",
+        ".cache/research/toolchains/pawn-stable/linux/sclinux.h": "496a2cb5499fe389c1fecc283de0c27389e1e83755c574aedf32b6fcaec6fd2b"
       },
       "configuration": "C interpreter; no dynamic loading; no JIT; no optional libraries; no relocation"
     },
@@ -233,12 +265,28 @@
         "-o",
         "/home/crowg/Documents/GitHub/AmxxModding/.cache/research/build64/labrun"
       ],
-      "sha256": "974784bc16309317e3ca4cf156262cc043be595e370f7733881cfa97bb32e7d4",
+      "sha256": "dd347879b6ff147cdeda7c4a9f504eccd7377880329cde3b9c7f3de44d4b37e0",
       "cell_bits": 64,
       "sources_sha256": {
-        "research/pawn/host/labrun.c": "bf33b4b87559fb6c6d71af74c88a54bde64546b9bbdf3cbd7a2e7c525854e99b",
-        "research/pawn/host/contracts.h": "691d64e48d78758c0fc85c5b9ba761d119dcc2741012a21409f0abeaa2d18aed",
-        ".cache/research/toolchains/pawn-stable/amx/amx.c": "ed90f2709ac20dbd34c40c222465fa38f6c8a09a84813b7ea50b345e2fcc7ee4"
+        "research/pawn/host/labrun.c": "e1d8c37c0d4afbd7567f7a777e97a15be283e69b131bef34cec5987fbb1cdfcc",
+        "research/pawn/host/contracts.h": "eca610cd2f8542bf73e3f2066b60a6d391e81b419ac8e554c3d41ac6f56d6475",
+        ".cache/research/toolchains/pawn-stable/amx/amx.c": "ed90f2709ac20dbd34c40c222465fa38f6c8a09a84813b7ea50b345e2fcc7ee4",
+        ".cache/research/toolchains/pawn-stable/amx/amx.h": "51c023ebe81cada3d77630e09dd556ec6f029fa3fddeb66eea15a8d6e4bdb515",
+        ".cache/research/toolchains/pawn-stable/amx/amxaux.h": "9b9afc9af50289359da2020e506d7d6911245b9da6eeaf9985cbe342532dcb1e",
+        ".cache/research/toolchains/pawn-stable/amx/amxcons.h": "0d73301186b22d737cb60102a7ac6314104bc133efdd3966aa34ba0be5cb6a75",
+        ".cache/research/toolchains/pawn-stable/amx/amxdbg.h": "64487699984bb65a9abdb9b3cc5b11afb2bc8cfe642fecd3926ea5e7ffcf0f07",
+        ".cache/research/toolchains/pawn-stable/amx/amxgc.h": "cc9094cf24ab18f70ba8f61fcfea75b96284748e4cd2103ebff470973867a7e8",
+        ".cache/research/toolchains/pawn-stable/amx/amxpool.h": "6c9573e10779cecb2bec2a23246c3336f7a99fc297fe36e60f07dff6b4ecd572",
+        ".cache/research/toolchains/pawn-stable/amx/fpattern.h": "702f4427236ffc3a6a018f464775bea2a63ca7d971a4b675eb54e2c9302f97ac",
+        ".cache/research/toolchains/pawn-stable/amx/keeloq.h": "b93f76fa442e2ba9095dce82b8207369269663c771f1a95bd703480f29647c84",
+        ".cache/research/toolchains/pawn-stable/amx/minGlue.h": "9d07bf0f7ff660d9af67ab6f03658a07fd4f878635808163eec90e5570213e49",
+        ".cache/research/toolchains/pawn-stable/amx/minIni.h": "8587a04ec7683448009c57e8def3d7117e70e157defcc8439cb6502a127ace74",
+        ".cache/research/toolchains/pawn-stable/amx/osdefs.h": "061668c42fa5e1531836faf04ddc86ee7e29eec240b9f58306e7333297f90ba7",
+        ".cache/research/toolchains/pawn-stable/amx/termwin.h": "23860b93d0c0ae94b5274151f74d092018919d0584eb0a877193959087589b67",
+        ".cache/research/toolchains/pawn-stable/amx/term_ga.h": "d842166b8ded6f8d0908e80b188021640cddf9c3ac8c51cbcb0d8a5cf3c9d35a",
+        ".cache/research/toolchains/pawn-stable/linux/binreloc.h": "569b082b1c88e95f5279e981b3f94299abd25bcb528cdd406117bba1ece607ba",
+        ".cache/research/toolchains/pawn-stable/linux/getch.h": "e29c0728c54901cea8347b1de181569ce963ae2d30225fb9ae51ac36bd5aa434",
+        ".cache/research/toolchains/pawn-stable/linux/sclinux.h": "496a2cb5499fe389c1fecc283de0c27389e1e83755c574aedf32b6fcaec6fd2b"
       },
       "configuration": "C interpreter; no dynamic loading; no JIT; no optional libraries; no relocation"
     }
