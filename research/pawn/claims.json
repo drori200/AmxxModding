@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "source_ledger": "research/evidence/sources.json",
-  "purpose": "Claim-to-source-to-test index; status is not a gate approval. Evidence hashes identify the cited snapshot, which may predate later reruns.",
+  "purpose": "Claim-to-source-to-test index; current evidence hashes identify the cited snapshots. This index is not an advancement approval.",
   "claims": [
     {
       "id": "P01",
-      "claim": "The advertised4.1.7487 archive contains revision7483 metadata and builds a4.1.7483 compiler.",
+      "claim": "The advertised 4.1.7487 archive contains revision 7483 metadata and builds a 4.1.7483 compiler.",
       "scope": "toolchain provenance",
       "sources": [
         {
@@ -20,7 +20,7 @@
       "evidence": [
         {
           "path": "research/evidence/toolchains.json",
-          "sha256": "afd95d4af1778f27f0c242bcc904826deec2df981bd510be1055dd4083c41f0b"
+          "sha256": "21fd783d64a8b1aa80d907aa0c3156453ce9edd60351dc16326240c845cd4cac"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -44,7 +44,7 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-original-results.json",
-          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+          "sha256": "3b9b0e4c383ca1b0d7a25729aa30facf584c21af0042f82c90cea8f181edf19f"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -59,7 +59,7 @@
         }
       ],
       "source_locations": [
-        "Language printed pp.98-99"
+        "Language printed p.97 (assert), pp.54 and 98-99 (arrays and control flow)"
       ],
       "tests": [
         "release_safe_index",
@@ -69,7 +69,7 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-original-results.json",
-          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+          "sha256": "3b9b0e4c383ca1b0d7a25729aa30facf584c21af0042f82c90cea8f181edf19f"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -92,11 +92,11 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-examples-results.json",
-          "sha256": "a80dfd6cfec005897d300ea1f5c727bd80d8d3c7afcf95aabc550eeeac8ce1d5"
+          "sha256": "ee73fb0b847f881e3ef7e6191242775d79dbe8bed9c7ddbe89dca7b2ccbf6cdc"
         },
         {
           "path": "research/evidence/pawn-original-results.json",
-          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+          "sha256": "3b9b0e4c383ca1b0d7a25729aa30facf584c21af0042f82c90cea8f181edf19f"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -123,7 +123,7 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-examples-results.json",
-          "sha256": "a80dfd6cfec005897d300ea1f5c727bd80d8d3c7afcf95aabc550eeeac8ce1d5"
+          "sha256": "ee73fb0b847f881e3ef7e6191242775d79dbe8bed9c7ddbe89dca7b2ccbf6cdc"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -146,7 +146,7 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-original-results.json",
-          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+          "sha256": "3b9b0e4c383ca1b0d7a25729aa30facf584c21af0042f82c90cea8f181edf19f"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -174,11 +174,11 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-examples-results.json",
-          "sha256": "a80dfd6cfec005897d300ea1f5c727bd80d8d3c7afcf95aabc550eeeac8ce1d5"
+          "sha256": "ee73fb0b847f881e3ef7e6191242775d79dbe8bed9c7ddbe89dca7b2ccbf6cdc"
         },
         {
           "path": "research/evidence/pawn-original-results.json",
-          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+          "sha256": "3b9b0e4c383ca1b0d7a25729aa30facf584c21af0042f82c90cea8f181edf19f"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -203,11 +203,11 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-defect-probes.json",
-          "sha256": "520b185b8d7afdc924d2fbd11ac5ab65dbf78b6ba9a2060428ef860baabc1bde"
+          "sha256": "33a522eae55886678f3338342eb95ed644977dc3fba344cf2f84d23b80c51e4b"
         },
         {
           "path": "research/pawn/review-findings.md",
-          "sha256": "4d81ad338d39ef5c8fd9e2b74553222d2a3d9fcb7f4a7cd1e2e9c7fd51594bfb"
+          "sha256": "515706d8b5d8e6ff1618d39876863c789ec3da09184663d479468c6dbad788cb"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -228,7 +228,7 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-upstream-results.json",
-          "sha256": "a398fe3b2e2cd6ae8843202af5a7744010422082886f8a5a11a3cc4336be3377"
+          "sha256": "c07ca1c6d75611e17aa46564b59f5dfacc958a6eedfef026f630fbac307985f4"
         }
       ],
       "status": "evidence_recorded_scope_review_required"
@@ -255,7 +255,7 @@
       "evidence": [
         {
           "path": "research/evidence/pawn-original-results.json",
-          "sha256": "1d661c50fa9a789dff89f878382703c299b3f8b25086d54e3f578a49db60cb6a"
+          "sha256": "3b9b0e4c383ca1b0d7a25729aa30facf584c21af0042f82c90cea8f181edf19f"
         }
       ],
       "status": "evidence_recorded_scope_review_required"

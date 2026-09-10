@@ -73,8 +73,9 @@ and the [test source](../tools/test_pawn_audit.py) identify the exact scope.
 The original matrix retains failing portability profiles and compiler/VM defects.
 Each requires a bounded explanation and independent disposition. Recognition of
 one defect does not explain every failure. The official suite retains documented
-oracle differences, unsupported harness facilities and a compiler defect; none
-are silently recast as successful language tests.
+oracle differences and unsupported harness facilities; none are silently recast
+as successful language tests. The previous internal-32 compiler crash in official
+case 100 now produces its expected diagnostic under the default internal type.
 
 All **86 guide-topic dispositions** remain to be completed and reviewed. Many
 have mapped executable cases, but a mapping does not establish full topic
